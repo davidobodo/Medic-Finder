@@ -1,11 +1,16 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
-const App = () => {
+export default function App() {
   return (
-    <div className="App">
-      Start my app
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth={false}>
+        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+      </Container>
+    </React.Fragment>
   );
 }
 
-export default App;
