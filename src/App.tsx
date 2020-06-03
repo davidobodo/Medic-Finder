@@ -1,14 +1,17 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import { useStyles } from './AppStyles';
+
 export default function App() {
+
+  const classes = useStyles();
+
   return (
     <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth={false}>
-        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+      <Container maxWidth={false} className={classes.root}>
+        <Typography component="div" />
       </Container>
     </React.Fragment>
   );
