@@ -40,7 +40,7 @@ export default function App() {
           <PlaceCard />
         </Grid>
         <Grid item xs={8} className={classes.rightColumn}>
-          {/* <Map center={place} zoom={16} /> */}
+          <Map center={place} zoom={16} />
         </Grid>
       </Grid>
     </React.Fragment>
