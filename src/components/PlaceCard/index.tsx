@@ -32,7 +32,7 @@ export default function PlaceCard() {
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     Word of the Day
-        </Typography>
+                </Typography>
                 <Typography variant="h5" component="h2">
                     be{bull}nev{bull}o{bull}lent
         </Typography>

@@ -10,10 +10,13 @@ import Grid from '@material-ui/core/Grid';
 import { useAppStyles } from './AppStyles';
 
 import PlaceCard from './components/PlaceCard'
+import Map from './components/Map'
 
 export default function App() {
 
   const classes = useAppStyles();
+
+  const place = { lat: -34.397, lng: 150.644 };
 
 
   return (
@@ -37,8 +40,8 @@ export default function App() {
           <PlaceCard />
         </Grid>
         <Grid item xs={8} className={classes.rightColumn}>
-          Hello
-          </Grid>
+          {/* <Map center={place} zoom={16} /> */}
+        </Grid>
       </Grid>
     </React.Fragment>
   );
