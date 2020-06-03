@@ -12,8 +12,6 @@
 /build
 
 
-/public
-
 .env
 # misc
 .DS_Store
