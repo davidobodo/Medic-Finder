@@ -1,18 +1,35 @@
 import React from 'react';
+
+
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
 
-import { useStyles } from './AppStyles';
+import { useAppStyles } from './AppStyles';
 
 export default function App() {
 
-  const classes = useStyles();
+  const classes = useAppStyles();
 
   return (
     <React.Fragment>
-      <Container maxWidth={false} className={classes.root}>
-        <Typography component="div" />
+      <Container maxWidth={false} className={classes.topContainer}>
+        <form noValidate autoComplete="off">
+          <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
+          <TextField id="outlined-basic" label="Enter your location" variant="outlined" />
+        </form>
       </Container>
+      <Grid container spacing={0} className={classes.bottomContainer}>
+        <Grid item xs={4} className={classes.leftColumn}>
+          Hello
+          </Grid>
+        <Grid item xs={8} className={classes.rightColumn}>
+          Hello
+          </Grid>
+      </Grid>
     </React.Fragment>
   );
 }
