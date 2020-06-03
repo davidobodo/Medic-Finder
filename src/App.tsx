@@ -1,18 +1,20 @@
-import React from 'react';
 
+import React from 'react'
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
 import { useAppStyles } from './AppStyles';
 
+import PlaceCard from './components/PlaceCard'
+
 export default function App() {
 
   const classes = useAppStyles();
+
 
   return (
     <React.Fragment>
@@ -24,8 +26,16 @@ export default function App() {
       </Container>
       <Grid container spacing={0} className={classes.bottomContainer}>
         <Grid item xs={4} className={classes.leftColumn}>
-          Hello
-          </Grid>
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+        </Grid>
         <Grid item xs={8} className={classes.rightColumn}>
           Hello
           </Grid>

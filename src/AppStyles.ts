@@ -15,11 +15,11 @@ export const useAppStyles = makeStyles({
         height: '100vh',
     },
     leftColumn: {
-        backgroundColor: 'red',
-        height: '100%'
+        height: '100%',
+        borderRight: '1px solid #000',
+        overflow: 'scroll'
     },
     rightColumn: {
-        backgroundColor: 'blue',
         height: '100%'
     },
 })
