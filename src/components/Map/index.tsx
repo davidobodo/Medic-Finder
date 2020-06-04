@@ -9,10 +9,10 @@ const useStyles = makeStyles({
     }
 })
 const Map = (props) => {
-    const mapRef = useRef();
     const classes = useStyles();
+    const mapRef = useRef();
 
-    const { center, zoom, onSetHospitalsDescription } = props
+    const { center, zoom, onSetHospitalsDescription, radius } = props
 
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const Map = (props) => {
 
         const request: any = {
             location: center,
-            radius: '500',
+            radius: radius,
             type: ['hospital']
         };
 

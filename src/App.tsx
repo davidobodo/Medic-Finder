@@ -14,14 +14,57 @@ import Map from './components/Map'
 
 export default function App() {
   const [hospitalsDescription, setHospitalsDescription] = useState([]);
+  const [latitude, setLatitude] = useState(null)
+  const [longitude, setLongitude] = useState(null)
+  const [radius, setRadius] = useState('')
   const inputRef = useRef();
+  const mapRef = useRef();
+
+  const defaultZoom = 18;
 
   const classes = useAppStyles();
 
-  const place = new google.maps.LatLng(6.800581499999999, 3.4447778);
+  const place = new google.maps.LatLng(latitude, longitude);
 
   const handleSetHospitalsDescription = (places) => {
     setHospitalsDescription(places)
+  }
+
+  const handleGetHospitals = (e) => {
+    e.preventDefault();
+    const map = new window.google.maps.Map(mapRef.current, {
+      center: place,
+      zoom: defaultZoom
+    })
+
+    const request: any = {
+      location: place,
+      radius: radius,
+      type: ['hospital']
+    };
+
+    const service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+
+
+    function callback(results, status) {
+      console.log(results)
+      if (results.length > 1) {
+        handleSetHospitalsDescription(results)
+      }
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
+      }
+    }
+
+    function createMarker(place) {
+      new window.google.maps.Marker({
+        position: place.geometry.location,
+        map: map
+      })
+    }
 
   }
 
@@ -34,12 +77,11 @@ export default function App() {
       const place = autocomplete.getPlace();
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
-      console.log(lat, lng)
+      setLatitude(lat)
+      setLongitude(lng)
     })
 
   }, [inputRef])
-
-
 
   return (
     <React.Fragment>
@@ -48,6 +90,8 @@ export default function App() {
           <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
           {/* <TextField ref={inputRef} id="outlined-basic" label="Enter your location" variant="outlined" /> */}
           <input type="text" ref={inputRef} className={classes.inputField} placeholder="Enter a location" />
+          <input type="text" onChange={(e) => setRadius(e.target.value)} />
+          <button onClick={handleGetHospitals}>Search</button>
         </form>
       </Container>
       <Grid container spacing={0} className={classes.bottomContainer}>
@@ -58,7 +102,10 @@ export default function App() {
           })}
         </Grid>
         <Grid item xs={8} className={classes.rightColumn}>
-          <Map center={place} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} />
+          <React.Fragment>
+            <Typography style={{ width: '100%', height: '100%' }} ref={mapRef} component="div"></Typography>
+          </React.Fragment>
+          {/* <Map center={place} radius={radius} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} /> */}
         </Grid>
       </Grid>
     </React.Fragment>
