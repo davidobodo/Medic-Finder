@@ -14,7 +14,7 @@ export default function App() {
                 <Router>
                     <Switch>
                         <Route path='/' exact component={Home} />
-                        {/* <Route path='/locations' exact component={Locations} /> */}
+                        <Route path='/locations' exact component={Locations} />
                     </Switch>
                 </Router>
             </ThemeProvider>

@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react'
+import { Redirect, useHistory } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -18,58 +19,28 @@ import Locations from '../Locations'
 import hospital from '../../assets/hospital.jpg'
 
 export default function Home() {
-  const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
+  const inputRef = useRef();
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [radius, setRadius] = useState('')
-  const inputRef = useRef();
-  const mapRef = useRef();
-
-  const defaultZoom = 18;
-
+  const history = useHistory();
   const classes = useHomeStyles();
 
-  const place = new google.maps.LatLng(latitude, longitude);
 
-  const handleSetHospitalsDescription = (places) => {
-    setHospitalsDescription(places)
+  const handleSetGeoFencingRadius = (e) => {
+    setRadius(e.target.value)
   }
 
   const handleGetHospitals = (e) => {
     e.preventDefault();
-    const map = new window.google.maps.Map(mapRef.current, {
-      center: place,
-      zoom: defaultZoom
+    history.push({
+      pathname: '/locations',
+      state: {
+        longitude,
+        latitude,
+        radius
+      }
     })
-
-    const request: any = {
-      location: place,
-      radius: radius,
-      type: ['hospital']
-    };
-
-    const service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-
-
-    function callback(results, status) {
-      console.log(results)
-      if (results.length > 1) {
-        handleSetHospitalsDescription(results)
-      }
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          createMarker(results[i]);
-        }
-      }
-    }
-
-    function createMarker(place) {
-      new window.google.maps.Marker({
-        position: place.geometry.location,
-        map: map
-      })
-    }
 
   }
 
@@ -101,24 +72,39 @@ export default function Home() {
         }}>
 
         <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
-        <form noValidate autoComplete="off" className={classes.formContainer}>
+        <form
+          noValidate
+          autoComplete="off"
+          className={classes.formContainer}>
           <div className={classes.inputContainer}>
             <label className={classes.inputLabel}>Location</label>
-            <input type="text" ref={inputRef} className={classes.bigInputField} placeholder="Enter a location" />
+            <input
+              type="text"
+              ref={inputRef}
+              className={classes.bigInputField}
+              placeholder="Enter a location" />
           </div>
           <div className={classes.inputContainer}>
             <label className={classes.inputLabel}>Geo-fencing Radius</label>
-            <input type="text" onChange={(e) => setRadius(e.target.value)} className={classes.smallInputField} placeholder="Radius" />
+            <input
+              type="text"
+              onChange={handleSetGeoFencingRadius}
+              className={classes.smallInputField}
+              placeholder="Radius" />
           </div>
-          <Button variant="contained" color="primary" className={classes.button} onClick={handleGetHospitals}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={handleGetHospitals}>
             Search
-            </Button>
+          </Button>
         </form>
 
       </Container>
-      <Locations
+      {/* <Locations
         ref={mapRef}
-        hospitalsDescription={hospitalsDescription} />
+        hospitalsDescription={hospitalsDescription} /> */}
     </React.Fragment>
   );
 }
