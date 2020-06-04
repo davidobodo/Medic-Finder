@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useAppStyles = makeStyles({
+export const useHomeStyles = makeStyles({
     topContainer: {
         backgroundColor: '#F0F8FF',
         height: '100vh',
