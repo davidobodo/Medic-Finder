@@ -14,6 +14,8 @@ import { useAppStyles } from './AppStyles';
 import PlaceCard from './components/PlaceCard'
 import Map from './components/Map'
 
+import hospital from './assets/hospital.jpg'
+
 export default function App() {
   const [hospitalsDescription, setHospitalsDescription] = useState([]);
   const [latitude, setLatitude] = useState(null)
@@ -87,26 +89,32 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <Container maxWidth={false} className={classes.topContainer}>
-        <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
-        <section>
 
-          <form noValidate autoComplete="off" className={classes.formContainer}>
-            <div className={classes.inputContainer}>
-              <label>Location</label>
-              <input type="text" ref={inputRef} className={classes.bigInputField} placeholder="Enter a location" />
-            </div>
-            <div className={classes.inputContainer}>
-              <label>Geo-fencing Radius</label>
-              <input type="text" onChange={(e) => setRadius(e.target.value)} className={classes.smallInputField} placeholder="Radius" />
-            </div>
-            {/* <button onClick={handleGetHospitals}>Search</button> */}
-            <Button variant="contained" color="primary" className={classes.button} onClick={handleGetHospitals}>
-              Search
-</Button>
-          </form>
-        </section>
+      <Container
+        maxWidth={false}
+        className={classes.topContainer}
+        style={{
+          background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${hospital})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
+        }}>
+        <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
+        <form noValidate autoComplete="off" className={classes.formContainer}>
+          <div className={classes.inputContainer}>
+            <label className={classes.inputLabel}>Location</label>
+            <input type="text" ref={inputRef} className={classes.bigInputField} placeholder="Enter a location" />
+          </div>
+          <div className={classes.inputContainer}>
+            <label className={classes.inputLabel}>Geo-fencing Radius</label>
+            <input type="text" onChange={(e) => setRadius(e.target.value)} className={classes.smallInputField} placeholder="Radius" />
+          </div>
+          {/* <button onClick={handleGetHospitals}>Search</button> */}
+          <Button variant="contained" color="primary" className={classes.button} onClick={handleGetHospitals}>
+            Search
+            </Button>
+        </form>
       </Container>
+
       <Grid container spacing={0} className={classes.bottomContainer}>
         <Grid item xs={4} className={classes.leftColumn}>
           {hospitalsDescription.map((hospital) => {

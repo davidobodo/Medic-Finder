@@ -7,10 +7,15 @@ export const useAppStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        // background: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/hospital.jpg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
     },
     title: {
-        fontSize: '36px'
+        fontSize: '110px',
+        color: '#fff'
+
     },
     bottomContainer: {
         height: '100vh',
@@ -31,22 +36,30 @@ export const useAppStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column'
     },
-    bigInputField: {
+    inputLabel: {
         fontSize: '24px',
+        paddingLeft: '18px',
+        color: '#fff',
+        fontWeight: 200
+    },
+    bigInputField: {
+        fontSize: '18px',
         padding: '20px',
         borderRadius: '10px',
         width: '600px',
-        marginRight: '30px'
+        marginRight: '30px',
+        border: '1px solid'
     },
     smallInputField: {
-        fontSize: '24px',
+        fontSize: '18px',
         padding: '20px',
         borderRadius: '10px',
         width: '300px',
-        marginRight: '30px'
+        marginRight: '30px',
+        border: '1px solid'
     },
     button: {
-        padding: '24px 40px',
+        padding: '20px 40px',
         borderRadius: '10px'
     }
 })
