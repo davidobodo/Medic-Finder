@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, forwardRef } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, Fragment } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useLocationsStyles } from './style';
 import PlaceCard from '../../components/PlaceCard'
 import Map from '../../components/Map'
 import { LocationProps } from './type'
+import GoogleSearchTab from '../../components/GoogleSearchTab'
 
 
 const Locations: React.FC<LocationProps> = (props) => {
@@ -56,23 +57,29 @@ const Locations: React.FC<LocationProps> = (props) => {
 
 
     return (
-        <Grid container spacing={0} className={classes.bottomContainer}>
-            <Grid item xs={4} className={classes.leftColumn}>
-                {hospitalsDescription.map((hospital) => {
-                    const { name } = hospital
-                    return <PlaceCard key={name} description={hospital} />
-                })}
+        <div className={classes.container}>
+            <header className={classes.header}>
+                <GoogleSearchTab />
+            </header>
+            <Grid container spacing={0} className={classes.body}>
+                <Grid item xs={4} className={classes.leftColumn}>
+                    {hospitalsDescription.map((hospital) => {
+                        const { name } = hospital
+                        return <PlaceCard key={name} description={hospital} />
+                    })}
+                </Grid>
+                <Grid item xs={8} className={classes.rightColumn}>
+                    <React.Fragment>
+                        <Typography
+                            style={{ width: '100%', height: '100%' }}
+                            component="div"
+                            ref={mapRef}></Typography>
+                    </React.Fragment>
+                    {/* <Map center={place} radius={radius} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} /> */}
+                </Grid>
             </Grid>
-            <Grid item xs={8} className={classes.rightColumn}>
-                <React.Fragment>
-                    <Typography
-                        style={{ width: '100%', height: '100%' }}
-                        component="div"
-                        ref={mapRef}></Typography>
-                </React.Fragment>
-                {/* <Map center={place} radius={radius} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} /> */}
-            </Grid>
-        </Grid>
+        </div>
+
     );
 }
 
