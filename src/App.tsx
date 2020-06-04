@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -13,16 +13,32 @@ import PlaceCard from './components/PlaceCard'
 import Map from './components/Map'
 
 export default function App() {
-  const [hospitalsDescription, setHospitalsDescription] = useState([])
+  const [hospitalsDescription, setHospitalsDescription] = useState([]);
+  const inputRef = useRef();
 
   const classes = useAppStyles();
 
-  const place = new google.maps.LatLng(6.648486, 3.347063);
+  const place = new google.maps.LatLng(6.800581499999999, 3.4447778);
 
   const handleSetHospitalsDescription = (places) => {
     setHospitalsDescription(places)
 
   }
+
+  useEffect(() => {
+    const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
+      types: ['geocode']
+    })
+
+    autocomplete.addListener('place_changed', function () {
+      const place = autocomplete.getPlace();
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      console.log(lat, lng)
+    })
+
+  }, [inputRef])
+
 
 
   return (
@@ -30,7 +46,8 @@ export default function App() {
       <Container maxWidth={false} className={classes.topContainer}>
         <form noValidate autoComplete="off">
           <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
-          <TextField id="outlined-basic" label="Enter your location" variant="outlined" />
+          {/* <TextField ref={inputRef} id="outlined-basic" label="Enter your location" variant="outlined" /> */}
+          <input type="text" ref={inputRef} className={classes.inputField} placeholder="Enter a location" />
         </form>
       </Container>
       <Grid container spacing={0} className={classes.bottomContainer}>

@@ -36,9 +36,6 @@ export default function PlaceCard(props) {
         international_phone_number,
         formatted_address } = props.description;
 
-    if (opening_hours) {
-        console.log(opening_hours.isOpen)
-    }
 
     return (
         <Card className={classes.root}>

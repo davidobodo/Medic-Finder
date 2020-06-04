@@ -22,4 +22,7 @@ export const useAppStyles = makeStyles({
     rightColumn: {
         height: '100%'
     },
+    inputField: {
+        width: '400px'
+    }
 })

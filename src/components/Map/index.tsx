@@ -32,13 +32,11 @@ const Map = (props) => {
 
 
         function callback(results, status) {
-            console.log(results)
             if (results.length > 1) {
                 onSetHospitalsDescription(results)
             }
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
-                    console.log(results)
                     createMarker(results[i]);
                 }
             }
