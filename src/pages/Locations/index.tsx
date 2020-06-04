@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, forwardRef, Fragment } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useLocationsStyles } from './style';
-import PlaceCard from '../../components/PlaceCard'
+import AddressCard from '../../components/AddressCard'
 import Map from '../../components/Map'
 import { LocationProps } from './type'
 import GoogleSearchTab from '../../components/GoogleSearchTab'
@@ -65,7 +65,7 @@ const Locations: React.FC<LocationProps> = (props) => {
                 <Grid item xs={4} className={classes.leftColumn}>
                     {hospitalsDescription.map((hospital) => {
                         const { name } = hospital
-                        return <PlaceCard key={name} description={hospital} />
+                        return <AddressCard key={name} description={hospital} />
                     })}
                 </Grid>
                 <Grid item xs={8} className={classes.rightColumn}>
