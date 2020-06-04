@@ -6,6 +6,8 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 import { useAppStyles } from './AppStyles';
 
@@ -86,13 +88,24 @@ export default function App() {
   return (
     <React.Fragment>
       <Container maxWidth={false} className={classes.topContainer}>
-        <form noValidate autoComplete="off">
-          <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
-          {/* <TextField ref={inputRef} id="outlined-basic" label="Enter your location" variant="outlined" /> */}
-          <input type="text" ref={inputRef} className={classes.inputField} placeholder="Enter a location" />
-          <input type="text" onChange={(e) => setRadius(e.target.value)} />
-          <button onClick={handleGetHospitals}>Search</button>
-        </form>
+        <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
+        <section>
+
+          <form noValidate autoComplete="off" className={classes.formContainer}>
+            <div className={classes.inputContainer}>
+              <label>Location</label>
+              <input type="text" ref={inputRef} className={classes.bigInputField} placeholder="Enter a location" />
+            </div>
+            <div className={classes.inputContainer}>
+              <label>Geo-fencing Radius</label>
+              <input type="text" onChange={(e) => setRadius(e.target.value)} className={classes.smallInputField} placeholder="Radius" />
+            </div>
+            {/* <button onClick={handleGetHospitals}>Search</button> */}
+            <Button variant="contained" color="primary" className={classes.button} onClick={handleGetHospitals}>
+              Search
+</Button>
+          </form>
+        </section>
       </Container>
       <Grid container spacing={0} className={classes.bottomContainer}>
         <Grid item xs={4} className={classes.leftColumn}>
