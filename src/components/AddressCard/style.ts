@@ -3,7 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useAddressCardStyles = makeStyles({
     root: {
         minWidth: 275,
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        boxShadow: 'none',
+        padding: '18px'
     },
+
     name: {
         marginBottom: '10px'
     },

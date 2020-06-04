@@ -10,7 +10,7 @@ type Props = {
 
 const useStarRatingStyles = makeStyles({
     root: {
-        marginBottom: '15px'
+        // marginBottom: '15px'
     },
     checked: {
         color: '#ffa500'

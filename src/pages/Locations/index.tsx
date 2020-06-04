@@ -62,13 +62,13 @@ const Locations: React.FC<LocationProps> = (props) => {
                 <GoogleSearchTab />
             </header>
             <Grid container spacing={0} className={classes.body}>
-                <Grid item xs={4} className={classes.leftColumn}>
+                <Grid item xs={3} className={classes.leftColumn}>
                     {hospitalsDescription.map((hospital) => {
                         const { name } = hospital
                         return <AddressCard key={name} description={hospital} />
                     })}
                 </Grid>
-                <Grid item xs={8} className={classes.rightColumn}>
+                <Grid item xs={9} className={classes.rightColumn}>
                     <React.Fragment>
                         <Typography
                             style={{ width: '100%', height: '100%' }}
