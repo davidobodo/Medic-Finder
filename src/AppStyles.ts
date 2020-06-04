@@ -14,7 +14,8 @@ export const useAppStyles = makeStyles({
     },
     title: {
         fontSize: '110px',
-        color: '#fff'
+        color: '#fff',
+        marginBottom: '100px'
 
     },
     bottomContainer: {

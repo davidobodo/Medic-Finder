@@ -98,6 +98,7 @@ export default function App() {
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
         }}>
+
         <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
         <form noValidate autoComplete="off" className={classes.formContainer}>
           <div className={classes.inputContainer}>
@@ -113,6 +114,7 @@ export default function App() {
             Search
             </Button>
         </form>
+
       </Container>
 
       <Grid container spacing={0} className={classes.bottomContainer}>
