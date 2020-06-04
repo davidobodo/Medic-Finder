@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -13,10 +13,16 @@ import PlaceCard from './components/PlaceCard'
 import Map from './components/Map'
 
 export default function App() {
+  const [hospitalsDescription, setHospitalsDescription] = useState([])
 
   const classes = useAppStyles();
 
-  const place = { lat: -34.397, lng: 150.644 };
+  const place = new google.maps.LatLng(6.648486, 3.347063);
+
+  const handleSetHospitalsDescription = (places) => {
+    setHospitalsDescription(places)
+
+  }
 
 
   return (
@@ -29,18 +35,13 @@ export default function App() {
       </Container>
       <Grid container spacing={0} className={classes.bottomContainer}>
         <Grid item xs={4} className={classes.leftColumn}>
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
-          <PlaceCard />
+          {hospitalsDescription.map((hospital) => {
+            const { name } = hospital
+            return <PlaceCard key={name} description={hospital} />
+          })}
         </Grid>
         <Grid item xs={8} className={classes.rightColumn}>
-          <Map center={place} zoom={16} />
+          <Map center={place} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} />
         </Grid>
       </Grid>
     </React.Fragment>
