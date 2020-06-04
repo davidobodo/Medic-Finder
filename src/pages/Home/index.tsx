@@ -13,11 +13,12 @@ import { useHomeStyles } from './style';
 
 import PlaceCard from '../../components/PlaceCard'
 import Map from '../../components/Map'
+import Locations from '../Locations'
 
 import hospital from '../../assets/hospital.jpg'
 
 export default function Home() {
-  const [hospitalsDescription, setHospitalsDescription] = useState([]);
+  const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [radius, setRadius] = useState('')
@@ -115,21 +116,9 @@ export default function Home() {
         </form>
 
       </Container>
-
-      <Grid container spacing={0} className={classes.bottomContainer}>
-        <Grid item xs={4} className={classes.leftColumn}>
-          {hospitalsDescription.map((hospital) => {
-            const { name } = hospital
-            return <PlaceCard key={name} description={hospital} />
-          })}
-        </Grid>
-        <Grid item xs={8} className={classes.rightColumn}>
-          <React.Fragment>
-            <Typography style={{ width: '100%', height: '100%' }} ref={mapRef} component="div"></Typography>
-          </React.Fragment>
-          {/* <Map center={place} radius={radius} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} /> */}
-        </Grid>
-      </Grid>
+      <Locations
+        ref={mapRef}
+        hospitalsDescription={hospitalsDescription} />
     </React.Fragment>
   );
 }
