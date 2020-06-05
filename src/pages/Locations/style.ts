@@ -14,7 +14,8 @@ export const useLocationsStyles = makeStyles({
         justifyContent: 'center'
     },
     body: {
-        flex: '1'
+        flex: '1',
+        overflow: 'scroll'
     },
     leftColumn: {
         height: '100%',

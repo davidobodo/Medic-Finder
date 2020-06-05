@@ -35,11 +35,10 @@ const Locations: React.FC<LocationProps> = (props) => {
 
 
         function callback(results, status) {
-            console.log(results)
-            if (results.length > 1) {
-                setHospitalsDescription(results)
-            }
             if (status == google.maps.places.PlacesServiceStatus.OK) {
+                if (results.length > 1) {
+                    setHospitalsDescription(results)
+                }
                 for (var i = 0; i < results.length; i++) {
                     createMarker(results[i]);
                 }
