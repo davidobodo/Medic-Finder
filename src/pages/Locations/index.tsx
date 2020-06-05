@@ -9,11 +9,21 @@ import GoogleSearchTab from '../../components/GoogleSearchTab'
 
 
 const Locations: React.FC<LocationProps> = (props) => {
-    const { longitude, latitude, radius } = props.location.state
+    const { lng: longitude, lat: latitude, rad: radius } = props.location.state
+    // console.log(lng,  lat, rad)
+    // const [latitude, setLatitude] = useState(lng)
+    // const [longitude, setLongitude] = useState(lat)
+    // const [radius, setRadius] = useState(rad)
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 18;
     const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
+
+    const handleGetHospitals = (lat, lng, rad) => {
+        // setLongitude(lng)
+        // setLatitude(lat)
+        // setRadius(rad)
+    }
 
     const place = new google.maps.LatLng(latitude, longitude);
 
@@ -29,12 +39,15 @@ const Locations: React.FC<LocationProps> = (props) => {
             type: ['hospital']
         };
 
+        console.log(request)
+
 
         const service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callback);
 
 
         function callback(results, status) {
+            console.log(results)
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 if (results.length > 1) {
                     setHospitalsDescription(results)
@@ -51,14 +64,14 @@ const Locations: React.FC<LocationProps> = (props) => {
                 map: map
             })
         }
-    }, [])
+    }, [latitude, longitude, radius])
 
 
 
     return (
         <div className={classes.container}>
             <header className={classes.header}>
-                <GoogleSearchTab />
+                <GoogleSearchTab onSubmit={handleGetHospitals} />
             </header>
             <Grid container spacing={0} className={classes.body}>
                 <Grid item xs={3} className={classes.leftColumn}>

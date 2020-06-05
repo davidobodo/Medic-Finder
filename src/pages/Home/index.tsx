@@ -17,9 +17,9 @@ export default function Home() {
     history.push({
       pathname: '/locations',
       state: {
-        longitude: longitude,
-        latitude: latitude,
-        radius: radius
+        lng: longitude,
+        lat: latitude,
+        rad: radius
       }
     })
 
