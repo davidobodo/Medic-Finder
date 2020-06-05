@@ -9,7 +9,7 @@ import hospital from '../../assets/hospital.jpg';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
 
 
-export default function Home() {
+const Home = () => {
   const history = useHistory();
   const classes = useHomeStyles();
 
@@ -29,7 +29,7 @@ export default function Home() {
     <React.Fragment>
       <Container
         maxWidth={false}
-        className={classes.topContainer}
+        className={classes.container}
         style={{
           background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${hospital})`,
           backgroundSize: 'cover',
@@ -42,4 +42,6 @@ export default function Home() {
     </React.Fragment>
   );
 }
+
+export default Home
 
