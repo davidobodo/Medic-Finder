@@ -14,16 +14,12 @@ const useStyles = makeStyles((theme: Theme) =>
             minWidth: 200,
             marginBottom: 50
         },
-        select: {
-            // backgroundColor: '#fff'
-        },
     }),
 );
 
 type Props = {
     onSetRadius: (number) => void,
     error: boolean
-    // currentValue: number | string
 }
 
 const NativeSelects: React.FC<Props> = (props) => {

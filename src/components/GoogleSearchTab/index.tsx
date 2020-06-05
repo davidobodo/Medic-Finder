@@ -15,20 +15,31 @@ const GoogleSearchTab = (props) => {
     const [longitude, setLongitude] = useState(null)
     const [geoFencingRadius, setGeoFencingRadius] = useState(null);
     const [errSelect, setErrSelect] = useState(false)
+    const [errInput, setErrInput] = useState(false)
 
     const handleSetGeoFencingRadius = (rad: number) => {
         setGeoFencingRadius(rad)
+        setErrSelect(false)
+    }
+
+    const handleValidateInputs = () => {
+        let hasErr = false;
+        if (!geoFencingRadius) {
+            hasErr = true;
+            setErrSelect(true);
+        }
+        if (!latitude || !longitude) {
+            hasErr = true
+            setErrInput(true)
+        }
+        return hasErr
     }
 
 
     const handleStartSearch = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        // inputRef.current.value = '';
-        // setGeoFencingRadius('')
-        if (!geoFencingRadius) {
-            setErrSelect(true);
-            return
-        }
+        const err = handleValidateInputs();
+        if (err) return
         props.onSubmit(latitude, longitude, geoFencingRadius)
     }
 
@@ -43,6 +54,7 @@ const GoogleSearchTab = (props) => {
             const lng = place.geometry.location.lng();
             setLatitude(lat)
             setLongitude(lng)
+            setErrInput(false)
         })
 
     }, [inputRef])
@@ -60,12 +72,11 @@ const GoogleSearchTab = (props) => {
                 id="standard-full-width"
                 label="Location"
                 placeholder="Enter a location"
-                // helperText="Hello"
+                error={errInput}
+                helperText={errInput ? 'Please enter a valid location' : ''}
                 fullWidth
-                // margin="normal"
                 type="text"
                 inputRef={inputRef}
-                // className={classes.textField}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -73,7 +84,6 @@ const GoogleSearchTab = (props) => {
             <MainSelect error={errSelect} onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
             <Button
                 variant="contained"
-                // className={classes.button}
                 onClick={handleStartSearch}
             >
                 Search
