@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useLocationsStyles = makeStyles({
+export const useLocationsStyles = makeStyles(theme => ({
     container: {
         height: 'calc(100vh - 80px);',
         display: 'flex',
@@ -8,7 +8,24 @@ export const useLocationsStyles = makeStyles({
         position: 'fixed',
         top: '80px',
         width: '100%',
-        backgroundColor: '#F5F5F9'
+        backgroundColor: '#F5F5F9',
+        animationName: `$myEffect`,
+        animationDuration: '2s',
+        animationDirection: 'normal',
+        animationTimingFunction: 'ease-in-out',
+        animationFillMode: 'forwards',
+        // '@keyframes slideRight': {
+        //     'from': { opacity: 0 },
+        //     'to': { opacity: 1 }
+        // },
+        // '@keyframes myEffect': {
+        //     '0%': {
+        //         opacity: 0
+        //     },
+        //     '100%': {
+        //         opacity: 1
+        //     }
+        // }
     },
     header: {
         backgroundColor: 'rgba(0,0,0,1)',
@@ -42,4 +59,4 @@ export const useLocationsStyles = makeStyles({
         padding: '20px 40px',
         borderRadius: '10px',
     }
-})
+}))
