@@ -18,7 +18,7 @@ export const useLocationsStyles = makeStyles(theme => ({
         width: '100%',
         backgroundColor: '#F5F5F9',
         animationName: `$myEffect`,
-        animationDuration: '1s',
+        animationDuration: '0.5s',
         animationDirection: 'normal',
         animationTimingFunction: 'ease-in-out',
         animationFillMode: 'forwards',
