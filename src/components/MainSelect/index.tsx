@@ -22,10 +22,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Props = {
     onSetRadius: (number) => void,
+    error: boolean
     // currentValue: number | string
 }
 
 const NativeSelects: React.FC<Props> = (props) => {
+    const { error } = props
     const classes = useStyles();
     const [state, setState] = React.useState<{ age: string | number; name: string }>({
         age: '',
@@ -45,7 +47,7 @@ const NativeSelects: React.FC<Props> = (props) => {
 
     return (
         <div>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl} error={error}>
                 <InputLabel shrink htmlFor="age-native-label-placeholder">
                     Geo-fencing radius
                 </InputLabel>
@@ -70,7 +72,7 @@ const NativeSelects: React.FC<Props> = (props) => {
                     <option value={90000}>90km</option>
                     <option value={100000}>100km</option>
                 </NativeSelect>
-                {/* <FormHelperText>Label + placeholder</FormHelperText> */}
+                {error && <FormHelperText>How far should search span?</FormHelperText>}
             </FormControl>
         </div>
     );
