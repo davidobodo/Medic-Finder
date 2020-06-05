@@ -22,7 +22,7 @@ const AddressCard: React.FC<AddressCardProps> = (props) => {
     return (
         <Card className={classes.root}>
             <Typography variant="h5" component="h2" className={classes.symbol}>{name[0]}</Typography>
-            <div className={classes.rightColumn}>
+            <div>
                 <Typography variant="h5" component="h2" className={classes.name}>{name}</Typography>
                 <Typography variant="body2" component="p" className={classes.address}>{vicinity}</Typography>
                 {/* <Typography className={classes.phoneNumber}>08105546642</Typography> */}
