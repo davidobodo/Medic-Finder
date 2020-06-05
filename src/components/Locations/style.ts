@@ -23,7 +23,7 @@ export const useLocationsStyles = makeStyles({
     },
     leftColumn: {
         height: '100%',
-        borderRight: '1px solid #000',
+        borderRight: '1px solid rgba(0,0,0,0.1)',
         overflow: 'scroll'
     },
     rightColumn: {
