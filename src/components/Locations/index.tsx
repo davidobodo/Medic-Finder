@@ -11,7 +11,7 @@ const Locations: React.FC<LocationProps> = (props) => {
     const { latitude, longitude, radius, onReturn } = props
     const classes = useLocationsStyles();
     const mapRef = useRef();
-    const defaultZoom = 18;
+    const defaultZoom = 12;
     const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
     const place = new google.maps.LatLng(latitude, longitude);
 
