@@ -9,8 +9,6 @@ type Props = {
 }
 
 const useStarRatingStyles = makeStyles({
-    root: {
-    },
     checked: {
         color: '#ffa500'
     }
@@ -19,7 +17,7 @@ const useStarRatingStyles = makeStyles({
 const StarRating: React.FC<Props> = ({ rating }) => {
     const classes = useStarRatingStyles()
     return (
-        <div className={classes.root}>
+        <div>
             {[1, 2, 3, 4, 5].map(i => {
                 return i <= rating ? (
                     <FontAwesomeIcon

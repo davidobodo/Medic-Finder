@@ -23,27 +23,13 @@ const Home = () => {
   }
 
   const handleReturnToSearchPage = () => {
-    // setLatitude(prevState => {
-    //   return null
-    // }),
-    //   setLongitude(null)
-    // setRadius(null)
     setShowMap(false)
   }
 
   return (
     <Fragment>
       <Header />
-      <Container
-        maxWidth={false}
-        className={classes.container}
-        style={{
-          // background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${hospital})`,
-          background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1512677859289-868722942457?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat'
-        }}>
-
+      <Container maxWidth={false} className={classes.container}>
         <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
         <GoogleSearchTab onSubmit={handleGetHospitals} />
       </Container>

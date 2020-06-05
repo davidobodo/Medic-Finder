@@ -4,7 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './styling/Globals';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-export default function App() {
+const App = () => {
     return (
         <React.Fragment>
             <ThemeProvider theme={theme}>
@@ -14,3 +14,5 @@ export default function App() {
         </React.Fragment>
     )
 }
+
+export default App

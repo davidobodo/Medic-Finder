@@ -36,6 +36,4 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
             color: '#fff'
         }
     },
-
-
 }))

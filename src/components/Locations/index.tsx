@@ -66,8 +66,8 @@ const Locations: React.FC<LocationProps> = (props) => {
 
     return (
         <div className={classes.container}>
-            <Typography className={classes.link}>
-                <Link href="#" onClick={handleGoToSearchPage}>
+            <Typography className={classes.linkContainer}>
+                <Link href="#" onClick={handleGoToSearchPage} className={classes.link}>
                     Return to search page
                 </Link>
             </Typography>
@@ -79,12 +79,12 @@ const Locations: React.FC<LocationProps> = (props) => {
                     })}
                 </Grid>
                 <Grid item xs={1} sm={7} md={8} className={classes.rightColumn}>
-                    <React.Fragment>
+                    <Fragment>
                         <Typography
                             style={{ width: '100%', height: '100%' }}
                             component="div"
                             ref={mapRef}></Typography>
-                    </React.Fragment>
+                    </Fragment>
                 </Grid>
             </Grid>
         </div>

@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { useGoogleSearchTabStyles } from './style';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import MainSelect from '../MainSelect';
 import TextField from '@material-ui/core/TextField';
 
@@ -35,7 +32,6 @@ const GoogleSearchTab = (props) => {
         return hasErr
     }
 
-
     const handleStartSearch = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         const err = handleValidateInputs();
@@ -64,10 +60,7 @@ const GoogleSearchTab = (props) => {
     }, [])
 
     return (
-        <form
-            noValidate
-            autoComplete="off"
-            className={classes.root}>
+        <form noValidate autoComplete="off" className={classes.root}>
             <TextField
                 id="standard-full-width"
                 label="Location"
@@ -82,12 +75,7 @@ const GoogleSearchTab = (props) => {
                 }}
             />
             <MainSelect error={errSelect} onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
-            <Button
-                variant="contained"
-                onClick={handleStartSearch}
-            >
-                Search
-        </Button>
+            <Button variant="contained" onClick={handleStartSearch}>Search</Button>
         </form>
     )
 }

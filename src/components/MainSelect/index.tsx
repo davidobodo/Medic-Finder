@@ -7,7 +7,6 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
@@ -38,8 +37,6 @@ const NativeSelects: React.FC<Props> = (props) => {
         });
         props.onSetRadius(value)
     };
-
-
 
     return (
         <div>

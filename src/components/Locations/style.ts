@@ -23,12 +23,17 @@ export const useLocationsStyles = makeStyles(theme => ({
         animationTimingFunction: 'ease-in-out',
         animationFillMode: 'forwards',
     },
-    header: {
-        backgroundColor: 'rgba(0,0,0,1)',
-        padding: '50px',
-        paddingBottom: '60px',
-        display: 'flex',
-        justifyContent: 'center'
+    linkContainer: {
+        position: 'fixed',
+        zIndex: 100,
+        right: '10vw',
+        top: '10px',
+        padding: '20px 40px',
+        borderRadius: '10px',
+    },
+    link: {
+        color: '#330E4E',
+        fontSize: '12px'
     },
     body: {
         flex: '1',
@@ -42,17 +47,5 @@ export const useLocationsStyles = makeStyles(theme => ({
     },
     rightColumn: {
         height: '100%'
-    },
-    formContainer: {
-        display: 'flex',
-        alignItems: 'flex-end'
-    },
-    link: {
-        position: 'fixed',
-        zIndex: 100,
-        right: '10vw',
-        top: '10px',
-        padding: '20px 40px',
-        borderRadius: '10px',
     }
 }))

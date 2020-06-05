@@ -44,8 +44,5 @@ export const useAddressCardStyles = makeStyles(theme => ({
         [theme.breakpoints.down('md')]: {
             fontSize: '12px',
         },
-    },
-    phoneNumber: {
-        marginBottom: '10px'
     }
 }));
