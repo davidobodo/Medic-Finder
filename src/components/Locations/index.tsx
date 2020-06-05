@@ -9,12 +9,10 @@ import Link from '@material-ui/core/Link';
 
 const Locations: React.FC<LocationProps> = (props) => {
     const { latitude, longitude, radius, onReturn } = props
-
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 18;
     const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
-
     const place = new google.maps.LatLng(latitude, longitude);
 
     const handleGoToSearchPage = () => {
@@ -23,8 +21,6 @@ const Locations: React.FC<LocationProps> = (props) => {
     }
 
     useEffect(() => {
-
-        console.log(place)
         const map = new window.google.maps.Map(mapRef.current, {
             center: place,
             zoom: defaultZoom
@@ -36,12 +32,17 @@ const Locations: React.FC<LocationProps> = (props) => {
             type: ['hospital']
         };
 
-
         const service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
 
+        const createMarker = (place: any): void => {
+            console.log(place)
+            new window.google.maps.Marker({
+                position: place.geometry.location,
+                map: map
+            })
+        }
 
-        function callback(results, status) {
+        const callback = (results: [], status: string): void => {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 if (results.length > 1) {
                     setHospitalsDescription(results)
@@ -52,12 +53,7 @@ const Locations: React.FC<LocationProps> = (props) => {
             }
         }
 
-        function createMarker(place) {
-            new window.google.maps.Marker({
-                position: place.geometry.location,
-                map: map
-            })
-        }
+        service.nearbySearch(request, callback);
     }, [])
 
 

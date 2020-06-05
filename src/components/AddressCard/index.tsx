@@ -1,17 +1,12 @@
 import React from 'react';
-
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRating from '../StarRating'
-
 import { useAddressCardStyles } from './style';
+import { AddressCardProps } from './type';
 
 
-
-export default function AddressCard(props) {
+const AddressCard: React.FC<AddressCardProps> = (props) => {
     const classes = useAddressCardStyles();
     const { name,
         vicinity,
@@ -23,8 +18,6 @@ export default function AddressCard(props) {
         photos,
         rating
     } = props.description;
-    console.log(props.description)
-
 
     return (
         <Card className={classes.root}>
@@ -35,7 +28,8 @@ export default function AddressCard(props) {
                 {/* <Typography className={classes.phoneNumber}>08105546642</Typography> */}
                 {rating ? <StarRating rating={rating}></StarRating> : null}
             </div>
-
         </Card>
     );
 }
+
+export default AddressCard

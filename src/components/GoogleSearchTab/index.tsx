@@ -5,17 +5,19 @@ import { useGoogleSearchTabStyles } from './style'
 
 const GoogleSearchTab = (props) => {
     const classes = useGoogleSearchTabStyles();
-    const inputRef = useRef();
+    const inputRef = useRef(null);
     const [latitude, setLatitude] = useState(null)
     const [longitude, setLongitude] = useState(null)
     const [geoFencingRadius, setGeoFencingRadius] = useState('')
 
-    const handleSetGeoFencingRadius = (e) => {
+    const handleSetGeoFencingRadius = (e: { target: { value: React.SetStateAction<string> } }) => {
         setGeoFencingRadius(e.target.value)
     }
 
-    const handleStartSearch = (e) => {
-        e.preventDefault()
+    const handleStartSearch = (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+        inputRef.current.value = '';
+        setGeoFencingRadius('')
         props.onSubmit(latitude, longitude, geoFencingRadius)
     }
 
@@ -34,6 +36,10 @@ const GoogleSearchTab = (props) => {
 
     }, [inputRef])
 
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [])
+
     return (
         <form
             noValidate
@@ -51,6 +57,7 @@ const GoogleSearchTab = (props) => {
                 <label className={classes.inputLabel}>Geo-fencing Radius</label>
                 <input
                     type="text"
+                    value={geoFencingRadius}
                     onChange={handleSetGeoFencingRadius}
                     className={classes.smallInputField}
                     placeholder="Radius" />
