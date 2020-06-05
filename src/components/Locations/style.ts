@@ -24,7 +24,8 @@ export const useLocationsStyles = makeStyles({
     leftColumn: {
         height: '100%',
         borderRight: '1px solid rgba(0,0,0,0.1)',
-        overflow: 'scroll'
+        overflow: 'scroll',
+        paddingTop: '30px'
     },
     rightColumn: {
         height: '100%'
