@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
             minWidth: 200,
+            marginBottom: 50
         },
         select: {
             // backgroundColor: '#fff'
@@ -21,18 +22,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Props = {
     onSetRadius: (number) => void,
-    currentValue: number | string
+    // currentValue: number | string
 }
 
 const NativeSelects: React.FC<Props> = (props) => {
     const classes = useStyles();
     const [state, setState] = React.useState<{ age: string | number; name: string }>({
-        age: props.currentValue,
+        age: '',
         name: 'hai',
     });
 
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
-        console.log('i dey')
         const { name, value } = event.target
         setState({
             ...state,
@@ -42,22 +42,22 @@ const NativeSelects: React.FC<Props> = (props) => {
     };
 
 
-    console.log(state.age)
 
     return (
         <div>
             <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-native-helper">Geo-fencing radius</InputLabel>
+                <InputLabel shrink htmlFor="age-native-label-placeholder">
+                    Geo-fencing radius
+                </InputLabel>
                 <NativeSelect
                     value={state.age}
                     onChange={handleChange}
-                    className={classes.select}
                     inputProps={{
                         name: 'age',
-                        id: 'age-native-helper',
+                        id: 'age-native-label-placeholder',
                     }}
                 >
-                    <option aria-label="None" value="" />
+                    <option value="">Choose radius</option>
                     <option value={5000}>5km</option>
                     <option value={10000}>10km</option>
                     <option value={20000}>20km</option>
@@ -70,7 +70,7 @@ const NativeSelects: React.FC<Props> = (props) => {
                     <option value={90000}>90km</option>
                     <option value={100000}>100km</option>
                 </NativeSelect>
-                {/* <FormHelperText>Some important helper text</FormHelperText> */}
+                {/* <FormHelperText>Label + placeholder</FormHelperText> */}
             </FormControl>
         </div>
     );

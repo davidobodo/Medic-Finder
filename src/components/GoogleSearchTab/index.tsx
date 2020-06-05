@@ -24,6 +24,9 @@ const GoogleSearchTab = (props) => {
         e.preventDefault();
         // inputRef.current.value = '';
         // setGeoFencingRadius('')
+        if (!latitude || !longitude || !geoFencingRadius) alert('what the fuck')
+        console.log(latitude, longitude)
+        console.log(geoFencingRadius)
         props.onSubmit(latitude, longitude, geoFencingRadius)
     }
 
@@ -50,7 +53,7 @@ const GoogleSearchTab = (props) => {
         <form
             noValidate
             autoComplete="off"
-            className={classes.formContainer}>
+            className={classes.root}>
             {/* <div className={classes.inputContainer}>
                 <label className={classes.inputLabel}>Location</label>
                 <input
@@ -69,11 +72,20 @@ const GoogleSearchTab = (props) => {
                     placeholder="Radius" />
             </div> */}
             <TextField
-                id="standard-search"
+                id="standard-full-width"
                 label="Location"
+                placeholder="Enter a location"
+                // helperText="Hello"
+                fullWidth
+                // margin="normal"
                 type="text"
-                inputRef={inputRef} />
-            <MainSelect currentValue={geoFencingRadius} onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
+                inputRef={inputRef}
+                // className={classes.textField}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+            />
+            <MainSelect onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
             <Button
                 variant="contained"
                 // className={classes.button}

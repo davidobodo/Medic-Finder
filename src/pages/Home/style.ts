@@ -11,10 +11,12 @@ export const useHomeStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         [theme.breakpoints.down('md')]: {
-            paddingLeft: '100px'
+            paddingLeft: '100px',
+            paddingRight: '100px'
         },
         [theme.breakpoints.down('sm')]: {
-            paddingLeft: '24px'
+            paddingLeft: '24px',
+            paddingRight: '24px'
         },
     },
     title: {

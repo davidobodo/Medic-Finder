@@ -35,7 +35,6 @@ const Locations: React.FC<LocationProps> = (props) => {
         const service = new google.maps.places.PlacesService(map);
 
         const createMarker = (place: any): void => {
-            console.log(place)
             new window.google.maps.Marker({
                 position: place.geometry.location,
                 map: map
