@@ -17,7 +17,7 @@ export const useAddressCardStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue',
+        backgroundColor: '#F2E3F8',
         color: '#fff',
         fontSize: '80px',
         marginRight: '20px',

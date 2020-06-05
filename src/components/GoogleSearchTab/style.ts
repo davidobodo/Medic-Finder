@@ -69,6 +69,7 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
     button: {
         padding: '20px 40px',
         borderRadius: '10px',
+        backgroundColor: '#9C7AF2',
         [theme.breakpoints.down('sm')]: {
             padding: '8px 40px',
             fontSize: '13px'
