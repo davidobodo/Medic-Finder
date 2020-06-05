@@ -9,15 +9,21 @@ import GoogleSearchTab from '../../components/GoogleSearchTab'
 
 
 const Locations: React.FC<LocationProps> = (props) => {
-    const { lng: longitude, lat: latitude, rad: radius } = props.location.state
-    // console.log(lng,  lat, rad)
-    // const [latitude, setLatitude] = useState(lng)
-    // const [longitude, setLongitude] = useState(lat)
-    // const [radius, setRadius] = useState(rad)
+    const { latitude, longitude, radius } = props
+    // console.log(lng, lat, rad)
+    // const [_lat, setLatitude] = useState()
+    // const [_lng, setLongitude] = useState()
+    // const [_rad, setRadius] = useState()
+    // let { lng: longitude, lat: latitude, rad: radius } = props.location.state
+    console.log(latitude, longitude, radius)
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 18;
     const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
+
+    // const latitude = lat || _lat;
+    // const longitude = lng || _lng;
+    // const radius = rad || _rad
 
     const handleGetHospitals = (lat, lng, rad) => {
         // setLongitude(lng)
@@ -28,6 +34,8 @@ const Locations: React.FC<LocationProps> = (props) => {
     const place = new google.maps.LatLng(latitude, longitude);
 
     useEffect(() => {
+
+        console.log(place)
         const map = new window.google.maps.Map(mapRef.current, {
             center: place,
             zoom: defaultZoom
@@ -38,8 +46,6 @@ const Locations: React.FC<LocationProps> = (props) => {
             radius: radius,
             type: ['hospital']
         };
-
-        console.log(request)
 
 
         const service = new google.maps.places.PlacesService(map);
@@ -64,23 +70,23 @@ const Locations: React.FC<LocationProps> = (props) => {
                 map: map
             })
         }
-    }, [latitude, longitude, radius])
+    }, [])
 
 
 
     return (
         <div className={classes.container}>
-            <header className={classes.header}>
+            {/* <header className={classes.header}>
                 <GoogleSearchTab onSubmit={handleGetHospitals} />
-            </header>
+            </header> */}
             <Grid container spacing={0} className={classes.body}>
-                <Grid item xs={3} className={classes.leftColumn}>
+                <Grid item xs={12} sm={4} md={3} className={classes.leftColumn}>
                     {hospitalsDescription.map((hospital) => {
                         const { name } = hospital
                         return <AddressCard key={name} description={hospital} />
                     })}
                 </Grid>
-                <Grid item xs={9} className={classes.rightColumn}>
+                <Grid item xs={1} sm={8} md={9} className={classes.rightColumn}>
                     <React.Fragment>
                         <Typography
                             style={{ width: '100%', height: '100%' }}

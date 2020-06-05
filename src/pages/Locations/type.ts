@@ -1,7 +1,10 @@
 import React from 'react'
 
 export type LocationProps = {
-    hospitalsDescription: [],
+    hospitalsDescription?: [],
     ref?: React.RefObject<HTMLDivElement>,
-    location?: any
+    location?: any,
+    latitude: number,
+    longitude: number,
+    radius: string
 }

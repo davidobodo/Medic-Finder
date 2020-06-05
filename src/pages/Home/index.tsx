@@ -7,21 +7,23 @@ import Button from '@material-ui/core/Button';
 import { useHomeStyles } from './style';
 import hospital from '../../assets/hospital.jpg';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
+import Locations from '../Locations';
 
 
 const Home = () => {
   const history = useHistory();
   const classes = useHomeStyles();
 
+  const [latitude, setLatitude] = useState()
+  const [longitude, setLongitude] = useState()
+  const [radius, setRadius] = useState()
+  const [showMap, setShowMap] = useState(false)
+
   const handleGetHospitals = (latitude, longitude, radius) => {
-    history.push({
-      pathname: '/locations',
-      state: {
-        lng: longitude,
-        lat: latitude,
-        rad: radius
-      }
-    })
+    setLatitude(latitude)
+    setLongitude(longitude)
+    setRadius(radius)
+    setShowMap(true)
 
   }
 
@@ -39,6 +41,7 @@ const Home = () => {
         <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
         <GoogleSearchTab onSubmit={handleGetHospitals} />
       </Container>
+      {showMap && <Locations latitude={latitude} longitude={longitude} radius={radius} />}
     </React.Fragment>
   );
 }
