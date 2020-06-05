@@ -8,6 +8,7 @@ import { useHomeStyles } from './style';
 import hospital from '../../assets/hospital.jpg';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
 import Locations from '../Locations';
+import Header from '../../components/Header';
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
+      <Header />
       <Container
         maxWidth={false}
         className={classes.container}
