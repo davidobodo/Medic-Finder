@@ -2,11 +2,8 @@ import React, { useState, useEffect, useRef, forwardRef, Fragment } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useLocationsStyles } from './style';
-import AddressCard from '../../components/AddressCard'
-import Map from '../../components/Map'
+import AddressCard from '../AddressCard'
 import { LocationProps } from './type'
-import GoogleSearchTab from '../../components/GoogleSearchTab'
-import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 
@@ -45,7 +42,6 @@ const Locations: React.FC<LocationProps> = (props) => {
 
 
         function callback(results, status) {
-            console.log(results)
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 if (results.length > 1) {
                     setHospitalsDescription(results)
@@ -87,7 +83,6 @@ const Locations: React.FC<LocationProps> = (props) => {
                             component="div"
                             ref={mapRef}></Typography>
                     </React.Fragment>
-                    {/* <Map center={place} radius={radius} zoom={16} onSetHospitalsDescription={handleSetHospitalsDescription} /> */}
                 </Grid>
             </Grid>
         </div>

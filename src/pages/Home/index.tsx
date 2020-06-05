@@ -1,18 +1,14 @@
-
 import React, { useState, useEffect, useRef } from 'react'
-import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
 import { useHomeStyles } from './style';
 import hospital from '../../assets/hospital.jpg';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
-import Locations from '../Locations';
+import Locations from '../../components/Locations';
 import Header from '../../components/Header';
 
 
 const Home = () => {
-  const history = useHistory();
   const classes = useHomeStyles();
 
   const [latitude, setLatitude] = useState(null)
