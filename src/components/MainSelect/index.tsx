@@ -20,13 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-    onSetRadius: (number) => void
+    onSetRadius: (number) => void,
+    currentValue: number | string
 }
 
 const NativeSelects: React.FC<Props> = (props) => {
     const classes = useStyles();
     const [state, setState] = React.useState<{ age: string | number; name: string }>({
-        age: '',
+        age: props.currentValue,
         name: 'hai',
     });
 

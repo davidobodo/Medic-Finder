@@ -22,8 +22,8 @@ const GoogleSearchTab = (props) => {
 
     const handleStartSearch = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        inputRef.current.value = '';
-        setGeoFencingRadius('')
+        // inputRef.current.value = '';
+        // setGeoFencingRadius('')
         props.onSubmit(latitude, longitude, geoFencingRadius)
     }
 
@@ -73,7 +73,7 @@ const GoogleSearchTab = (props) => {
                 label="Location"
                 type="text"
                 inputRef={inputRef} />
-            <MainSelect onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
+            <MainSelect currentValue={geoFencingRadius} onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
             <Button
                 variant="contained"
                 // className={classes.button}
