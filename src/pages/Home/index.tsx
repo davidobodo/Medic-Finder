@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, Fragment } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useHomeStyles } from './style';
@@ -10,13 +10,12 @@ import Header from '../../components/Header';
 
 const Home = () => {
   const classes = useHomeStyles();
-
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [radius, setRadius] = useState(null)
   const [showMap, setShowMap] = useState(false)
 
-  const handleGetHospitals = (latitude, longitude, radius) => {
+  const handleGetHospitals = (latitude: number, longitude: number, radius: number) => {
     setLatitude(latitude)
     setLongitude(longitude)
     setRadius(radius)
@@ -33,7 +32,7 @@ const Home = () => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Header />
       <Container
         maxWidth={false}
@@ -49,7 +48,7 @@ const Home = () => {
         <GoogleSearchTab onSubmit={handleGetHospitals} />
       </Container>
       {showMap && <Locations latitude={latitude} longitude={longitude} radius={radius} onReturn={handleReturnToSearchPage} />}
-    </React.Fragment>
+    </Fragment>
   );
 }
 
