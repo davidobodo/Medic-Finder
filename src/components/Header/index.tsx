@@ -13,7 +13,8 @@ const useHeaderStyles = makeStyles({
         paddingLeft: '10vw',
         paddingRight: '10vw',
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        boxShadow: 'rgba(79, 79, 79, 1) 0px 4px 10px'
     },
     imgContainer: {
         width: '100px',

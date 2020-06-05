@@ -6,32 +6,24 @@ import AddressCard from '../../components/AddressCard'
 import Map from '../../components/Map'
 import { LocationProps } from './type'
 import GoogleSearchTab from '../../components/GoogleSearchTab'
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 
 const Locations: React.FC<LocationProps> = (props) => {
-    const { latitude, longitude, radius } = props
-    // console.log(lng, lat, rad)
-    // const [_lat, setLatitude] = useState()
-    // const [_lng, setLongitude] = useState()
-    // const [_rad, setRadius] = useState()
-    // let { lng: longitude, lat: latitude, rad: radius } = props.location.state
-    console.log(latitude, longitude, radius)
+    const { latitude, longitude, radius, onReturn } = props
+
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 18;
     const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
 
-    // const latitude = lat || _lat;
-    // const longitude = lng || _lng;
-    // const radius = rad || _rad
-
-    const handleGetHospitals = (lat, lng, rad) => {
-        // setLongitude(lng)
-        // setLatitude(lat)
-        // setRadius(rad)
-    }
-
     const place = new google.maps.LatLng(latitude, longitude);
+
+    const handleGoToSearchPage = () => {
+        setHospitalsDescription([]);
+        onReturn()
+    }
 
     useEffect(() => {
 
@@ -76,9 +68,11 @@ const Locations: React.FC<LocationProps> = (props) => {
 
     return (
         <div className={classes.container}>
-            {/* <header className={classes.header}>
-                <GoogleSearchTab onSubmit={handleGetHospitals} />
-            </header> */}
+            <Typography className={classes.link}>
+                <Link href="#" onClick={handleGoToSearchPage}>
+                    Return to search page
+                </Link>
+            </Typography>
             <Grid container spacing={0} className={classes.body}>
                 <Grid item xs={12} sm={4} md={3} className={classes.leftColumn}>
                     {hospitalsDescription.map((hospital) => {

@@ -15,9 +15,9 @@ const Home = () => {
   const history = useHistory();
   const classes = useHomeStyles();
 
-  const [latitude, setLatitude] = useState()
-  const [longitude, setLongitude] = useState()
-  const [radius, setRadius] = useState()
+  const [latitude, setLatitude] = useState(null)
+  const [longitude, setLongitude] = useState(null)
+  const [radius, setRadius] = useState(null)
   const [showMap, setShowMap] = useState(false)
 
   const handleGetHospitals = (latitude, longitude, radius) => {
@@ -25,7 +25,15 @@ const Home = () => {
     setLongitude(longitude)
     setRadius(radius)
     setShowMap(true)
+  }
 
+  const handleReturnToSearchPage = () => {
+    // setLatitude(prevState => {
+    //   return null
+    // }),
+    //   setLongitude(null)
+    // setRadius(null)
+    setShowMap(false)
   }
 
   return (
@@ -43,7 +51,7 @@ const Home = () => {
         <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
         <GoogleSearchTab onSubmit={handleGetHospitals} />
       </Container>
-      {showMap && <Locations latitude={latitude} longitude={longitude} radius={radius} />}
+      {showMap && <Locations latitude={latitude} longitude={longitude} radius={radius} onReturn={handleReturnToSearchPage} />}
     </React.Fragment>
   );
 }

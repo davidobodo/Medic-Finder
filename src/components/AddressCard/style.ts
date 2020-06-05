@@ -5,7 +5,8 @@ export const useAddressCardStyles = makeStyles({
         minWidth: 275,
         borderBottom: '1px solid rgba(0,0,0,0.1)',
         boxShadow: 'none',
-        padding: '18px'
+        padding: '18px',
+        backgroundColor: '#F5F5F9'
     },
 
     name: {
