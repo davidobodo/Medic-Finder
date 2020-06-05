@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, forwardRef, Fragment } from 'react'
+import React, { useState, useEffect, useRef, Fragment } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useLocationsStyles } from './style';

@@ -2,7 +2,6 @@ import React, { useState, Fragment } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useHomeStyles } from './style';
-import hospital from '../../assets/hospital.jpg';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
 import Locations from '../../components/Locations';
 import Header from '../../components/Header';
