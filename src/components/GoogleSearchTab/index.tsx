@@ -13,10 +13,10 @@ const GoogleSearchTab = (props) => {
     const inputRef = useRef(null);
     const [latitude, setLatitude] = useState(null)
     const [longitude, setLongitude] = useState(null)
-    const [geoFencingRadius, setGeoFencingRadius] = useState('');
+    const [geoFencingRadius, setGeoFencingRadius] = useState(null);
 
-    const handleSetGeoFencingRadius = (e: { target: { value: React.SetStateAction<string> } }) => {
-        setGeoFencingRadius(e.target.value)
+    const handleSetGeoFencingRadius = (rad: number) => {
+        setGeoFencingRadius(rad)
     }
 
 
@@ -73,7 +73,7 @@ const GoogleSearchTab = (props) => {
                 label="Location"
                 type="text"
                 inputRef={inputRef} />
-            <MainSelect />
+            <MainSelect onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
             <Button
                 variant="contained"
                 // className={classes.button}

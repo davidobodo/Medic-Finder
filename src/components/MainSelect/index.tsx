@@ -6,6 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
+
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
@@ -17,7 +19,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function NativeSelects() {
+type Props = {
+    onSetRadius: (number) => void
+}
+
+const NativeSelects: React.FC<Props> = (props) => {
     const classes = useStyles();
     const [state, setState] = React.useState<{ age: string | number; name: string }>({
         age: '',
@@ -26,12 +32,12 @@ export default function NativeSelects() {
 
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
         console.log('i dey')
-        const name = event.target.name as keyof typeof state;
-        console.log(event.target.value)
+        const { name, value } = event.target
         setState({
             ...state,
-            [name]: event.target.value,
+            [name]: value
         });
+        props.onSetRadius(value)
     };
 
 
@@ -68,3 +74,5 @@ export default function NativeSelects() {
         </div>
     );
 }
+
+export default NativeSelects
