@@ -64,7 +64,6 @@ const GoogleSearchTab = (props) => {
             </div>
             <Button
                 variant="contained"
-                color="primary"
                 className={classes.button}
                 onClick={handleStartSearch}
             >

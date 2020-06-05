@@ -66,13 +66,13 @@ const Locations: React.FC<LocationProps> = (props) => {
                 </Link>
             </Typography>
             <Grid container spacing={0} className={classes.body}>
-                <Grid item xs={12} sm={4} md={3} className={classes.leftColumn}>
+                <Grid item xs={12} sm={5} md={4} className={classes.leftColumn}>
                     {hospitalsDescription.map((hospital) => {
                         const { name } = hospital
                         return <AddressCard key={name} description={hospital} />
                     })}
                 </Grid>
-                <Grid item xs={1} sm={8} md={9} className={classes.rightColumn}>
+                <Grid item xs={1} sm={7} md={8} className={classes.rightColumn}>
                     <React.Fragment>
                         <Typography
                             style={{ width: '100%', height: '100%' }}

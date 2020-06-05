@@ -39,6 +39,7 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
         width: '600px',
         marginRight: '30px',
         border: '1px solid',
+        outlineColor: '#9C7AF2',
         [theme.breakpoints.down('md')]: {
             width: '80%',
             maxWidth: '600px'
@@ -56,6 +57,7 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
         width: '300px',
         marginRight: '30px',
         border: '1px solid',
+        outlineColor: '#9C7AF2',
         [theme.breakpoints.down('md')]: {
             width: '80%',
             maxWidth: '300px'
@@ -70,6 +72,11 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
         padding: '20px 40px',
         borderRadius: '10px',
         backgroundColor: '#9C7AF2',
+        color: '#fff',
+        '&:hover': {
+            color: '#9C7AF2',
+            backgroundColor: '#FFF'
+        },
         [theme.breakpoints.down('sm')]: {
             padding: '8px 40px',
             fontSize: '13px'
