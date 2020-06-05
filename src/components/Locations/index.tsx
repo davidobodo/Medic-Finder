@@ -33,12 +33,19 @@ const Locations: React.FC<LocationProps> = (props) => {
         };
 
         const service = new google.maps.places.PlacesService(map);
+        const infowindow = new google.maps.InfoWindow();
 
         const createMarker = (place: any): void => {
-            new window.google.maps.Marker({
+            const marker = new window.google.maps.Marker({
                 position: place.geometry.location,
                 map: map
             })
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                    place.vicinity + '</div>');
+                infowindow.open(map, this);
+            });
         }
 
         const callback = (results: [], status: string): void => {
