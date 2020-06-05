@@ -9,11 +9,10 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
+            minWidth: 200,
         },
-        selectEmpty: {
-            marginTop: theme.spacing(2),
+        select: {
+            // backgroundColor: '#fff'
         },
     }),
 );
@@ -26,32 +25,45 @@ export default function NativeSelects() {
     });
 
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+        console.log('i dey')
         const name = event.target.name as keyof typeof state;
+        console.log(event.target.value)
         setState({
             ...state,
             [name]: event.target.value,
         });
     };
 
+
+    console.log(state.age)
+
     return (
         <div>
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel htmlFor="outlined-age-native-simple">Aged</InputLabel>
-                <Select
-                    native
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="age-native-helper">Geo-fencing radius</InputLabel>
+                <NativeSelect
                     value={state.age}
                     onChange={handleChange}
-                    label="Age"
+                    className={classes.select}
                     inputProps={{
                         name: 'age',
-                        id: 'outlined-age-native-simple',
+                        id: 'age-native-helper',
                     }}
                 >
                     <option aria-label="None" value="" />
-                    <option value={10}>Ten</option>
-                    <option value={20}>Twenty</option>
-                    <option value={30}>Thirty</option>
-                </Select>
+                    <option value={5000}>5km</option>
+                    <option value={10000}>10km</option>
+                    <option value={20000}>20km</option>
+                    <option value={30000}>30km</option>
+                    <option value={40000}>40km</option>
+                    <option value={50000}>50km</option>
+                    <option value={60000}>60km</option>
+                    <option value={70000}>70km</option>
+                    <option value={80000}>80km</option>
+                    <option value={90000}>90km</option>
+                    <option value={100000}>100km</option>
+                </NativeSelect>
+                {/* <FormHelperText>Some important helper text</FormHelperText> */}
             </FormControl>
         </div>
     );

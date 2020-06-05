@@ -4,6 +4,8 @@ import { useGoogleSearchTabStyles } from './style';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import MainSelect from '../MainSelect';
+import TextField from '@material-ui/core/TextField';
 
 
 const GoogleSearchTab = (props) => {
@@ -49,15 +51,15 @@ const GoogleSearchTab = (props) => {
             noValidate
             autoComplete="off"
             className={classes.formContainer}>
-            <div className={classes.inputContainer}>
+            {/* <div className={classes.inputContainer}>
                 <label className={classes.inputLabel}>Location</label>
                 <input
                     type="text"
                     ref={inputRef}
                     className={classes.bigInputField}
                     placeholder="Enter a location" />
-            </div>
-            <div className={classes.inputContainer}>
+            </div> */}
+            {/* <div className={classes.inputContainer}>
                 <label className={classes.inputLabel}>Geo-fencing Radius</label>
                 <input
                     type="text"
@@ -65,10 +67,16 @@ const GoogleSearchTab = (props) => {
                     onChange={handleSetGeoFencingRadius}
                     className={classes.smallInputField}
                     placeholder="Radius" />
-            </div>
+            </div> */}
+            <TextField
+                id="standard-search"
+                label="Location"
+                type="text"
+                inputRef={inputRef} />
+            <MainSelect />
             <Button
                 variant="contained"
-                className={classes.button}
+                // className={classes.button}
                 onClick={handleStartSearch}
             >
                 Search

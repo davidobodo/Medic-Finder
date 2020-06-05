@@ -68,18 +68,18 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
             width: '100%'
         },
     },
-    button: {
-        padding: '20px 40px',
-        borderRadius: '10px',
-        backgroundColor: '#9C7AF2',
-        color: '#fff',
-        '&:hover': {
-            color: '#9C7AF2',
-            backgroundColor: '#FFF'
-        },
-        [theme.breakpoints.down('sm')]: {
-            padding: '8px 40px',
-            fontSize: '13px'
-        },
-    }
+    // button: {
+    //     padding: '20px 40px',
+    //     borderRadius: '10px',
+    //     backgroundColor: '#9C7AF2',
+    //     color: '#fff',
+    //     '&:hover': {
+    //         color: '#9C7AF2',
+    //         backgroundColor: '#FFF'
+    //     },
+    //     [theme.breakpoints.down('sm')]: {
+    //         padding: '8px 40px',
+    //         fontSize: '13px'
+    //     },
+    // }
 }))
