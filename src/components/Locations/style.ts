@@ -10,7 +10,7 @@ export const useLocationsStyles = makeStyles(theme => ({
         }
     },
     container: {
-        height: 'calc(100vh - 80px);',
+        height: 'calc(100vh - 60px);',
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
