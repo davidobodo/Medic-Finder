@@ -67,7 +67,7 @@ const Locations: React.FC<LocationProps> = (props) => {
     return (
         <div className={classes.container}>
             <Typography className={classes.linkContainer}>
-                <Link href="#" onClick={handleGoToSearchPage} className={classes.link}>
+                <Link onClick={handleGoToSearchPage} className={classes.link}>
                     Return to search page
                 </Link>
             </Typography>
