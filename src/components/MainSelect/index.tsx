@@ -10,7 +10,10 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
             minWidth: 200,
-            marginBottom: 50
+            marginBottom: 50,
+            '& .MuiNativeSelect-select:not([multiple]) option, .MuiNativeSelect-select:not([multiple]) optgroup': {
+                backgroundColor: '#000'
+            }
         },
     }),
 );

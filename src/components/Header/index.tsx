@@ -5,7 +5,7 @@ import Logo from '../../assets/enye.png'
 const useHeaderStyles = makeStyles({
     root: {
         position: 'fixed',
-        height: '80px',
+        height: '60px',
         width: '100%',
         top: '0',
         left: '0',
