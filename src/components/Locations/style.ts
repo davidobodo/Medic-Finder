@@ -43,9 +43,11 @@ export const useLocationsStyles = makeStyles(theme => ({
         height: '100%',
         borderRight: '1px solid rgba(0,0,0,0.1)',
         overflow: 'scroll',
-        paddingTop: '30px'
     },
     rightColumn: {
-        height: '100%'
+        height: '100%',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        },
     }
 }))
