@@ -27,7 +27,7 @@ export const useLocationsStyles = makeStyles(theme => ({
         position: 'fixed',
         zIndex: 100,
         right: '10vw',
-        top: '10px',
+        top: '0px',
         padding: '20px 40px',
         borderRadius: '10px',
     },
