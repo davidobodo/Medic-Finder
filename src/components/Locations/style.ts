@@ -14,7 +14,7 @@ export const useLocationsStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
-        top: '80px',
+        top: '60px',
         width: '100%',
         backgroundColor: '#F5F5F9',
         animationName: `$myEffect`,
