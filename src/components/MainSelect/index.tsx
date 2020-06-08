@@ -61,11 +61,6 @@ const NativeSelects: React.FC<Props> = (props) => {
                     <option value={30000}>30km</option>
                     <option value={40000}>40km</option>
                     <option value={50000}>50km</option>
-                    <option value={60000}>60km</option>
-                    <option value={70000}>70km</option>
-                    <option value={80000}>80km</option>
-                    <option value={90000}>90km</option>
-                    <option value={100000}>100km</option>
                 </NativeSelect>
                 {error && <FormHelperText>How far should your search span?</FormHelperText>}
             </FormControl>
