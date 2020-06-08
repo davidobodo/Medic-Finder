@@ -7,7 +7,7 @@ import Locations from '../../components/Locations';
 import Header from '../../components/Header';
 
 
-const Home = () => {
+const HomePage = () => {
   const classes = useHomeStyles();
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
@@ -37,5 +37,5 @@ const Home = () => {
   );
 }
 
-export default Home
+export default HomePage
 

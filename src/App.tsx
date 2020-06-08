@@ -1,5 +1,7 @@
 import React from 'react';
-import Home from './pages/Home';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import HistoryPage from './pages/HistoryPage'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './styling/Globals';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,7 +11,12 @@ const App = () => {
         <React.Fragment>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Home />
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path='/' component={HomePage} />
+                        <Route exact path='/history' component={HistoryPage} />
+                    </Switch>
+                </BrowserRouter>
             </ThemeProvider>
         </React.Fragment>
     )
