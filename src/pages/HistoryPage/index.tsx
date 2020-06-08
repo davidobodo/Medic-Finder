@@ -1,12 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import Layout from '../../components/Layout';
+import Table from '../../components/Table';
 
 const HistoryPage = () => {
     return (
-        <Fragment>
+        <Layout>
             <div>
                 This is the history page
+                <Table />
             </div>
-        </Fragment>
+        </Layout>
     )
 }
 
