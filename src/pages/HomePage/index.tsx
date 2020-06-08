@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import { useHomeStyles } from './style';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
 import Locations from '../../components/Locations';
-import Header from '../../components/Header';
+import Layout from '../../components/Layout';
 
 
 const HomePage = () => {
@@ -26,14 +26,13 @@ const HomePage = () => {
   }
 
   return (
-    <Fragment>
-      <Header />
+    <Layout>
       <Container maxWidth={false} className={classes.container}>
         <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
         <GoogleSearchTab onSubmit={handleGetHospitals} />
       </Container>
       {showMap && <Locations latitude={latitude} longitude={longitude} radius={radius} onReturn={handleReturnToSearchPage} />}
-    </Fragment>
+    </Layout>
   );
 }
 
