@@ -78,7 +78,7 @@ const Locations: React.FC<LocationProps> = (props) => {
                         return <AddressCard key={name} description={hospital} />
                     })}
                 </Grid>
-                <Grid item xs={1} sm={7} md={8} className={classes.rightColumn}>
+                <Grid item sm={7} md={8} className={classes.rightColumn}>
                     <Fragment>
                         <Typography
                             style={{ width: '100%', height: '100%' }}

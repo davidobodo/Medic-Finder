@@ -33,7 +33,8 @@ export const useLocationsStyles = makeStyles(theme => ({
     },
     link: {
         color: '#330E4E',
-        fontSize: '12px'
+        fontSize: '12px',
+        cursor: 'pointer'
     },
     body: {
         flex: '1',
