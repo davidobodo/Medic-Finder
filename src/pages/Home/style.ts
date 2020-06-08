@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import bed from '../../assets/hospital-bed.jpeg';
 
 export const useHomeStyles = makeStyles(theme => ({
     container: {
@@ -8,7 +9,7 @@ export const useHomeStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1512677859289-868722942457?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
+        background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bed})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         [theme.breakpoints.down('md')]: {
