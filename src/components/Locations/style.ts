@@ -50,5 +50,9 @@ export const useLocationsStyles = makeStyles(theme => ({
         [theme.breakpoints.down('xs')]: {
             display: 'none'
         },
+    },
+    map: {
+        width: '100%',
+        height: '100%'
     }
 }))

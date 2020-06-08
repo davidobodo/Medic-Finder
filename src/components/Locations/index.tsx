@@ -81,7 +81,7 @@ const Locations: React.FC<LocationProps> = (props) => {
                 <Grid item sm={7} md={8} className={classes.rightColumn}>
                     <Fragment>
                         <Typography
-                            style={{ width: '100%', height: '100%' }}
+                            className={classes.map}
                             component="div"
                             ref={mapRef}></Typography>
                     </Fragment>

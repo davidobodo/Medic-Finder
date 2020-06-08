@@ -3,12 +3,12 @@ import bed from '../../assets/hospital-bed.jpeg';
 
 export const useHomeStyles = makeStyles(theme => ({
     container: {
-        backgroundColor: '#F0F8FF',
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#F0F8FF', //proposed for theming
         background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bed})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
