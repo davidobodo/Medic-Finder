@@ -11,7 +11,7 @@ const useLayoutStyles = makeStyles(theme => ({
         position: 'relative'
     },
     body: {
-        marginTop: '60px'
+        marginTop: '80px',
     }
 }))
 

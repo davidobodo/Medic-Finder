@@ -6,7 +6,11 @@ export const theme = createMuiTheme({
             '@global': {
                 html: {
                     WebkitFontSmoothing: 'auto',
+
                 },
+                body: {
+                    backgroundColor: '#fff'
+                }
 
             },
         },
