@@ -40,7 +40,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows }) => {
                             <TableCell component="th" scope="row">
                                 {row.currentLocation}
                             </TableCell>
-                            <TableCell align="right">Hi</TableCell>
+                            <TableCell align="right">{row.facility}</TableCell>
                             <TableCell align="right">{row.radius}</TableCell>
                             <TableCell align="right">Hello</TableCell>
                         </TableRow>

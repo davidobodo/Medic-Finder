@@ -95,6 +95,7 @@ const GoogleSearchTab = (props) => {
         e.preventDefault();
         const requestDetails = {
             currentLocation: inputRef.current.value,
+            facility: facility,
             radius: geoFencingRadius
         }
         const err = handleValidateInputs();
