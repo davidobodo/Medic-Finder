@@ -34,9 +34,13 @@ const GoogleSearchTab = (props) => {
 
     const handleStartSearch = (e: { preventDefault: () => void }) => {
         e.preventDefault();
+        const requestDetails = {
+            currentLocation: inputRef.current.value,
+            radius: geoFencingRadius
+        }
         const err = handleValidateInputs();
         if (err) return
-        props.onSubmit(latitude, longitude, geoFencingRadius)
+        props.onSubmit(latitude, longitude, geoFencingRadius, requestDetails)
     }
 
     useEffect(() => {

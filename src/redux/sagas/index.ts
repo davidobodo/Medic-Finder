@@ -1,9 +1,17 @@
 import { all, takeEvery } from "redux-saga/effects";
 import * as actionTypes from '../actionTypes';
+import { db } from '../../fbConfig'
 
-function* handleSaga() {
+function* handleSaga(action) {
+    const { payload } = action
     //make a request
-    console.log('hello')
+    try {
+        yield db.collection('searches').add(payload);
+
+    } catch (err) {
+
+    }
+
 }
 
 function* watchHandleSaga() {

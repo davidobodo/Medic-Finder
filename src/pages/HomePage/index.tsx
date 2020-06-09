@@ -18,12 +18,12 @@ const HomePage = () => {
   const [showMap, setShowMap] = useState(false)
   const dispatch = useDispatch();
 
-  const handleGetHospitals = (latitude: number, longitude: number, radius: number) => {
+  const handleGetHospitals = (latitude: number, longitude: number, radius: number, requestDetails: any) => {
     setLatitude(latitude)
     setLongitude(longitude)
     setRadius(radius)
     setShowMap(true)
-    dispatch(storeSearch('hello'))
+    dispatch(storeSearch(requestDetails))
   }
 
   const handleReturnToSearchPage = () => {
