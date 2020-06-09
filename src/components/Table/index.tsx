@@ -17,7 +17,49 @@ type SimpleTableProps = {
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
+        backgroundColor: '#1175f6',
+        '& .MuiTableCell-head': {
+            color: '#fff',
+            backgroundColor: '#1175f6',
+            fontWeight: '600',
+            fontSize: '18px'
+        },
+        '& .MuiTableCell-body': {
+            fontSize: '18px'
+        },
+        '& .MuiTableRow-root': {
+            '&:nth-child(2n)': {
+                backgroundColor: '#f0f6ff'
+            },
+            '&:nth-child(2n+1)': {
+                backgroundColor: '#fff'
+            }
+        },
+        '& .MuiTableCell-root': {
+            padding: '24px',
+            paddingLeft: '50px',
+
+        },
+        '& tbody tr.MuiTableRow-root': {
+            cursor: 'pointer',
+            transition: 'transform 0.2s ease-in-out',
+
+            '&:hover': {
+                transform: 'translateX(15px)'
+            }
+        },
     },
+
+    head: {
+    },
+    bullet: {
+        width: '10px',
+        height: '10px',
+        borderRadius: '5px',
+        backgroundColor: '#dadce0',
+        display: 'inline-block',
+        transform: 'translateX(-25px)'
+    }
 });
 
 
@@ -42,11 +84,11 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
+                    <TableRow className={classes.head}>
                         <TableCell>Location</TableCell>
-                        <TableCell align="right">Facility</TableCell>
-                        <TableCell align="right">Geo-Fencing Radius</TableCell>
-                        <TableCell align="right">Date</TableCell>
+                        <TableCell align="left">Facility</TableCell>
+                        <TableCell align="left">Geo-Fencing Radius</TableCell>
+                        <TableCell align="left">Date</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -61,11 +103,12 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                                 searchPlace
                             )}>
                             <TableCell component="th" scope="row">
+                                <div className={classes.bullet}></div>
                                 {row.searchPlace}
                             </TableCell>
-                            <TableCell align="right">{row.searchFacility}</TableCell>
-                            <TableCell align="right">{row.searchRadius}</TableCell>
-                            <TableCell align="right">Hello</TableCell>
+                            <TableCell align="left">{row.searchFacility}</TableCell>
+                            <TableCell align="left">{row.searchRadius}</TableCell>
+                            <TableCell align="left">Hello</TableCell>
                         </TableRow>
                     })}
                 </TableBody>

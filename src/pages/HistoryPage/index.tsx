@@ -15,7 +15,7 @@ type HistoryPageProps = {
 
 const useHistoryPageStyles = makeStyles(theme => ({
     root: {
-        padding: '100px 10vw',
+        padding: '100px 8vw',
         [theme.breakpoints.down('sm')]: {
             padding: '100px 5vw'
         },
