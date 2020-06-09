@@ -3,6 +3,12 @@ import Layout from '../../components/Layout';
 import Table from '../../components/Table';
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { firestoreConnect } from 'react-redux-firebase';
+import { useSelector } from 'react-redux';
+
+type HistoryPageProps = {
+
+}
 
 const useHistoryPageStyles = makeStyles(theme => ({
     root: {
@@ -16,8 +22,11 @@ const useHistoryPageStyles = makeStyles(theme => ({
     }
 }))
 
-const HistoryPage = () => {
+const HistoryPage: React.FC<HistoryPageProps> = () => {
     const classes = useHistoryPageStyles();
+    const searches = useSelector(state => state.firestore.ordered.searches)
+
+    console.log(searches)
     return (
         <Layout>
             <div className={classes.root}>
@@ -28,4 +37,4 @@ const HistoryPage = () => {
     )
 }
 
-export default HistoryPage;
+export default firestoreConnect(() => ['searches'])(HistoryPage);
