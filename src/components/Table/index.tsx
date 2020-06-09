@@ -8,25 +8,19 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
+type SimpleTableProps = {
+    rows: any
+}
+
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
     },
 });
 
-function createData(location: string, facility: string, geoFencingRadius: string, date: string) {
-    return { location, facility, geoFencingRadius, date };
-}
 
-const rows = [
-    createData('ogba', 'hospital', '500', '22-07-95'),
-    createData('ogba', 'hospital', '500', '22-07-95'),
-    createData('ogba', 'hospital', '500', '22-07-95'),
-    createData('ogba', 'hospital', '500', '22-07-95'),
-    createData('ogba', 'hospital', '500', '22-07-95'),
-];
-
-export default function SimpleTable() {
+const SimpleTable: React.FC<SimpleTableProps> = ({ rows }) => {
     const classes = useStyles();
 
     return (
@@ -41,14 +35,14 @@ export default function SimpleTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.location}>
+                    {rows && rows.map((row) => (
+                        <TableRow key={row.currentLocation}>
                             <TableCell component="th" scope="row">
-                                {row.location}
+                                {row.currentLocation}
                             </TableCell>
-                            <TableCell align="right">{row.facility}</TableCell>
-                            <TableCell align="right">{row.geoFencingRadius}</TableCell>
-                            <TableCell align="right">{row.date}</TableCell>
+                            <TableCell align="right">Hi</TableCell>
+                            <TableCell align="right">{row.radius}</TableCell>
+                            <TableCell align="right">Hello</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -56,3 +50,5 @@ export default function SimpleTable() {
         </TableContainer>
     );
 }
+
+export default SimpleTable

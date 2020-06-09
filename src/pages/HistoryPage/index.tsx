@@ -26,12 +26,11 @@ const HistoryPage: React.FC<HistoryPageProps> = () => {
     const classes = useHistoryPageStyles();
     const searches = useSelector(state => state.firestore.ordered.searches)
 
-    console.log(searches)
     return (
         <Layout>
             <div className={classes.root}>
                 <Typography variant="h3" component="h1" className={classes.header}>Past Searches</Typography>
-                <Table />
+                <Table rows={searches} />
             </div>
         </Layout>
     )
