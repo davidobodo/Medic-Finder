@@ -1,10 +1,13 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment } from 'react';
+import { useDispatch } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useHomeStyles } from './style';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
 import Locations from '../../components/Locations';
 import Layout from '../../components/Layout';
+import { storeSearch } from '../../redux/actions';
+
 
 
 const HomePage = () => {
@@ -13,12 +16,14 @@ const HomePage = () => {
   const [longitude, setLongitude] = useState(null)
   const [radius, setRadius] = useState(null)
   const [showMap, setShowMap] = useState(false)
+  const dispatch = useDispatch();
 
   const handleGetHospitals = (latitude: number, longitude: number, radius: number) => {
     setLatitude(latitude)
     setLongitude(longitude)
     setRadius(radius)
     setShowMap(true)
+    dispatch(storeSearch('hello'))
   }
 
   const handleReturnToSearchPage = () => {
