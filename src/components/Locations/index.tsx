@@ -8,7 +8,7 @@ import Link from '@material-ui/core/Link';
 
 
 const Locations: React.FC<LocationProps> = (props) => {
-    const { latitude, longitude, radius, onReturn } = props
+    const { latitude, longitude, radius, facility, onReturn } = props
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 12;
@@ -26,10 +26,26 @@ const Locations: React.FC<LocationProps> = (props) => {
             zoom: defaultZoom
         })
 
+        let type: string[];
+        let keyword: string;
+
+        if (facility === 'Hospitals') {
+            type = ['hospital']
+        } else if (facility === 'Pharmacy') {
+            type = ['pharmacy']
+        } else if (facility === 'Clinics') {
+            type = ['hospital']
+            keyword = 'clinic'
+        } else if (facility === 'Medical Offices') {
+            type = ['hospital']
+            keyword = 'medical'
+        }
+
         const request: any = {
             location: place,
             radius: radius,
-            type: ['hospital']
+            type: type,
+            keyword: keyword
         };
 
         const service = new google.maps.places.PlacesService(map);

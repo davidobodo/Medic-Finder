@@ -7,5 +7,6 @@ export type LocationProps = {
     latitude: number,
     longitude: number,
     radius: string,
-    onReturn: () => void
+    onReturn: () => void,
+    facility: string
 }

@@ -4,6 +4,60 @@ import { useGoogleSearchTabStyles } from './style';
 import MainSelect from '../MainSelect';
 import TextField from '@material-ui/core/TextField';
 
+const distances = [
+    {
+        displayValue: 'Choose radius',
+        actualValue: ''
+    },
+    {
+        displayValue: '5km',
+        actualValue: 5000
+    },
+    {
+        displayValue: '10km',
+        actualValue: 10000
+    },
+    {
+        displayValue: '20km',
+        actualValue: 20000
+    },
+    {
+        displayValue: '30km',
+        actualValue: 30000
+    },
+    {
+        displayValue: '40km',
+        actualValue: 40000
+    },
+    {
+        displayValue: '50km',
+        actualValue: 50000
+    },
+]
+
+const facilities = [
+    {
+        displayValue: 'Choose facility',
+        actualValue: ''
+    },
+    {
+        displayValue: 'Hospitals',
+        actualValue: 'Hospitals'
+    },
+    {
+        displayValue: 'Pharmacy',
+        actualValue: 'Pharmacy'
+    },
+    {
+        displayValue: 'Clinics',
+        actualValue: 'Clinics'
+    },
+    {
+        displayValue: 'Medical Offices',
+        actualValue: 'Medical Offices'
+    },
+]
+
 
 const GoogleSearchTab = (props) => {
     const classes = useGoogleSearchTabStyles();
@@ -13,10 +67,15 @@ const GoogleSearchTab = (props) => {
     const [geoFencingRadius, setGeoFencingRadius] = useState(null);
     const [errSelect, setErrSelect] = useState(false)
     const [errInput, setErrInput] = useState(false)
+    const [facility, setFacility] = useState('')
 
     const handleSetGeoFencingRadius = (rad: number) => {
         setGeoFencingRadius(rad)
         setErrSelect(false)
+    }
+
+    const handleSetFacility = (facility: string) => {
+        setFacility(facility)
     }
 
     const handleValidateInputs = () => {
@@ -40,7 +99,7 @@ const GoogleSearchTab = (props) => {
         }
         const err = handleValidateInputs();
         if (err) return
-        props.onSubmit(latitude, longitude, geoFencingRadius, requestDetails)
+        props.onSubmit(latitude, longitude, geoFencingRadius, facility, requestDetails)
     }
 
     useEffect(() => {
@@ -78,7 +137,18 @@ const GoogleSearchTab = (props) => {
                     shrink: true,
                 }}
             />
-            <MainSelect error={errSelect} onSetRadius={(rad: number) => handleSetGeoFencingRadius(rad)} />
+            <MainSelect
+                label="Geo-fencing radius"
+                choices={distances}
+                error={errSelect}
+                errMessage="How far should your search span?"
+                onSetValue={(rad: number) => handleSetGeoFencingRadius(rad)} />
+            <MainSelect
+                label="Facility"
+                choices={facilities}
+                error={errSelect}
+                errMessage="What type of facility should we search?"
+                onSetValue={(facility: string) => handleSetFacility(facility)} />
             <Button variant="contained" onClick={handleStartSearch}>Search</Button>
         </form>
     )

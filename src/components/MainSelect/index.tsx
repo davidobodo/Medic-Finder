@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -19,12 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-    onSetRadius: (number) => void,
-    error: boolean
+    onSetValue: any,
+    error: boolean,
+    choices: any,
+    label: string,
+    errMessage: string
 }
 
-const NativeSelects: React.FC<Props> = (props) => {
-    const { error } = props
+const NativeSelects: React.FC<Props> = ({ error, choices, onSetValue, label, errMessage }) => {
     const classes = useStyles();
     const [state, setState] = React.useState<{ age: string | number; name: string }>({
         age: '',
@@ -37,14 +39,14 @@ const NativeSelects: React.FC<Props> = (props) => {
             ...state,
             [name]: value
         });
-        props.onSetRadius(value)
+        onSetValue(value)
     };
 
     return (
         <div>
             <FormControl className={classes.formControl} error={error}>
                 <InputLabel shrink htmlFor="age-native-label-placeholder">
-                    Geo-fencing radius
+                    {label}
                 </InputLabel>
                 <NativeSelect
                     value={state.age}
@@ -54,18 +56,16 @@ const NativeSelects: React.FC<Props> = (props) => {
                         id: 'age-native-label-placeholder',
                     }}
                 >
-                    <option value="">Choose radius</option>
-                    <option value={5000}>5km</option>
-                    <option value={10000}>10km</option>
-                    <option value={20000}>20km</option>
-                    <option value={30000}>30km</option>
-                    <option value={40000}>40km</option>
-                    <option value={50000}>50km</option>
+                    {choices.map(choice => {
+                        const { displayValue, actualValue } = choice;
+                        return <option key={actualValue} value={actualValue}>{displayValue}</option>
+                    })}
+
                 </NativeSelect>
-                {error && <FormHelperText>How far should your search span?</FormHelperText>}
+                {error && <FormHelperText>{errMessage}</FormHelperText>}
             </FormControl>
         </div>
     );
 }
 
-export default NativeSelects
+export default memo(NativeSelects)
