@@ -10,7 +10,8 @@ import Paper from '@material-ui/core/Paper';
 
 
 type SimpleTableProps = {
-    rows: any
+    rows: any,
+    onSearch: any
 }
 
 const useStyles = makeStyles({
@@ -20,8 +21,22 @@ const useStyles = makeStyles({
 });
 
 
-const SimpleTable: React.FC<SimpleTableProps> = ({ rows }) => {
+const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
     const classes = useStyles();
+
+    const handleStartSearch = (coordinates, facility, rad, place) => {
+        const { latitude, longitude } = coordinates;
+        const requestDetails = {
+            searchPlace: place,
+            searchFacility: facility,
+            searchRadius: rad,
+            searchCoordinates: {
+                latitude,
+                longitude
+            }
+        }
+        onSearch(latitude, longitude, rad, facility, requestDetails)
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -35,16 +50,24 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows && rows.map((row) => (
-                        <TableRow key={row.currentLocation}>
+                    {rows && rows.map((row) => {
+                        const { searchPlace, searchFacility, searchRadius, searchCoordinates } = row
+                        return <TableRow
+                            key={row.searchPlace}
+                            onClick={() => handleStartSearch(
+                                searchCoordinates,
+                                searchFacility,
+                                searchRadius,
+                                searchPlace
+                            )}>
                             <TableCell component="th" scope="row">
-                                {row.currentLocation}
+                                {row.searchPlace}
                             </TableCell>
-                            <TableCell align="right">{row.facility}</TableCell>
-                            <TableCell align="right">{row.radius}</TableCell>
+                            <TableCell align="right">{row.searchFacility}</TableCell>
+                            <TableCell align="right">{row.searchRadius}</TableCell>
                             <TableCell align="right">Hello</TableCell>
                         </TableRow>
-                    ))}
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>

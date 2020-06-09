@@ -12,6 +12,7 @@ import { storeSearch } from '../../redux/actions';
 
 const HomePage = () => {
   const classes = useHomeStyles();
+
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [radius, setRadius] = useState(null)
