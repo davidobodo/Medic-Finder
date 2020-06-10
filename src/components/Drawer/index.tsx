@@ -1,99 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
 import { NavLink, Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { useStyles } from './style';
+import { Anchor } from './type';
 
-const useStyles = makeStyles(theme => ({
-    list: {
-        width: 250,
-        zIndex: 20,
-        paddingTop: '30px'
-    },
-    fullList: {
-        width: 'auto',
-    },
-    hamburger: {
-        zIndex: 20,
-        width: '25px',
-        height: '3px',
-        backgroundColor: '#012B69',
-        position: 'absolute',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        right: '30px',
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
-        },
-        '&:before': {
-            content: '""',
-            width: '25px',
-            height: '3px',
-            backgroundColor: '#012B69',
-            position: 'absolute',
-            transform: 'translateY(-6px)',
-        },
-        '&:after': {
-            content: '""',
-            width: '25px',
-            height: '3px',
-            backgroundColor: '#012B69',
-            position: 'absolute',
-            transform: 'translateY(6px)'
-        }
-    },
-    logo: {
-        fontWeight: 600,
-        fontSize: '24px',
-        color: '#012B69',
-        paddingBottom: '20px',
-        borderBottom: '1px solid rgba(0,0,0,0.1)',
-        marginBottom: '20px',
-        paddingLeft: '20px',
 
-        '& a': {
-            color: 'inherit',
-            textDecoration: 'none'
-        },
-    },
-    linksContainer: {
-        '& .MuiListItem-gutters': {
-            padding: '0',
-        },
-
-        '& a': {
-            padding: '20px 45px',
-            textDecoration: 'none',
-            color: '#000',
-            fontSize: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-
-            '&:hover': {
-                backgroundColor: '#f0f6ff'
-            },
-
-            '&.active': {
-                borderLeft: '5px solid #1175f6',
-                backgroundColor: '#f0f6ff',
-
-            }
-        }
-    }
-}));
-
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
-
-export default function TemporaryDrawer() {
+const TemporaryDrawer = () => {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -159,3 +74,5 @@ export default function TemporaryDrawer() {
         </div>
     );
 }
+
+export default TemporaryDrawer

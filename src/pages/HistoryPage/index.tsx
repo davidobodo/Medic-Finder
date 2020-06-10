@@ -2,64 +2,18 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import Layout from '../../components/Layout';
 import Table from '../../components/Table';
-import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { firestoreConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
-import { storeSearch } from '../../redux/actions';
 import Locations from '../../components/Locations';
+import { useHistoryPageStyles } from './style';
+import useParameters from '../../components/customHooks/useParameters';
 
-type HistoryPageProps = {
 
-}
-
-const useHistoryPageStyles = makeStyles(theme => ({
-    root: {
-        padding: '100px 8vw',
-        [theme.breakpoints.down('sm')]: {
-            padding: '100px 5vw'
-        },
-        [theme.breakpoints.down('xs')]: {
-            paddingTop: '50px'
-        },
-    },
-    header: {
-        marginBottom: '30px',
-        color: '#012B69',
-        [theme.breakpoints.down('md')]: {
-            fontSize: '36px'
-        },
-        [theme.breakpoints.down('md')]: {
-            fontSize: '24px'
-        }
-    }
-}))
-
-const HistoryPage: React.FC<HistoryPageProps> = () => {
+const HistoryPage = () => {
     const classes = useHistoryPageStyles();
     const searches = useSelector(state => state.firestore.ordered.searches)
-
-    const [latitude, setLatitude] = useState(null)
-    const [longitude, setLongitude] = useState(null)
-    const [radius, setRadius] = useState(null)
-    const [showMap, setShowMap] = useState(false)
-    const [facility, setFacility] = useState('')
-    const dispatch = useDispatch();
-    const [requestDetails, setRequestDetails] = useState()
-
-
-    const handleGetHospitals = (latitude: number, longitude: number, radius: number, facility: string, requestDetails: any) => {
-        setLatitude(latitude)
-        setLongitude(longitude)
-        setRadius(radius)
-        setFacility(facility)
-        setShowMap(true)
-        setRequestDetails(requestDetails)
-    }
-
-    const handleReturnToSearchPage = () => {
-        setShowMap(false)
-    }
+    const { latitude, longitude, radius, showMap, facility, requestDetails, handleGetHospitals, handleReturnToSearchPage } = useParameters();
 
     return (
         <Layout>

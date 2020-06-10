@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,69 +8,13 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
+import { useStyles } from './style';
 
 
 type SimpleTableProps = {
     rows: any,
     onSearch: any
 }
-
-
-const useStyles = makeStyles(theme => ({
-    table: {
-        minWidth: 650,
-        backgroundColor: '#012B69',
-        '& .MuiTableCell-head': {
-            color: '#fff',
-            backgroundColor: '#012B69',
-            fontWeight: '600',
-            fontSize: '18px'
-        },
-        '& .MuiTableCell-body': {
-            fontSize: '18px',
-            [theme.breakpoints.down('md')]: {
-                fontSize: '14px',
-                whiteSpace: 'nowrap'
-            }
-        },
-        '& .MuiTableRow-root': {
-            '&:nth-child(2n)': {
-                backgroundColor: '#f0f6ff'
-            },
-            '&:nth-child(2n+1)': {
-                backgroundColor: '#fff'
-            }
-        },
-        '& .MuiTableCell-root': {
-            padding: '24px',
-            paddingLeft: '30px',
-            [theme.breakpoints.down('md')]: {
-                padding: '16px',
-                fontSize: '14px'
-            }
-
-        },
-        '& tbody tr.MuiTableRow-root': {
-            cursor: 'pointer',
-            transition: 'transform 0.2s ease-in-out',
-
-            '&:hover': {
-                transform: 'translateX(15px)'
-            }
-        },
-    },
-
-    head: {
-    },
-    bullet: {
-        width: '10px',
-        height: '10px',
-        borderRadius: '5px',
-        backgroundColor: '#dadce0',
-        display: 'inline-block',
-        marginRight: '20px'
-    }
-}));
 
 
 const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
@@ -101,7 +44,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                     <TableRow className={classes.head}>
                         <TableCell>Location</TableCell>
                         <TableCell align="left">Facility</TableCell>
-                        <TableCell align="left">Geo-Fencing Radius</TableCell>
+                        <TableCell align="left">Geo-Fencing Radius(km)</TableCell>
                         <TableCell align="left">Time</TableCell>
                     </TableRow>
                 </TableHead>
@@ -121,7 +64,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                                 {row.searchPlace}
                             </TableCell>
                             <TableCell align="left">{row.searchFacility}</TableCell>
-                            <TableCell align="left">{row.searchRadius}</TableCell>
+                            <TableCell align="left">{row.searchRadius / 1000}</TableCell>
                             <TableCell align="left">{moment(searchedAt.toDate()).calendar()}</TableCell>
                         </TableRow>
                     })}

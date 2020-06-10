@@ -5,7 +5,7 @@ export const useHomeStyles = makeStyles(theme => ({
     container: {
         height: '100vh',
         display: 'flex',
-        backgroundColor: '#f0f6ff', //proposed for theming
+        backgroundColor: '#f0f6ff',
         background: `linear-gradient(0deg, rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), url(${doctor}) `,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
