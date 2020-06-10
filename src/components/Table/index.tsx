@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 
 type SimpleTableProps = {
@@ -15,13 +16,14 @@ type SimpleTableProps = {
     onSearch: any
 }
 
+
 const useStyles = makeStyles(theme => ({
     table: {
         minWidth: 650,
-        backgroundColor: '#1175f6',
+        backgroundColor: '#012B69',
         '& .MuiTableCell-head': {
             color: '#fff',
-            backgroundColor: '#1175f6',
+            backgroundColor: '#012B69',
             fontWeight: '600',
             fontSize: '18px'
         },
@@ -76,6 +78,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
     const classes = useStyles();
 
     const handleStartSearch = (coordinates, facility, rad, place) => {
+        const searchId = uuidv4();
         const { latitude, longitude } = coordinates;
         const requestDetails = {
             searchPlace: place,
@@ -85,7 +88,8 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                 latitude,
                 longitude
             },
-            searchedAt: new Date()
+            searchedAt: new Date(),
+            searchId: searchId
         }
         onSearch(latitude, longitude, rad, facility, requestDetails)
     }
@@ -103,15 +107,14 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                 </TableHead>
                 <TableBody>
                     {rows && rows.map((row) => {
-                        const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchedAt } = row;
-                        console.log(searchedAt)
+                        const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchedAt, searchId } = row;
                         return <TableRow
-                            key={row.searchPlace}
+                            key={searchId}
                             onClick={() => handleStartSearch(
                                 searchCoordinates,
                                 searchFacility,
                                 searchRadius,
-                                searchPlace
+                                searchPlace,
                             )}>
                             <TableCell component="th" scope="row">
                                 <div className={classes.bullet}></div>

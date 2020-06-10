@@ -10,9 +10,21 @@ export const theme = createMuiTheme({
                 },
                 body: {
                     backgroundColor: '#fff'
-                }
+                },
+
 
             },
         },
     },
 });
+
+
+// darkBlue: {
+//     color: '#012B69'
+// },
+// mediumBlue: {
+//     color: '#1175f6'
+// },
+// lightBlue: {
+//     color: '#f0f6ff'
+// },

@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { useGoogleSearchTabStyles } from './style';
 import MainSelect from '../MainSelect';
 import TextField from '@material-ui/core/TextField';
+import { v4 as uuidv4 } from 'uuid';
 
 const distances = [
     {
@@ -93,6 +94,7 @@ const GoogleSearchTab = (props) => {
 
     const handleStartSearch = (e: { preventDefault: () => void }) => {
         e.preventDefault();
+        const searchId = uuidv4();
         const requestDetails = {
             searchPlace: inputRef.current.value,
             searchFacility: facility,
@@ -101,7 +103,8 @@ const GoogleSearchTab = (props) => {
                 latitude,
                 longitude
             },
-            searchedAt: new Date()
+            searchedAt: new Date(),
+            searchId: searchId
         }
         const err = handleValidateInputs();
         if (err) return
