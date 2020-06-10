@@ -35,6 +35,7 @@ const HistoryPage: React.FC<HistoryPageProps> = () => {
     const [showMap, setShowMap] = useState(false)
     const [facility, setFacility] = useState('')
     const dispatch = useDispatch();
+    const [requestDetails, setRequestDetails] = useState()
 
 
     const handleGetHospitals = (latitude: number, longitude: number, radius: number, facility: string, requestDetails: any) => {
@@ -43,7 +44,7 @@ const HistoryPage: React.FC<HistoryPageProps> = () => {
         setRadius(radius)
         setFacility(facility)
         setShowMap(true)
-        dispatch(storeSearch(requestDetails))
+        setRequestDetails(requestDetails)
     }
 
     const handleReturnToSearchPage = () => {
@@ -55,7 +56,7 @@ const HistoryPage: React.FC<HistoryPageProps> = () => {
             <div className={classes.root}>
                 <Typography variant="h3" component="h1" className={classes.header}>Past Searches</Typography>
                 <Table rows={searches} onSearch={handleGetHospitals} />
-                {showMap && <Locations latitude={latitude} longitude={longitude} radius={radius} facility={facility} onReturn={handleReturnToSearchPage} />}
+                {showMap && <Locations requestDetails={requestDetails} latitude={latitude} longitude={longitude} radius={radius} facility={facility} onReturn={handleReturnToSearchPage} />}
             </div>
         </Layout>
     )

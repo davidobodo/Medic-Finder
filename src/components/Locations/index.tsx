@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react'
+import { useDispatch } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useLocationsStyles } from './style';
 import AddressCard from '../AddressCard'
 import { LocationProps } from './type'
 import Link from '@material-ui/core/Link';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { storeSearch } from '../../redux/actions';
 
 
 const Locations: React.FC<LocationProps> = (props) => {
-    const { latitude, longitude, radius, facility, onReturn } = props
+    const { latitude, longitude, radius, facility, onReturn, requestDetails } = props
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 12;
     const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
     const place = new google.maps.LatLng(latitude, longitude);
+    const dispatch = useDispatch()
 
     const handleGoToSearchPage = () => {
         setHospitalsDescription([]);
@@ -21,6 +25,7 @@ const Locations: React.FC<LocationProps> = (props) => {
     }
 
     useEffect(() => {
+        dispatch(storeSearch(requestDetails))
         const map = new window.google.maps.Map(mapRef.current, {
             center: place,
             zoom: defaultZoom
@@ -82,19 +87,23 @@ const Locations: React.FC<LocationProps> = (props) => {
 
     return (
         <div className={classes.container}>
-            <Typography className={classes.linkContainer}>
-                <Link onClick={handleGoToSearchPage} className={classes.link}>
-                    Return to search page
-                </Link>
-            </Typography>
             <Grid container spacing={0} className={classes.body}>
-                <Grid item xs={12} sm={5} md={4} className={classes.leftColumn}>
+                <Grid item xs={12} sm={12} md={5} className={classes.leftColumn}>
+                    <Link onClick={handleGoToSearchPage} className={classes.backLink}>
+                        <ArrowBackIcon />
+                        Back
+                </Link>
+                    <div className={classes.leftColumnHeader}>
+                        <Typography variant="h3" component="h3" className={classes.leftColumnFacility}>{facility}</Typography>
+                        <Typography className={classes.leftColumnText}><span>Within:</span> {parseInt(radius) / 1000} kilometers</Typography>
+                        <Typography className={classes.leftColumnText}><span>Of:</span> {requestDetails.searchPlace}</Typography>
+                    </div>
                     {hospitalsDescription.map((hospital) => {
                         const { name } = hospital
                         return <AddressCard key={name} description={hospital} />
                     })}
                 </Grid>
-                <Grid item sm={7} md={8} className={classes.rightColumn}>
+                <Grid item md={7} className={classes.rightColumn}>
                     <Fragment>
                         <Typography
                             className={classes.map}

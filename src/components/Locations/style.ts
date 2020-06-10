@@ -10,49 +10,72 @@ export const useLocationsStyles = makeStyles(theme => ({
         }
     },
     container: {
-        height: 'calc(100vh - 60px);',
+        height: 'calc(100vh - 80px);',
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
-        top: '60px',
+        top: '80px',
+        left: '0',
         width: '100%',
-        backgroundColor: '#F5F5F9',
+        backgroundColor: '#f0f6ff',
         animationName: `$myEffect`,
         animationDuration: '1s',
         animationDirection: 'normal',
         animationTimingFunction: 'ease-in-out',
         animationFillMode: 'forwards',
-    },
-    linkContainer: {
-        position: 'fixed',
-        zIndex: 100,
-        right: '10vw',
-        top: '0px',
-        padding: '20px 40px',
-        borderRadius: '10px',
-    },
-    link: {
-        color: '#330E4E',
-        fontSize: '12px',
-        cursor: 'pointer'
+        padding: '5vw'
     },
     body: {
         flex: '1',
-        overflow: 'scroll'
+        overflow: 'scroll',
+        padding: '15px',
+        backgroundColor: '#fff',
+        borderRadius: '15px'
     },
     leftColumn: {
         height: '100%',
-        borderRight: '1px solid rgba(0,0,0,0.1)',
         overflow: 'scroll',
+        padding: '30px',
+        position: 'relative',
+    },
+    backLink: {
+        color: '#1175f6',
+        fontSize: '14px',
+        fontStyle: 'italic',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center'
+
+    },
+    leftColumnHeader: {
+        paddingTop: '15px',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        marginBottom: '20px',
+    },
+    leftColumnFacility: {
+        marginBottom: '15px'
+    },
+    leftColumnText: {
+        fontSize: '18px',
+        marginBottom: '15px',
+        opacity: '0.5',
+
+        '& span': {
+            fontWeight: '600',
+            fontStyle: 'italic'
+        }
     },
     rightColumn: {
         height: '100%',
-        [theme.breakpoints.down('xs')]: {
+        borderLeft: '1px solid rgba(0,0,0,0.1)',
+        [theme.breakpoints.down('sm')]: {
             display: 'none'
         },
     },
     map: {
-        width: '100%',
-        height: '100%'
+        height: '100%',
+        marginLeft: '15px',
+        borderTopRightRadius: '10px',
+        borderTopLeftRadius: '10px'
     }
 }))

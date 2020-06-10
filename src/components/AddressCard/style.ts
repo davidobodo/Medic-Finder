@@ -2,16 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useAddressCardStyles = makeStyles(theme => ({
     root: {
-        minWidth: 275,
-        borderBottom: '1px solid rgba(0,0,0,0.1)',
-        boxShadow: 'none',
         padding: '18px',
-        paddingLeft: '60px',
-        backgroundColor: '#F5F5F9',
+        backgroundColor: '#fff',
         display: 'flex',
         alignItems: 'flex-start',
+        boxShadow: '1px 1px 10px -5px rgba(0,0,0,0.3)',
+        marginBottom: '15px',
         [theme.breakpoints.down('md')]: {
-            paddingLeft: '18px'
         },
     },
     symbol: {
@@ -20,7 +17,7 @@ export const useAddressCardStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F2E3F8',
+        backgroundColor: '#f0f6ff',
         color: '#fff',
         fontSize: '80px',
         marginRight: '20px',
@@ -35,14 +32,14 @@ export const useAddressCardStyles = makeStyles(theme => ({
         marginBottom: '10px',
         fontWeight: 500,
         [theme.breakpoints.down('md')]: {
-            fontSize: '16px',
+            fontSize: '18px',
         },
     },
     address: {
         marginBottom: '10px',
         fontSize: '18px',
         [theme.breakpoints.down('md')]: {
-            fontSize: '12px',
+            fontSize: '14px',
         },
     }
 }));

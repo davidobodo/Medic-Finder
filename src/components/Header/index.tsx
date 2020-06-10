@@ -55,7 +55,7 @@ const Header = () => {
     return (
         <div className={classes.root}>
             <div className={classes.imgContainer}>
-                <img src={Logo} alt="enye logo" className={classes.img} />
+                {/* <img src={Logo} alt="enye logo" className={classes.img} /> */}
             </div>
             <div className={classes.linksContainer}>
                 <NavLink exact to='/'>Home</NavLink>
