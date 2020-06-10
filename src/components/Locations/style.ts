@@ -27,14 +27,13 @@ export const useLocationsStyles = makeStyles(theme => ({
     },
     body: {
         flex: '1',
-        overflow: 'scroll',
+        overflow: 'hidden',
         padding: '15px',
         backgroundColor: '#fff',
         borderRadius: '15px'
     },
     leftColumn: {
         height: '100%',
-        overflow: 'scroll',
         padding: '30px',
         position: 'relative',
     },
@@ -44,7 +43,8 @@ export const useLocationsStyles = makeStyles(theme => ({
         fontStyle: 'italic',
         cursor: 'pointer',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: '10px'
 
     },
     leftColumnHeader: {
@@ -52,8 +52,15 @@ export const useLocationsStyles = makeStyles(theme => ({
         borderBottom: '1px solid rgba(0,0,0,0.1)',
         marginBottom: '20px',
     },
+    leftColumnBody: {
+        height: 'calc(100vh - 10vw - 362px)',
+        overflow: 'scroll',
+    },
     leftColumnFacility: {
-        marginBottom: '15px'
+        marginBottom: '15px',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '30px'
+        },
     },
     leftColumnText: {
         fontSize: '18px',

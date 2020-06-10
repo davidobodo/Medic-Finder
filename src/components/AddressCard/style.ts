@@ -27,6 +27,9 @@ export const useAddressCardStyles = makeStyles(theme => ({
             height: '80px',
             fontSize: '60px',
         },
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        },
     },
     name: {
         marginBottom: '10px',

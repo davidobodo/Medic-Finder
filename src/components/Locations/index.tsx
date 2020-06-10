@@ -92,19 +92,22 @@ const Locations: React.FC<LocationProps> = (props) => {
         <div className={classes.container}>
             <Grid container spacing={0} className={classes.body}>
                 <Grid item xs={12} sm={12} md={5} className={classes.leftColumn}>
-                    <Link onClick={handleGoToSearchPage} className={classes.backLink}>
-                        <ArrowBackIcon />
-                        Back
-                </Link>
+
                     <div className={classes.leftColumnHeader}>
+                        <Link onClick={handleGoToSearchPage} className={classes.backLink}>
+                            <ArrowBackIcon />
+                            Back
+                        </Link>
                         <Typography variant="h3" component="h3" className={classes.leftColumnFacility}>{facility}</Typography>
                         <Typography className={classes.leftColumnText}><span>Within:</span> {parseInt(radius) / 1000} kilometers</Typography>
                         <Typography className={classes.leftColumnText}><span>Of:</span> {requestDetails.searchPlace}</Typography>
                     </div>
-                    {hospitalsDescription.map((hospital) => {
-                        const { name } = hospital
-                        return <AddressCard key={name} description={hospital} />
-                    })}
+                    <div className={classes.leftColumnBody}>
+                        {hospitalsDescription.map((hospital) => {
+                            const { name } = hospital
+                            return <AddressCard key={name} description={hospital} />
+                        })}
+                    </div>
                 </Grid>
                 <Grid item md={7} className={classes.rightColumn}>
                     <Fragment>
