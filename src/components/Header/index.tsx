@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Logo from '../../assets/enye.png'
+import Drawer from '../Drawer';
 
-const useHeaderStyles = makeStyles({
+const useHeaderStyles = makeStyles(theme => ({
     root: {
         position: 'fixed',
         height: '80px',
@@ -11,11 +11,12 @@ const useHeaderStyles = makeStyles({
         top: '0',
         left: '0',
         backgroundColor: '#fff',
-        paddingLeft: '10vw',
-        paddingRight: '10vw',
+        paddingLeft: '5vw',
+        paddingRight: '5vw',
         display: 'flex',
         justifyContent: 'space-between',
-        borderBottom: '1px solid rgba(0,0,0,0.1)'
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        zIndex: 10
     },
 
     logo: {
@@ -23,10 +24,16 @@ const useHeaderStyles = makeStyles({
         alignItems: 'center',
         fontWeight: 600,
         fontSize: '24px',
-        color: '#012B69'
+        color: '#012B69',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '20px',
+        },
     },
     linksContainer: {
         display: 'flex',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        },
 
         '& a': {
             padding: '20px 45px',
@@ -47,7 +54,7 @@ const useHeaderStyles = makeStyles({
             }
         }
     }
-})
+}))
 
 
 const Header = () => {
@@ -57,6 +64,7 @@ const Header = () => {
             <div className={classes.logo}>
                 Enye Cohort 4
             </div>
+            <Drawer />
             <div className={classes.linksContainer}>
                 <NavLink exact to='/'>Home</NavLink>
                 <NavLink exact to='/history'>History</NavLink>
