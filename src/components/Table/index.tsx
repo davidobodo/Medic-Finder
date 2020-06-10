@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import moment from 'moment';
 
 
 type SimpleTableProps = {
@@ -83,7 +84,8 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
             searchCoordinates: {
                 latitude,
                 longitude
-            }
+            },
+            searchedAt: new Date()
         }
         onSearch(latitude, longitude, rad, facility, requestDetails)
     }
@@ -96,12 +98,13 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                         <TableCell>Location</TableCell>
                         <TableCell align="left">Facility</TableCell>
                         <TableCell align="left">Geo-Fencing Radius</TableCell>
-                        <TableCell align="left">Date</TableCell>
+                        <TableCell align="left">Time</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows && rows.map((row) => {
-                        const { searchPlace, searchFacility, searchRadius, searchCoordinates } = row
+                        const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchedAt } = row;
+                        console.log(searchedAt)
                         return <TableRow
                             key={row.searchPlace}
                             onClick={() => handleStartSearch(
@@ -116,7 +119,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                             </TableCell>
                             <TableCell align="left">{row.searchFacility}</TableCell>
                             <TableCell align="left">{row.searchRadius}</TableCell>
-                            <TableCell align="left">Hello</TableCell>
+                            <TableCell align="left">{moment(searchedAt.toDate()).calendar()}</TableCell>
                         </TableRow>
                     })}
                 </TableBody>

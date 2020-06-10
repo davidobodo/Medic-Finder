@@ -100,7 +100,8 @@ const GoogleSearchTab = (props) => {
             searchCoordinates: {
                 latitude,
                 longitude
-            }
+            },
+            searchedAt: new Date()
         }
         const err = handleValidateInputs();
         if (err) return

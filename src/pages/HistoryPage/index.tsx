@@ -47,6 +47,7 @@ const HistoryPage: React.FC<HistoryPageProps> = () => {
     const dispatch = useDispatch();
     const [requestDetails, setRequestDetails] = useState()
 
+    console.log(searches)
 
     const handleGetHospitals = (latitude: number, longitude: number, radius: number, facility: string, requestDetails: any) => {
         setLatitude(latitude)
@@ -72,4 +73,4 @@ const HistoryPage: React.FC<HistoryPageProps> = () => {
     )
 }
 
-export default firestoreConnect(() => ['searches'])(HistoryPage);
+export default firestoreConnect(() => [{ collection: 'searches', orderBy: ['searchedAt', 'desc'] }])(HistoryPage);
