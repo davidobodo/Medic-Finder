@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -57,7 +57,12 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '20px',
         borderBottom: '1px solid rgba(0,0,0,0.1)',
         marginBottom: '20px',
-        paddingLeft: '20px'
+        paddingLeft: '20px',
+
+        '& a': {
+            color: 'inherit',
+            textDecoration: 'none'
+        },
     },
     linksContainer: {
         '& .MuiListItem-gutters': {
@@ -121,7 +126,9 @@ export default function TemporaryDrawer() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <div className={classes.logo}>
-                Enye Cohort 4
+                <Link to='/'>
+                    Enye Cohort 4
+            </Link>
             </div>
             <List className={classes.linksContainer}>
                 <ListItem >

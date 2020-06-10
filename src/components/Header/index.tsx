@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '../Drawer';
 
@@ -25,6 +25,11 @@ const useHeaderStyles = makeStyles(theme => ({
         fontWeight: 600,
         fontSize: '24px',
         color: '#012B69',
+
+        '& a': {
+            color: 'inherit',
+            textDecoration: 'none'
+        },
         [theme.breakpoints.down('sm')]: {
             fontSize: '20px',
         },
@@ -62,7 +67,9 @@ const Header = () => {
     return (
         <div className={classes.root}>
             <div className={classes.logo}>
-                Enye Cohort 4
+                <Link to='/'>
+                    Enye Cohort 4
+            </Link>
             </div>
             <Drawer />
             <div className={classes.linksContainer}>
