@@ -10,10 +10,10 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
             width: '100%'
         },
         '& label.Mui-focused': {
-            color: '#fff',
+            color: '#012B69',
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: '#fff',
+            borderBottomColor: '#012B69',
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
@@ -30,10 +30,16 @@ export const useGoogleSearchTabStyles = makeStyles(theme => ({
             marginBottom: '30px',
         },
         '& .MuiInputBase-input': {
-            color: '#fff'
+            color: 'rgba(0,0,0,0.5)'
         },
         '& .MuiInputLabel-root': {
-            color: '#fff'
+            color: 'rgba(0,0,0,0.5)'
+        },
+        '& .MuiButton-contained': {
+            boxShadow: 'none',
+            backgroundColor: '#012B69',
+            color: '#fff',
+            padding: '10px 40px'
         }
     },
 }))

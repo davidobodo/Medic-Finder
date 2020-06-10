@@ -17,13 +17,13 @@ const useHeaderStyles = makeStyles({
         justifyContent: 'space-between',
         borderBottom: '1px solid rgba(0,0,0,0.1)'
     },
-    imgContainer: {
-        width: '100px',
+
+    logo: {
         display: 'flex',
-        alignItems: 'center'
-    },
-    img: {
-        width: '100%'
+        alignItems: 'center',
+        fontWeight: 600,
+        fontSize: '24px',
+        color: '#012B69'
     },
     linksContainer: {
         display: 'flex',
@@ -54,8 +54,8 @@ const Header = () => {
     const classes = useHeaderStyles()
     return (
         <div className={classes.root}>
-            <div className={classes.imgContainer}>
-                {/* <img src={Logo} alt="enye logo" className={classes.img} /> */}
+            <div className={classes.logo}>
+                Enye Cohort 4
             </div>
             <div className={classes.linksContainer}>
                 <NavLink exact to='/'>Home</NavLink>

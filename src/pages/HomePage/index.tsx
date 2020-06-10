@@ -5,6 +5,7 @@ import { useHomeStyles } from './style';
 import GoogleSearchTab from '../../components/GoogleSearchTab';
 import Locations from '../../components/Locations';
 import Layout from '../../components/Layout';
+import hospital from '../../assets/hospital-iso.jpg'
 
 
 
@@ -34,8 +35,13 @@ const HomePage = () => {
   return (
     <Layout>
       <Container maxWidth={false} className={classes.container}>
-        <Typography component="h1" className={classes.title}>Find Hospitals</Typography>
-        <GoogleSearchTab onSubmit={handleGetHospitals} />
+        <div className={classes.leftColumn}>
+          <Typography component="h1" className={classes.title}>Find <br />Hospitals</Typography>
+          <GoogleSearchTab onSubmit={handleGetHospitals} />
+        </div>
+        <div>
+          {/* <img src={hospital} alt="hospital" /> */}
+        </div>
       </Container>
       {showMap && <Locations requestDetails={requestDetails} latitude={latitude} longitude={longitude} radius={radius} facility={facility} onReturn={handleReturnToSearchPage} />}
     </Layout>

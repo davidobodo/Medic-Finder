@@ -19,6 +19,9 @@ const useHistoryPageStyles = makeStyles(theme => ({
         [theme.breakpoints.down('sm')]: {
             padding: '100px 5vw'
         },
+        [theme.breakpoints.down('xs')]: {
+            paddingTop: '50px'
+        },
     },
     header: {
         marginBottom: '30px'

@@ -9,8 +9,8 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
-            minWidth: 200,
-            marginBottom: 50,
+            minWidth: 250,
+            marginBottom: 30,
             '& .MuiNativeSelect-select:not([multiple]) option, .MuiNativeSelect-select:not([multiple]) optgroup': {
                 backgroundColor: '#000'
             }
