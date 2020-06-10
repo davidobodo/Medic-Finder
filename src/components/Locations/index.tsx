@@ -78,7 +78,7 @@ const Locations: React.FC<LocationProps> = (props) => {
                     createMarker(results[i]);
                     setTimeout(() => {
                         onFinishLoading()
-                    }, 3000)
+                    }, 2000)
                 }
             }
         }
