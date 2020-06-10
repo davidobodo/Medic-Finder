@@ -36,7 +36,7 @@ const useHeaderStyles = makeStyles(theme => ({
     },
     linksContainer: {
         display: 'flex',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
             display: 'none',
         },
 

@@ -14,7 +14,7 @@ type SimpleTableProps = {
     onSearch: any
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     table: {
         minWidth: 650,
         backgroundColor: '#1175f6',
@@ -25,7 +25,11 @@ const useStyles = makeStyles({
             fontSize: '18px'
         },
         '& .MuiTableCell-body': {
-            fontSize: '18px'
+            fontSize: '18px',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '14px',
+                whiteSpace: 'nowrap'
+            }
         },
         '& .MuiTableRow-root': {
             '&:nth-child(2n)': {
@@ -37,7 +41,11 @@ const useStyles = makeStyles({
         },
         '& .MuiTableCell-root': {
             padding: '24px',
-            paddingLeft: '50px',
+            paddingLeft: '30px',
+            [theme.breakpoints.down('md')]: {
+                padding: '16px',
+                fontSize: '14px'
+            }
 
         },
         '& tbody tr.MuiTableRow-root': {
@@ -58,9 +66,9 @@ const useStyles = makeStyles({
         borderRadius: '5px',
         backgroundColor: '#dadce0',
         display: 'inline-block',
-        transform: 'translateX(-25px)'
+        marginRight: '20px'
     }
-});
+}));
 
 
 const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {

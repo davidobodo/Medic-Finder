@@ -24,7 +24,14 @@ const useHistoryPageStyles = makeStyles(theme => ({
         },
     },
     header: {
-        marginBottom: '30px'
+        marginBottom: '30px',
+        color: '#012B69',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '36px'
+        },
+        [theme.breakpoints.down('md')]: {
+            fontSize: '24px'
+        }
     }
 }))
 
