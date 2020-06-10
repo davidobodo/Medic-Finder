@@ -11,7 +11,7 @@ import { storeSearch } from '../../redux/actions';
 
 
 const Locations: React.FC<LocationProps> = (props) => {
-    const { latitude, longitude, radius, facility, onReturn, requestDetails } = props
+    const { latitude, longitude, radius, facility, onReturn, requestDetails, onFinishLoading } = props
     const classes = useLocationsStyles();
     const mapRef = useRef();
     const defaultZoom = 12;
@@ -76,6 +76,9 @@ const Locations: React.FC<LocationProps> = (props) => {
                 }
                 for (var i = 0; i < results.length; i++) {
                     createMarker(results[i]);
+                    setTimeout(() => {
+                        onFinishLoading()
+                    }, 3000)
                 }
             }
         }

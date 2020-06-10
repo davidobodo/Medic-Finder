@@ -7,6 +7,7 @@ const useParameters = () => {
     const [showMap, setShowMap] = useState(false)
     const [facility, setFacility] = useState('')
     const [requestDetails, setRequestDetails] = useState()
+    const [isLoading, setisLoading] = useState(false)
 
     const handleGetHospitals = (latitude: number, longitude: number, radius: number, facility: string, requestDetails: any) => {
         setLatitude(latitude)
@@ -15,13 +16,18 @@ const useParameters = () => {
         setFacility(facility)
         setShowMap(true)
         setRequestDetails(requestDetails)
+        setisLoading(true)
     }
 
     const handleReturnToSearchPage = () => {
         setShowMap(false)
     }
 
-    return { latitude, longitude, radius, showMap, facility, requestDetails, handleGetHospitals, handleReturnToSearchPage }
+    const handleOnFinishLoading = () => {
+        setisLoading(false)
+    }
+
+    return { latitude, longitude, radius, showMap, facility, requestDetails, handleGetHospitals, handleReturnToSearchPage, isLoading, handleOnFinishLoading }
 
 }
 

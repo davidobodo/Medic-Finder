@@ -9,5 +9,6 @@ export type LocationProps = {
     radius: string,
     onReturn: () => void,
     facility: string,
-    requestDetails: any
+    requestDetails: any,
+    onFinishLoading: () => void,
 }
