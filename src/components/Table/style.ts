@@ -54,5 +54,13 @@ export const useStyles = makeStyles(theme => ({
         backgroundColor: '#dadce0',
         display: 'inline-block',
         marginRight: '20px'
+    },
+    linearLoader: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '50%',
+        borderRadius: '5px'
     }
 }));

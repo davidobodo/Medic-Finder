@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { useStyles } from './style';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 type SimpleTableProps = {
@@ -49,26 +50,39 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows && rows.map((row) => {
-                        const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchedAt, searchId } = row;
-                        return <TableRow
-                            key={searchId}
-                            onClick={() => handleStartSearch(
-                                searchCoordinates,
-                                searchFacility,
-                                searchRadius,
-                                searchPlace,
-                            )}>
-                            <TableCell component="th" scope="row">
-                                <div className={classes.bullet}></div>
-                                {row.searchPlace}
+                    {rows
+                        ? rows.map((row) => {
+                            const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchedAt, searchId } = row;
+                            return <TableRow
+                                key={searchId}
+                                onClick={() => handleStartSearch(
+                                    searchCoordinates,
+                                    searchFacility,
+                                    searchRadius,
+                                    searchPlace,
+                                )}>
+                                <TableCell component="th" scope="row">
+                                    <div className={classes.bullet}></div>
+                                    {row.searchPlace}
+                                </TableCell>
+                                <TableCell align="left">{row.searchFacility}</TableCell>
+                                <TableCell align="left">{row.searchRadius / 1000}</TableCell>
+                                <TableCell align="left">{moment(searchedAt.toDate()).calendar()}</TableCell>
+                            </TableRow>
+                        })
+                        : (<TableRow>
+                            <TableCell>
+                                <div className={classes.linearLoader} >
+                                    <LinearProgress />
+                                </div>
                             </TableCell>
-                            <TableCell align="left">{row.searchFacility}</TableCell>
-                            <TableCell align="left">{row.searchRadius / 1000}</TableCell>
-                            <TableCell align="left">{moment(searchedAt.toDate()).calendar()}</TableCell>
-                        </TableRow>
-                    })}
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>)
+                    }
                 </TableBody>
+
             </Table>
         </TableContainer>
     );
