@@ -70,7 +70,7 @@ const Locations: React.FC<LocationProps> = (props) => {
         }
 
         const callback = (results: [], status: string): void => {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
                 if (results.length > 1) {
                     setHospitalsDescription(results)
                 }

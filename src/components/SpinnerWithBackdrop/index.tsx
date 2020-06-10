@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SpinnerWithBackdrop = () => {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
 
     return (
         <div className={classes.backdrop}>
