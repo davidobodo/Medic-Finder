@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useAuthPageStyles } from './style';
+import { signUpStart } from '../../redux/actions'
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -8,6 +10,7 @@ import Button from '@material-ui/core/Button';
 
 const AuthPage = () => {
     const classes = useAuthPageStyles();
+    const dispatch = useDispatch();
 
     const [firstName, setFirstName] = useState({
         value: '',
@@ -77,7 +80,7 @@ const AuthPage = () => {
         },
     ];
 
-    const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>) => {
+    const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>): void => {
         const { name, value } = e.target;
 
         if (name === 'firstName') {
@@ -101,9 +104,23 @@ const AuthPage = () => {
         }
     }
 
+    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+        e.preventDefault()
+        const userDetails = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            email: email.value,
+            password: password.value,
+            confirmPassword: confirmPassword.value
+        }
+
+        dispatch(signUpStart(userDetails))
+
+    }
+
     return (
         <section className={classes.signUpFormContainer}>
-            <form noValidate>
+            <form noValidate >
                 {SIGNUP_INPUT_FIELDS.map((input, i) => {
                     const { label, placeholder, type, state, name } = input;
                     return <TextField
@@ -123,7 +140,7 @@ const AuthPage = () => {
                         }}
                     />
                 })}
-                <Button variant="contained">Search</Button>
+                <Button variant="contained" onClick={handleOnSubmit}>Search</Button>
             </form>
         </section>
     )
