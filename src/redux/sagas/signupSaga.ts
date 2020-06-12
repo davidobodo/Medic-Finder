@@ -34,7 +34,6 @@ function* handleSignUpSaga(action) {
                     lastName: lastName
                 });
             yield put(actions.requestSignUpSuccess(data))
-            // yield put(actions.requestUserLoginStart({ email, password }))
         } else {
             const err = yield res.json()
             yield put(actions.requestSignUpFail(err));

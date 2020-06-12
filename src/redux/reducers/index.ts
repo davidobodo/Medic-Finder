@@ -5,10 +5,12 @@ import { firestoreReducer } from 'redux-firestore';
 
 const initialState = {
     isLoading: false,
-    error: null
+    error: null,
+    userId: null,
+    idToken: null
 }
 
-const reducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.STORE_SEARCH:
             return state;
@@ -21,12 +23,37 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                userId: action.payload.localId,
+                idToken: action.payload.idToken,
                 error: null
             }
         case actionTypes.REQUEST_SIGNUP_FAIL:
             return {
                 ...state,
                 isLoading: false,
+                userId: null,
+                idToken: null,
+                error: action.payload
+            }
+        case actionTypes.REQUEST_LOGIN_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case actionTypes.REQUEST_LOGIN_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                userId: action.payload.localId,
+                idToken: action.payload.idToken,
+                error: null
+            }
+        case actionTypes.REQUEST_LOGIN_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                userId: null,
+                idToken: null,
                 error: action.payload
             }
         default:
@@ -36,7 +63,7 @@ const reducer = (state = initialState, action) => {
 
 
 export default combineReducers({
-    reducer,
+    auth: authReducer,
     firebase: firebaseReducer,
     firestore: firestoreReducer
 })
