@@ -7,23 +7,23 @@ export const storeSearch = payload => {
     }
 }
 
-export const signUpStart = payload => {
+export const requestSignUpStart = payload => {
     return {
-        type: actionTypes.SIGNUP_START,
+        type: actionTypes.REQUEST_SIGNUP_START,
         payload
     }
 }
 
-export const signUpSuccess = payload => {
+export const requestSignUpSuccess = payload => {
     return {
-        type: actionTypes.SIGNUP_SUCCESS,
+        type: actionTypes.REQUEST_SIGNUP_SUCCESS,
         payload
     }
 }
 
-export const signUpFail = payload => {
+export const requestSignUpFail = payload => {
     return {
-        type: actionTypes.SIGNUP_FAIL,
+        type: actionTypes.REQUEST_SIGNUP_FAIL,
         payload
     }
 }

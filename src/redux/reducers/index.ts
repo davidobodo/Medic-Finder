@@ -12,18 +12,18 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.STORE_SEARCH:
             return state;
-        case actionTypes.SIGNUP_START:
+        case actionTypes.REQUEST_SIGNUP_START:
             return {
                 ...state,
                 isLoading: true
             }
-        case actionTypes.SIGNUP_SUCCESS:
+        case actionTypes.REQUEST_SIGNUP_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 error: null
             }
-        case actionTypes.SIGNUP_FAIL:
+        case actionTypes.REQUEST_SIGNUP_FAIL:
             return {
                 ...state,
                 isLoading: false,

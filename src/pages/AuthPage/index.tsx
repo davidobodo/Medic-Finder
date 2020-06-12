@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useAuthPageStyles } from './style';
-import { signUpStart } from '../../redux/actions'
+import { requestSignUpStart } from '../../redux/actions'
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -114,7 +114,7 @@ const AuthPage = () => {
             confirmPassword: confirmPassword.value
         }
 
-        dispatch(signUpStart(userDetails))
+        dispatch(requestSignUpStart(userDetails))
 
     }
 
