@@ -14,8 +14,8 @@ const App = () => {
                 <CssBaseline />
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path='/auth' component={AuthPage} />
-                        <Route exact path='/' component={HomePage} />
+                        <Route exact path='/' component={AuthPage} />
+                        {/* <Route exact path='/' component={HomePage} /> */}
                         <Route exact path='/history' component={HistoryPage} />
                     </Switch>
                 </BrowserRouter>
