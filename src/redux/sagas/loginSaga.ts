@@ -1,24 +1,47 @@
-import { all, takeEvery } from "redux-saga/effects";
+import { all, takeEvery, put } from "redux-saga/effects";
+
 import * as actionTypes from '../actionTypes';
-import { db } from '../../fbConfig'
+import * as actions from '../actions';
 
-function* handleSaga(action) {
-    const { payload } = action
-    //make a request
-    try {
-        yield db.collection('searches').add(payload);
+function* handleLoginSaga(action) {
+    const { email, password } = action.payload;
+    const SIGNIN_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_apiKey}`
 
-    } catch (err) {
-
+    const bodyPayload = {
+        email,
+        password,
+        returnSecureToken: true
     }
+    try {
+
+        const res = yield fetch(SIGNIN_ENDPOINT, {
+            body: JSON.stringify(bodyPayload),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST'
+        })
+
+        console.log(res)
+
+        if (res.ok) {
+            const data = yield res.json();
+            yield put(actions.requestLoginSuccess(data));
+        } else {
+            const err = yield res.json();
+            yield put(actions.requestLoginFail(err));
+        }
+    } catch (err) {
+        yield put(actions.requestLoginFail(err));
+    }
+
 
 }
 
-function* watchHandleSaga() {
-    //watch for an action to be dispatched then fire function to make request
-    yield takeEvery(actionTypes.STORE_SEARCH, handleSaga)
+function* watchHandleLoginSaga() {
+    yield takeEvery(actionTypes.REQUEST_LOGIN_START, handleLoginSaga)
 }
 
 export default function* () {
-    yield all([watchHandleSaga()])
+    yield all([watchHandleLoginSaga()])
 }
