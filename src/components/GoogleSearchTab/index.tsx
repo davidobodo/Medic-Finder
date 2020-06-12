@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import { useGoogleSearchTabStyles } from './style';
-import MainSelect from '../MainSelect';
-import TextField from '@material-ui/core/TextField';
+import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { distances, facilities } from './constants'
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+import MainSelect from '../MainSelect';
+
+import { useGoogleSearchTabStyles } from './style';
+import { distances, facilities } from './constants';
+
 
 
 const GoogleSearchTab = (props) => {
@@ -16,6 +21,7 @@ const GoogleSearchTab = (props) => {
     const [errSelect, setErrSelect] = useState(false)
     const [errInput, setErrInput] = useState(false)
     const [facility, setFacility] = useState('')
+    const userId = useSelector(state => state.auth.userId)
 
     const handleSetGeoFencingRadius = (rad: number) => {
         setGeoFencingRadius(rad)
@@ -51,7 +57,8 @@ const GoogleSearchTab = (props) => {
                 longitude
             },
             searchedAt: new Date(),
-            searchId: searchId
+            searchId: searchId,
+            userId: userId
         }
         const err = handleValidateInputs();
         if (err) return
