@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import HistoryPage from './pages/HistoryPage'
+import HistoryPage from './pages/HistoryPage';
+import AuthPage from './pages/AuthPage';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './styling/Globals';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +14,7 @@ const App = () => {
                 <CssBaseline />
                 <BrowserRouter>
                     <Switch>
+                        <Route exact path='/auth' component={AuthPage} />
                         <Route exact path='/' component={HomePage} />
                         <Route exact path='/history' component={HistoryPage} />
                     </Switch>
