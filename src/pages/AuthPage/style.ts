@@ -1,14 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useAuthPageStyles = makeStyles(theme => ({
+    '@keyframes slideIn': {
+        '0%': {
+            opacity: 0,
+            transform: 'translateX(50px)'
+        },
+        '100%': {
+            opacity: 1,
+            transform: 'translateX(0px)'
+        }
+    },
     authPageContainer: {
         display: 'flex',
         height: '100vh',
         minHeight: '900px'
     },
     leftColumn: {
-        // backgroundImage: 'linear-gradient(to right, #1175f6, #f0f6ff )',
-        // backgroundColor: '#1175f6',
+
         backgroundColor: '#012B69',
         flex: 1,
         flexBasis: '60%'
@@ -23,7 +32,11 @@ export const useAuthPageStyles = makeStyles(theme => ({
     },
     formContainer: {
         width: '100%',
-
+        animationName: `$slideIn`,
+        animationDuration: '0.25s',
+        animationDirection: 'normal',
+        animationTimingFunction: 'ease-in-out',
+        animationFillMode: 'forwards',
         '& .MuiButton-contained': {
             boxShadow: 'none',
             backgroundColor: '#012B69',
@@ -32,8 +45,6 @@ export const useAuthPageStyles = makeStyles(theme => ({
             width: '100%',
             marginBottom: '20px'
         },
-
-
     },
     header: {
         marginBottom: '20px',
