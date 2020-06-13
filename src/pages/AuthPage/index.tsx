@@ -22,7 +22,7 @@ const AuthPage = () => {
             <div className={classes.leftColumn}></div>
             <div className={classes.rightColumn}>
                 <SignUp />
-                <Login />
+                {/* <Login /> */}
             </div>
 
 

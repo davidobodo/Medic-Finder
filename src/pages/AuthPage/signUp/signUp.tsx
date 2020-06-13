@@ -69,7 +69,7 @@ const SignUp = () => {
         },
         {
             label: 'Password',
-            placeholder: 'password',
+            placeholder: 'Password',
             type: 'password',
             state: password,
             name: 'password'
@@ -123,29 +123,34 @@ const SignUp = () => {
 
     return (
         <section className={classes.signUpContainer}>
-            <Typography component="h2" variant="h2">Sign up</Typography>
+            <Typography component="h4" variant="h4" className={classes.header}>Sign up</Typography>
+            <p className={classes.formDescription}>Create your 100% free account and start searching for <br /> health services near you.</p>
+
             <form noValidate >
                 {SIGNUP_INPUT_FIELDS.map((input, i) => {
                     const { label, placeholder, type, state, name } = input;
-                    return <TextField
-                        key={name}
-                        id="standard-full-width"
-                        label={label}
-                        name={name}
-                        placeholder={placeholder}
-                        // error={errInput}
-                        // helperText={errInput ? 'Please enter a valid location' : ''}
-                        value={state.value}
-                        onChange={handleOnChange}
-                        fullWidth
-                        type={type}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                    return <div key={name} className={classes.inputContainer}>
+                        <TextField
+                            id="standard-full-width"
+                            label={label}
+                            name={name}
+                            placeholder={placeholder}
+                            // error={errInput}
+                            // helperText={errInput ? 'Please enter a valid location' : ''}
+                            value={state.value}
+                            onChange={handleOnChange}
+                            fullWidth
+                            type={type}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </div>
+
                 })}
-                <Button variant="contained" onClick={handleOnSubmit}>Search</Button>
+                <Button variant="contained" onClick={handleOnSubmit}>Sign Up</Button>
             </form>
+            <div className={classes.enquiry}>Already have an account? <button>Login</button></div>
         </section>
     )
 }

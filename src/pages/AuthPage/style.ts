@@ -7,11 +7,18 @@ export const useAuthPageStyles = makeStyles(theme => ({
         minHeight: '900px'
     },
     leftColumn: {
-        backgroundImage: 'linear-gradient(to right, #1175f6, #f0f6ff )',
-        flex: 1
+        // backgroundImage: 'linear-gradient(to right, #1175f6, #f0f6ff )',
+        // backgroundColor: '#1175f6',
+        backgroundColor: '#012B69',
+        flex: 1,
+        flexBasis: '60%'
     },
     rightColumn: {
-        flex: 1
+        flex: 1,
+        padding: '100px',
+        flexBasis: '40%',
+        display: 'flex',
+        alignItems: 'center'
 
     }
 
