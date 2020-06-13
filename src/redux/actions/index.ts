@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes';
+import { setLocalStorage, clearLocalStorage } from '../../utils';
 
 export const storeSearch = payload => {
     return {
@@ -15,6 +16,7 @@ export const requestSignUpStart = payload => {
 }
 
 export const requestSignUpSuccess = payload => {
+    setLocalStorage(payload)
     return {
         type: actionTypes.REQUEST_SIGNUP_SUCCESS,
         payload
@@ -36,6 +38,7 @@ export const requestLoginStart = payload => {
 }
 
 export const requestLoginSuccess = payload => {
+    setLocalStorage(payload)
     return {
         type: actionTypes.REQUEST_LOGIN_SUCCESS,
         payload
@@ -48,6 +51,15 @@ export const requestLoginFail = payload => {
         payload
     }
 }
+
+export const requestSignOut = () => {
+    clearLocalStorage()
+    return {
+        type: actionTypes.REQUEST_SIGNOUT
+    }
+}
+
+
 
 export const action = () => {
     return {

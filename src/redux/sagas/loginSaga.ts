@@ -22,7 +22,6 @@ function* handleLoginSaga(action) {
             method: 'POST'
         })
 
-        console.log(res)
 
         if (res.ok) {
             const data = yield res.json();

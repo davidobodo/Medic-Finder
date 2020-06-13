@@ -12,7 +12,6 @@ const AuthPage = () => {
     const userId = useSelector(state => state.auth.userId);
     const [isSignUp, setIsSignUp] = useState(true)
 
-    console.log(userId)
 
     if (userId) {
         return <Redirect to="/" />

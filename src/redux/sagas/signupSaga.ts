@@ -13,7 +13,6 @@ function* handleSignUpSaga(action) {
         returnSecureToken: true
     }
     try {
-        console.log('here')
         const res = yield fetch(SIGNUP_ENDPOINT, {
             body: JSON.stringify(bodyPayload),
             headers: {
@@ -21,7 +20,6 @@ function* handleSignUpSaga(action) {
             },
             method: 'POST'
         })
-        console.log(res)
 
 
         if (res.ok) {
