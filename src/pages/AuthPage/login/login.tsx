@@ -5,14 +5,16 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { useLoginStyles } from './style';
+import { useAuthPageStyles } from '../style';
 import { requestLoginStart } from '../../../redux/actions'
 
+type LoginProp = {
+    onRequireSignUp: () => void
+}
 
 
-
-const Login = () => {
-    const classes = useLoginStyles();
+const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
+    const classes = useAuthPageStyles();
     const dispatch = useDispatch();
 
 
@@ -68,30 +70,33 @@ const Login = () => {
     }
 
     return (
-        <section className={classes.loginContainer}>
-            <Typography component="h2" variant="h2">Login</Typography>
+        <section className={classes.formContainer}>
+            <Typography component="h4" variant="h4" className={classes.header}>Login</Typography>
             <form noValidate >
                 {SIGNUP_INPUT_FIELDS.map((input, i) => {
                     const { label, placeholder, type, state, name } = input;
-                    return <TextField
-                        key={name}
-                        id="standard-full-width"
-                        label={label}
-                        name={name}
-                        placeholder={placeholder}
-                        // error={errInput}
-                        // helperText={errInput ? 'Please enter a valid location' : ''}
-                        value={state.value}
-                        onChange={handleOnChange}
-                        fullWidth
-                        type={type}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                    return <div key={name} className={classes.inputContainer}>
+                        <TextField
+                            id="standard-full-width"
+                            label={label}
+                            name={name}
+                            placeholder={placeholder}
+                            // error={errInput}
+                            // helperText={errInput ? 'Please enter a valid location' : ''}
+                            value={state.value}
+                            onChange={handleOnChange}
+                            fullWidth
+                            type={type}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </div>
+
                 })}
                 <Button variant="contained" onClick={handleOnSubmit}>Search</Button>
             </form>
+            <div className={classes.enquiry}>Don't have an account? <button onClick={onRequireSignUp}>Sign Up</button></div>
         </section>
     )
 }

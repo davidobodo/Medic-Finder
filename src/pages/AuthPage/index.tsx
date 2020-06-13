@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import { useAuthPageStyles } from './style';
 const AuthPage = () => {
     const classes = useAuthPageStyles()
     const userId = useSelector(state => state.auth.userId);
+    const [isSignUp, setIsSignUp] = useState(true)
 
     console.log(userId)
 
@@ -21,8 +22,11 @@ const AuthPage = () => {
         <div className={classes.authPageContainer}>
             <div className={classes.leftColumn}></div>
             <div className={classes.rightColumn}>
-                <SignUp />
-                {/* <Login /> */}
+                {isSignUp
+                    ? <SignUp onRequireLogin={() => setIsSignUp(false)} />
+                    : <Login onRequireSignUp={() => setIsSignUp(true)} />
+                }
+
             </div>
 
 

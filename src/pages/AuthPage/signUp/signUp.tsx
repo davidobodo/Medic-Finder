@@ -5,14 +5,16 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { useSignUpStyles } from './style';
+import { useAuthPageStyles } from '../style';
 import { requestSignUpStart } from '../../../redux/actions'
 
+type SignUpProp = {
+    onRequireLogin: () => void
+}
 
 
-
-const SignUp = () => {
-    const classes = useSignUpStyles();
+const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
+    const classes = useAuthPageStyles();
     const dispatch = useDispatch();
 
     const [firstName, setFirstName] = useState({
@@ -122,7 +124,7 @@ const SignUp = () => {
     }
 
     return (
-        <section className={classes.signUpContainer}>
+        <section className={classes.formContainer}>
             <Typography component="h4" variant="h4" className={classes.header}>Sign up</Typography>
             <p className={classes.formDescription}>Create your 100% free account and start searching for <br /> health services near you.</p>
 
@@ -150,7 +152,7 @@ const SignUp = () => {
                 })}
                 <Button variant="contained" onClick={handleOnSubmit}>Sign Up</Button>
             </form>
-            <div className={classes.enquiry}>Already have an account? <button>Login</button></div>
+            <div className={classes.enquiry}>Already have an account? <button onClick={onRequireLogin}>Login</button></div>
         </section>
     )
 }
