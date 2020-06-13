@@ -1,9 +1,12 @@
 export const setLocalStorage = (payload) => {
     let expirationTime;
-    const { idToken, localId, expiresIn, expirationTime: _expirationTime } = payload
 
-    if (expiresIn) {
-        expirationTime = new Date().getTime() + (parseInt(expiresIn) * 1000)
+    // "initialExpTime" is the time for the token given initially by firebase auth
+    // "_expirationTime" is "initialExpTime" that has been stored in local storage 
+    const { idToken, localId, expiresIn: initialExpTime, expirationTime: _expirationTime } = payload
+
+    if (initialExpTime) {
+        expirationTime = new Date().getTime() + (parseInt(initialExpTime) * 1000)
     } else {
         expirationTime = JSON.parse(_expirationTime)
     }

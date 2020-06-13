@@ -9,7 +9,7 @@ export const useHeaderStyles = makeStyles(theme => ({
         left: '0',
         backgroundColor: '#fff',
         paddingLeft: '5vw',
-        paddingRight: '5vw',
+        paddingRight: '10vw',
         display: 'flex',
         justifyContent: 'space-between',
         borderBottom: '1px solid rgba(0,0,0,0.1)',
@@ -55,5 +55,15 @@ export const useHeaderStyles = makeStyles(theme => ({
 
             }
         }
+    },
+    logoutButton: {
+        alignSelf: 'center',
+        padding: '10px 25px',
+        border: 'none',
+        backgroundColor: '#1175f6',
+        color: '#fff',
+        marginLeft: '100px',
+        borderRadius: '3px',
+        cursor: 'pointer'
     }
 }))
