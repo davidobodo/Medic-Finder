@@ -19,8 +19,13 @@ const AuthPage = () => {
 
     return (
         <div className={classes.authPageContainer}>
-            <SignUp />
-            <Login />
+            <div className={classes.leftColumn}></div>
+            <div className={classes.rightColumn}>
+                <SignUp />
+                <Login />
+            </div>
+
+
         </div>
     )
 }
