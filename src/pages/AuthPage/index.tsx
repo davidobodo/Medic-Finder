@@ -8,29 +8,26 @@ import Login from './login/login';
 import { useAuthPageStyles } from './style';
 
 const AuthPage = () => {
-    const classes = useAuthPageStyles()
-    const userId = useSelector(state => state.auth.userId);
-    const [isSignUp, setIsSignUp] = useState(true)
+	const classes = useAuthPageStyles();
+	const userId = useSelector((state) => state.auth.userId);
+	const [ isSignUp, setIsSignUp ] = useState(true);
 
+	if (userId) {
+		return <Redirect to="/" />;
+	}
 
-    if (userId) {
-        return <Redirect to="/" />
-    }
-
-    return (
-        <div className={classes.authPageContainer}>
-            <div className={classes.leftColumn}></div>
-            <div className={classes.rightColumn}>
-                {isSignUp
-                    ? <SignUp onRequireLogin={() => setIsSignUp(false)} />
-                    : <Login onRequireSignUp={() => setIsSignUp(true)} />
-                }
-
-            </div>
-
-
-        </div>
-    )
-}
+	return (
+		<div className={classes.authPageContainer}>
+			<div className={classes.leftColumn} />
+			<div className={classes.rightColumn}>
+				{isSignUp ? (
+					<SignUp onRequireLogin={() => setIsSignUp(false)} />
+				) : (
+					<Login onRequireSignUp={() => setIsSignUp(true)} />
+				)}
+			</div>
+		</div>
+	);
+};
 
 export default AuthPage;

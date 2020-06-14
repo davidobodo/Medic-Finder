@@ -6,99 +6,100 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import { useAuthPageStyles } from '../style';
-import { requestLoginStart } from '../../../redux/actions/authActions'
-
-type LoginProp = {
-    onRequireSignUp: () => void
-}
-
+import { LoginProp } from '../type';
+import { requestLoginStart } from '../../../redux/actions/authActions';
 
 const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
-    const classes = useAuthPageStyles();
-    const dispatch = useDispatch();
+	const classes = useAuthPageStyles();
+	const dispatch = useDispatch();
 
+	const [ email, setEmail ] = useState({
+		value: '',
+		hasError: false,
+		errorMessage: ''
+	});
 
-    const [email, setEmail] = useState({
-        value: '',
-        hasError: false,
-        errorMessage: ''
-    })
+	const [ password, setPassword ] = useState({
+		value: '',
+		hasError: false,
+		errorMessage: ''
+	});
 
-    const [password, setPassword] = useState({
-        value: '',
-        hasError: false,
-        errorMessage: ''
-    })
+	const SIGNUP_INPUT_FIELDS = [
+		{
+			label: 'Email',
+			placeholder: 'email',
+			type: 'email',
+			state: email,
+			name: 'email'
+		},
+		{
+			label: 'Password',
+			placeholder: 'password',
+			type: 'password',
+			state: password,
+			name: 'password'
+		}
+	];
 
+	const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>): void => {
+		const { name, value } = e.target;
 
-    const SIGNUP_INPUT_FIELDS = [
-        {
-            label: 'Email',
-            placeholder: 'email',
-            type: 'email',
-            state: email,
-            name: 'email'
-        },
-        {
-            label: 'Password',
-            placeholder: 'password',
-            type: 'password',
-            state: password,
-            name: 'password'
-        }
-    ];
+		if (name === 'email') {
+			setEmail({ ...email, value });
+		}
 
-    const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>): void => {
-        const { name, value } = e.target;
+		if (name === 'password') {
+			setPassword({ ...password, value });
+		}
+	};
 
-        if (name === 'email') {
-            setEmail({ ...email, value })
-        }
+	const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+		e.preventDefault();
+		const userDetails = {
+			email: email.value,
+			password: password.value
+		};
+		dispatch(requestLoginStart(userDetails));
+	};
 
-        if (name === 'password') {
-            setPassword({ ...password, value })
-        }
-    }
+	return (
+		<section className={classes.formContainer}>
+			<Typography component="h4" variant="h4" className={classes.header}>
+				Login
+			</Typography>
+			<form noValidate>
+				{SIGNUP_INPUT_FIELDS.map((input, i) => {
+					const { label, placeholder, type, state, name } = input;
+					return (
+						<div key={name} className={classes.inputContainer}>
+							<TextField
+								id="standard-full-width"
+								label={label}
+								name={name}
+								placeholder={placeholder}
+								// error={errInput}
+								// helperText={errInput ? 'Please enter a valid location' : ''}
+								value={state.value}
+								onChange={handleOnChange}
+								fullWidth
+								type={type}
+								InputLabelProps={{
+									shrink: true
+								}}
+							/>
+						</div>
+					);
+				})}
+				<Button variant="contained" onClick={handleOnSubmit}>
+					Search
+				</Button>
+			</form>
+			<div className={classes.enquiry}>
+				Don't have an account? <button onClick={onRequireSignUp}>Sign Up</button>
+			</div>
+		</section>
+	);
+};
 
-    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-        e.preventDefault()
-        const userDetails = {
-            email: email.value,
-            password: password.value,
-        }
-        dispatch(requestLoginStart(userDetails))
-    }
-
-    return (
-        <section className={classes.formContainer}>
-            <Typography component="h4" variant="h4" className={classes.header}>Login</Typography>
-            <form noValidate >
-                {SIGNUP_INPUT_FIELDS.map((input, i) => {
-                    const { label, placeholder, type, state, name } = input;
-                    return <div key={name} className={classes.inputContainer}>
-                        <TextField
-                            id="standard-full-width"
-                            label={label}
-                            name={name}
-                            placeholder={placeholder}
-                            // error={errInput}
-                            // helperText={errInput ? 'Please enter a valid location' : ''}
-                            value={state.value}
-                            onChange={handleOnChange}
-                            fullWidth
-                            type={type}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
-
-                })}
-                <Button variant="contained" onClick={handleOnSubmit}>Search</Button>
-            </form>
-            <div className={classes.enquiry}>Don't have an account? <button onClick={onRequireSignUp}>Sign Up</button></div>
-        </section>
-    )
-}
-
-export default Login
+export default Login;
