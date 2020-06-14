@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Drawer from '../Drawer';
 import { useHeaderStyles } from './style';
-import { requestSignOut } from '../../redux/actions';
+import { requestSignOut } from '../../redux/actions/authActions';
 
 
 const Header = () => {

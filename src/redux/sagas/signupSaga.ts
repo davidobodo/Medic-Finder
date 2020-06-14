@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import { all, takeEvery, put, call } from "redux-saga/effects";
 import { db } from '../../fbConfig'
 import * as actionTypes from '../actionTypes';
-import * as actions from '../actions';
+import * as actions from '../actions/authActions';
 
 function* handleSignUpSaga(action) {
     const { email, password, firstName, lastName } = action.payload;

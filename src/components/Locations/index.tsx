@@ -7,7 +7,7 @@ import AddressCard from '../AddressCard'
 import { LocationProps } from './type'
 import Link from '@material-ui/core/Link';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { storeSearch } from '../../redux/actions';
+import { storeSearchRequest } from '../../redux/actions/searchesActions';
 
 
 const Locations: React.FC<LocationProps> = (props) => {
@@ -25,7 +25,7 @@ const Locations: React.FC<LocationProps> = (props) => {
     }
 
     useEffect(() => {
-        dispatch(storeSearch(requestDetails))
+        dispatch(storeSearchRequest(requestDetails))
         const map = new window.google.maps.Map(mapRef.current, {
             center: place,
             zoom: defaultZoom

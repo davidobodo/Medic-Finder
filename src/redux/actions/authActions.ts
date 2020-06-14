@@ -1,13 +1,6 @@
 import * as actionTypes from '../actionTypes';
 import { setLocalStorage, clearLocalStorage } from '../../utils';
 
-export const storeSearch = payload => {
-    return {
-        type: actionTypes.STORE_SEARCH,
-        payload
-    }
-}
-
 export const requestSignUpStart = payload => {
     return {
         type: actionTypes.REQUEST_SIGNUP_START,
@@ -58,11 +51,3 @@ export const requestSignOut = () => {
         type: actionTypes.REQUEST_SIGNOUT
     }
 }
-
-
-
-export const action = () => {
-    return {
-        type: 'ACTION'
-    }
-};

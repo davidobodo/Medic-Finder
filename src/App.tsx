@@ -10,7 +10,7 @@ import HistoryPage from './pages/HistoryPage';
 import AuthPage from './pages/AuthPage';
 
 import { theme } from './styling/Globals';
-import { requestLoginSuccess, requestSignOut } from './redux/actions';
+import { requestLoginSuccess, requestSignOut } from './redux/actions/authActions';
 import { getLocalStorage } from './utils';
 
 

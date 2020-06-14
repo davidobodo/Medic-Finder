@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import { useAuthPageStyles } from '../style';
-import { requestSignUpStart } from '../../../redux/actions'
+import { requestSignUpStart } from '../../../redux/actions/authActions'
 
 type SignUpProp = {
     onRequireLogin: () => void

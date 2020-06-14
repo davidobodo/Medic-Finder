@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { useStyles } from './style';
+import { getSearchResults } from '../../redux/actions/searchesActions';
 
 
 type SimpleTableProps = {
@@ -23,6 +24,7 @@ type SimpleTableProps = {
 
 const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const userId = useSelector(state => state.auth.userId)
 
     const handleStartSearch = (coordinates, facility, rad, place) => {
@@ -36,12 +38,16 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                 latitude,
                 longitude
             },
-            searchedAt: new Date(),
+            searchAt: new Date(),
             searchId: searchId,
             userId: userId
         }
         onSearch(latitude, longitude, rad, facility, requestDetails)
     }
+
+    useEffect(() => {
+        dispatch(getSearchResults(userId))
+    }, [])
 
     return (
         <TableContainer component={Paper}>

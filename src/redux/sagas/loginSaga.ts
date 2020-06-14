@@ -1,7 +1,7 @@
 import { all, takeEvery, put } from "redux-saga/effects";
 
 import * as actionTypes from '../actionTypes';
-import * as actions from '../actions';
+import * as actions from '../actions/authActions';
 
 function* handleLoginSaga(action) {
     const { email, password } = action.payload;

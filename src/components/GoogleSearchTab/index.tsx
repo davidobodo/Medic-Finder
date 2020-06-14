@@ -56,7 +56,7 @@ const GoogleSearchTab = (props) => {
                 latitude,
                 longitude
             },
-            searchedAt: new Date(),
+            searchAt: new Date(),
             searchId: searchId,
             userId: userId
         }
