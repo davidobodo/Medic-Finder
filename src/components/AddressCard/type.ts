@@ -1,5 +1,5 @@
 export type AddressCardProps = {
-    description: {
-        [key: string]: any
-    }
-}
+	description: {
+		[key: string]: any;
+	};
+};
