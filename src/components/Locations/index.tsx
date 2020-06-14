@@ -103,9 +103,9 @@ const Locations: React.FC<LocationProps> = (props) => {
                         <Typography className={classes.leftColumnText}><span>Of:</span> {requestDetails.searchPlace}</Typography>
                     </div>
                     <div className={classes.leftColumnBody}>
-                        {hospitalsDescription.map((hospital) => {
+                        {hospitalsDescription.map((hospital, i) => {
                             const { name } = hospital
-                            return <AddressCard key={name} description={hospital} />
+                            return <AddressCard key={i} description={hospital} />
                         })}
                     </div>
                 </Grid>

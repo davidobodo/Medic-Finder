@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
     isLoading: false,
-    searches: null,
+    data: null,
     error: false
 }
 
@@ -29,7 +29,7 @@ const searchesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: false,
-                searches: action.payload
+                data: action.payload
             };
         default:
             return state;

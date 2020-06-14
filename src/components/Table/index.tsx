@@ -26,6 +26,11 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const userId = useSelector(state => state.auth.userId)
+    const searches = useSelector(state => state.searches.data)
+    console.log(searches)
+    if (searches) {
+        console.log(searches.getSearchResults)
+    }
 
     const handleStartSearch = (coordinates, facility, rad, place) => {
         const searchId = uuidv4();
@@ -48,7 +53,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
     useEffect(() => {
         console.log('here before dispatching')
         dispatch(getSearchResults(userId))
-    })
+    }, [])
 
     return (
         <TableContainer component={Paper}>
@@ -62,9 +67,9 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows
-                        ? rows.map((row) => {
-                            const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchedAt, searchId } = row;
+                    {searches
+                        ? searches.getSearchResults.map((row) => {
+                            const { searchPlace, searchFacility, searchRadius, searchCoordinates, searchAt, searchId } = row;
                             return <TableRow
                                 key={searchId}
                                 onClick={() => handleStartSearch(
@@ -79,7 +84,9 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
                                 </TableCell>
                                 <TableCell align="left">{row.searchFacility}</TableCell>
                                 <TableCell align="left">{row.searchRadius / 1000}</TableCell>
-                                <TableCell align="left">{moment(searchedAt.toDate()).calendar()}</TableCell>
+                                <TableCell align="left">
+                                    {/* {moment(searchAt.toDate()).calendar()} */}
+                                </TableCell>
                             </TableRow>
                         })
                         : (<TableRow>

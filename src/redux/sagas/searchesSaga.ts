@@ -15,13 +15,11 @@ function* handleAddSearchSaga(action) {
 
 function* handleGetSearchSaga(action) {
     const userId = action.payload;
-    const graphqlQuery = { query: `{getSearchResults(id: "${userId}"){searchFacility searchPlace searchRadius searchAt searchId }}` }
+    const graphqlQuery = { query: `{getSearchResults(id: "${userId}"){searchFacility searchPlace searchRadius searchAt searchId searchCoordinates{ latitude longitude } }}` }
     const GRAPHQL_ENDPOINT = 'https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql'
-    console.log('before fetch')
     const localhost = 'http://localhost:4000/'
     try {
-        console.log('in fetch')
-        const res = yield fetch(localhost, {
+        const res = yield fetch(GRAPHQL_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,21 +27,15 @@ function* handleGetSearchSaga(action) {
             body: JSON.stringify(graphqlQuery)
         })
 
-        console.log(res, 'after fetchdkslklsdlksdlklsdksdlksdlsdkl')
 
-        // if (res.ok) {
-        //     const data = yield res.json();
-        //     yield put(actions.setSearchResults(data))
-        // } else {
-        //     const err = yield res.json()
-        //     yield put(actions.getSearchResultsFail(err))
-        // }
         if (res.ok) {
-            console.log('its ok')
             const data = yield res.json();
-            yield put(actions.setSearchResults(data) as any)
-            console.log(data)
+            yield put(actions.setSearchResults(data))
+        } else {
+            const err = yield res.json()
+            yield put(actions.getSearchResultsFail(err))
         }
+
     } catch (err) {
         yield put(actions.getSearchResultsFail(err))
 
