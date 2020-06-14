@@ -16,15 +16,11 @@ import { useStyles } from './style';
 import { SimpleTableProps } from './type';
 import { getSearchResults } from '../../redux/actions/searchesActions';
 
-const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
+const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.auth.userId);
 	const searches = useSelector((state) => state.searches.data);
-	console.log(searches);
-	if (searches) {
-		console.log(searches.getSearchResults);
-	}
 
 	const handleStartSearch = (coordinates, facility, rad, place) => {
 		const searchId = uuidv4();
@@ -44,8 +40,55 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
 		onSearch(latitude, longitude, rad, facility, requestDetails);
 	};
 
+	const renderSearchResults = () => {
+		if (searches.getSearchResults.length !== 0) {
+			return searches.getSearchResults.map((row) => {
+				const {
+					searchPlace,
+					searchFacility,
+					searchRadius,
+					searchCoordinates,
+					searchAt,
+					searchId
+				} = row;
+				return (
+					<TableRow
+						key={searchId}
+						onClick={() =>
+							handleStartSearch(
+								searchCoordinates,
+								searchFacility,
+								searchRadius,
+								searchPlace
+							)}
+					>
+						<TableCell component="th" scope="row">
+							<div className={classes.bullet} />
+							{row.searchPlace}
+						</TableCell>
+						<TableCell align="left">{row.searchFacility}</TableCell>
+						<TableCell align="left">{row.searchRadius / 1000}</TableCell>
+						<TableCell align="left">
+							{/* {moment(searchAt.toDate()).calendar()} */}
+						</TableCell>
+					</TableRow>
+				);
+			});
+		} else {
+			return (
+				<TableRow>
+					<TableCell className={classes.notice}>
+						Sorry you have not made any search
+					</TableCell>
+					<TableCell />
+					<TableCell />
+					<TableCell />
+				</TableRow>
+			);
+		}
+	};
+
 	useEffect(() => {
-		console.log('here before dispatching');
 		dispatch(getSearchResults(userId));
 	}, []);
 
@@ -62,42 +105,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
 				</TableHead>
 				<TableBody>
 					{searches ? (
-						searches.getSearchResults.map((row) => {
-							const {
-								searchPlace,
-								searchFacility,
-								searchRadius,
-								searchCoordinates,
-								searchAt,
-								searchId
-							} = row;
-							return (
-								<TableRow
-									key={searchId}
-									onClick={() =>
-										handleStartSearch(
-											searchCoordinates,
-											searchFacility,
-											searchRadius,
-											searchPlace
-										)}
-								>
-									<TableCell component="th" scope="row">
-										<div className={classes.bullet} />
-										{row.searchPlace}
-									</TableCell>
-									<TableCell align="left">
-										{row.searchFacility}
-									</TableCell>
-									<TableCell align="left">
-										{row.searchRadius / 1000}
-									</TableCell>
-									<TableCell align="left">
-										{/* {moment(searchAt.toDate()).calendar()} */}
-									</TableCell>
-								</TableRow>
-							);
-						})
+						renderSearchResults()
 					) : (
 						<TableRow>
 							<TableCell>

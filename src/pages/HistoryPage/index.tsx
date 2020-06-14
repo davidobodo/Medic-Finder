@@ -19,9 +19,9 @@ const HistoryPage = () => {
 		showMap,
 		facility,
 		requestDetails,
+		isLoading,
 		handleGetHospitals,
 		handleReturnToSearchPage,
-		isLoading,
 		handleOnFinishLoading
 	} = useParameters();
 	return (
@@ -31,7 +31,7 @@ const HistoryPage = () => {
 				<Typography variant="h3" component="h1" className={classes.header}>
 					Past Searches
 				</Typography>
-				<Table rows="" onSearch={handleGetHospitals} />
+				<Table onSearch={handleGetHospitals} />
 				{showMap && (
 					<Locations
 						requestDetails={requestDetails}
