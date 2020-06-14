@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { useAuthPageStyles } from '../style';
 import { SignUpProp } from '../type';
 import { requestSignUpStart } from '../../../redux/actions/authActions';
+import { handleCheckEmailValidity } from '../../../utils';
 
 const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 	const classes = useAuthPageStyles();
@@ -42,6 +43,8 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 		hasError: false,
 		errorMessage: ''
 	});
+
+	const [ err, setErr ] = useState(true);
 
 	const SIGNUP_INPUT_FIELDS = [
 		{
@@ -81,6 +84,79 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 		}
 	];
 
+	const validateFirstName = (value) => {
+		if (value.length < 2) {
+			setFirstName({
+				...firstName,
+				hasError: true,
+				errorMessage: 'FirstName must be greater than two letters'
+			});
+		} else {
+			setFirstName({
+				...firstName,
+				hasError: false,
+				errorMessage: ''
+			});
+		}
+	};
+
+	const validateLastName = (value) => {
+		if (value.length < 2) {
+			setLastName({
+				...lastName,
+				hasError: true,
+				errorMessage: 'LastName must be greater than two letters'
+			});
+		} else {
+			setLastName({
+				...lastName,
+				hasError: false,
+				errorMessage: ''
+			});
+		}
+	};
+
+	const validateEmail = (value) => {
+		const isValid = handleCheckEmailValidity(value);
+		if (!isValid) {
+			setEmail({ ...email, hasError: true, errorMessage: 'Please Enter a valid email' });
+		} else {
+			setEmail({ ...email, hasError: false, errorMessage: '' });
+		}
+	};
+
+	const validatePassword = (value) => {
+		if (value.length < 6) {
+			setPassword({
+				...password,
+				hasError: true,
+				errorMessage: 'Password must be at least 6 characters'
+			});
+		} else {
+			setPassword({
+				...password,
+				hasError: false,
+				errorMessage: ''
+			});
+		}
+	};
+
+	const validateConfirmPassword = (value) => {
+		if (value != password.value) {
+			setConfirmPassword({
+				...confirmPassword,
+				hasError: true,
+				errorMessage: 'Must match your password'
+			});
+		} else {
+			setConfirmPassword({
+				...confirmPassword,
+				hasError: false,
+				errorMessage: ''
+			});
+		}
+	};
+
 	const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>): void => {
 		const { name, value } = e.target;
 
@@ -105,6 +181,28 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 		}
 	};
 
+	const handleValidateInput = (e) => {
+		const { name, value } = e.target;
+
+		switch (name) {
+			case 'firstName':
+				validateFirstName(value);
+				break;
+			case 'lastName':
+				validateLastName(value);
+				break;
+			case 'email':
+				validateEmail(value);
+				break;
+			case 'password':
+				validatePassword(value);
+				break;
+			case 'confirmPassword':
+				validateConfirmPassword(value);
+				break;
+		}
+	};
+
 	const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
 		e.preventDefault();
 		const userDetails = {
@@ -117,6 +215,23 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 
 		dispatch(requestSignUpStart(userDetails));
 	};
+
+	useEffect(
+		() => {
+			if (
+				firstName.value.length >= 2 &&
+				lastName.value.length >= 2 &&
+				password.value.length >= 6 &&
+				confirmPassword.value === password.value &&
+				handleCheckEmailValidity(email.value)
+			) {
+				setErr(false);
+			} else {
+				setErr(true);
+			}
+		},
+		[ firstName, lastName, password, confirmPassword, email ]
+	);
 
 	return (
 		<section className={classes.formContainer}>
@@ -137,10 +252,11 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 								label={label}
 								name={name}
 								placeholder={placeholder}
-								// error={errInput}
-								// helperText={errInput ? 'Please enter a valid location' : ''}
+								error={state.hasError}
+								helperText={state.hasError ? state.errorMessage : ''}
 								value={state.value}
 								onChange={handleOnChange}
+								onBlur={handleValidateInput}
 								fullWidth
 								type={type}
 								InputLabelProps={{
@@ -150,7 +266,7 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 						</div>
 					);
 				})}
-				<Button variant="contained" onClick={handleOnSubmit}>
+				<Button variant="contained" disabled={err} onClick={handleOnSubmit}>
 					Sign Up
 				</Button>
 			</form>

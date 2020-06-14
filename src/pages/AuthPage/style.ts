@@ -41,7 +41,16 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 			color: '#fff',
 			padding: '10px 40px',
 			width: '100%',
-			marginBottom: '20px'
+			marginBottom: '20px',
+
+			'&:enabled': {
+				opacity: 1
+			},
+
+			'&:disabled': {
+				opacity: 0.5,
+				cursor: 'not-allowed !important'
+			}
 		}
 	},
 	header: {

@@ -28,3 +28,5 @@ export const clearLocalStorage = () => {
 	localStorage.removeItem('localId');
 	localStorage.removeItem('expirationTime');
 };
+
+export const handleCheckEmailValidity = (value) => new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(value);
