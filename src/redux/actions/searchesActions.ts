@@ -22,8 +22,9 @@ export const getSearchResultsFail = payload => {
 }
 
 export const setSearchResults = payload => {
+    console.log(payload.data)
     return {
         type: actionTypes.SET_SEARCH_RESULTS,
-        payload
+        payload: payload.data
     }
 }

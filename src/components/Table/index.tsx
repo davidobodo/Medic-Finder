@@ -46,8 +46,9 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ rows, onSearch }) => {
     }
 
     useEffect(() => {
+        console.log('here before dispatching')
         dispatch(getSearchResults(userId))
-    }, [])
+    })
 
     return (
         <TableContainer component={Paper}>

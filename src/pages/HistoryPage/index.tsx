@@ -11,7 +11,7 @@ import SpinnerWithBackdrop from '../../components/SpinnerWithBackdrop';
 
 
 const HistoryPage = () => {
-    useFirestoreConnect([{ collection: 'searches', orderBy: ['searchedAt', 'desc'] }])
+    // useFirestoreConnect([{ collection: 'searches', orderBy: ['searchedAt', 'desc'] }])
     const classes = useHistoryPageStyles();
     const searches = useSelector(state => state.firestore.ordered.searches)
     const { latitude, longitude, radius, showMap, facility, requestDetails, handleGetHospitals, handleReturnToSearchPage, isLoading, handleOnFinishLoading } = useParameters();
