@@ -19,14 +19,26 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 	leftColumn: {
 		backgroundColor: '#012B69',
 		flex: 1,
-		flexBasis: '60%'
+		flexBasis: '60%',
+		[theme.breakpoints.down('md')]: {
+			flexBasis: '40%'
+		},
+		[theme.breakpoints.down('sm')]: {
+			display: 'none'
+		}
 	},
 	rightColumn: {
 		flex: 1,
-		padding: '150px',
+		padding: '80px',
 		flexBasis: '40%',
 		display: 'flex',
-		alignItems: 'center'
+		alignItems: 'center',
+		[theme.breakpoints.down('md')]: {
+			flexBasis: '60%'
+		},
+		[theme.breakpoints.down('sm')]: {
+			flexBasis: '100%'
+		}
 	},
 	formContainer: {
 		width: '100%',
