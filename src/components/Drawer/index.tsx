@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { NavLink, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -8,9 +9,11 @@ import ListItem from '@material-ui/core/ListItem';
 
 import { useStyles } from './style';
 import { Anchor } from './type';
+import { requestSignOut } from '../../redux/actions/authActions';
 
 const TemporaryDrawer = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const [ state, setState ] = React.useState({
 		top: false,
 		left: false,
@@ -27,6 +30,10 @@ const TemporaryDrawer = () => {
 		}
 
 		setState({ ...state, [anchor]: open });
+	};
+
+	const handleSignOut = () => {
+		dispatch(requestSignOut());
 	};
 
 	const list = (anchor: Anchor) => (
@@ -50,6 +57,11 @@ const TemporaryDrawer = () => {
 				<ListItem>
 					<NavLink to="/history" exact>
 						History
+					</NavLink>
+				</ListItem>
+				<ListItem>
+					<NavLink to="/auth" exact onClick={handleSignOut}>
+						Log out
 					</NavLink>
 				</ListItem>
 			</List>

@@ -27,9 +27,9 @@ const Header = () => {
 				<NavLink exact to="/history">
 					History
 				</NavLink>
-				<button className={classes.logoutButton} onClick={handleSignOut}>
+				<NavLink exact to="/auth" onClick={handleSignOut}>
 					Log out
-				</button>
+				</NavLink>
 			</div>
 		</div>
 	);

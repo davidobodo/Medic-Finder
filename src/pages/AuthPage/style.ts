@@ -38,6 +38,28 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		},
 		[theme.breakpoints.down('sm')]: {
 			flexBasis: '100%'
+		},
+		[theme.breakpoints.down('xs')]: {
+			padding: '50px'
+		}
+	},
+	logo: {
+		position: 'fixed',
+		display: 'flex',
+		alignItems: 'center',
+		fontWeight: 600,
+		fontSize: '24px',
+		color: '#012B69',
+		top: '40px',
+		right: '80px',
+		[theme.breakpoints.down('xs')]: { right: '50px' },
+
+		'& a': {
+			color: 'inherit',
+			textDecoration: 'none'
+		},
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '20px'
 		}
 	},
 	formContainer: {

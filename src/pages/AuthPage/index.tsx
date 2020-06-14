@@ -20,6 +20,9 @@ const AuthPage = () => {
 		<div className={classes.authPageContainer}>
 			<div className={classes.leftColumn} />
 			<div className={classes.rightColumn}>
+				<div className={classes.logo}>
+					<a href="/">Enye Cohort 4</a>
+				</div>
 				{isSignUp ? (
 					<SignUp onRequireLogin={() => setIsSignUp(false)} />
 				) : (
