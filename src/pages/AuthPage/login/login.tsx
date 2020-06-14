@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { useAuthPageStyles } from '../style';
 import { LoginProp } from '../type';
 import { requestLoginStart } from '../../../redux/actions/authActions';
+import { handleCheckEmailValidity } from '../../../utils';
 
 const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 	const classes = useAuthPageStyles();
@@ -24,6 +25,8 @@ const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 		hasError: false,
 		errorMessage: ''
 	});
+
+	const [ err, setErr ] = useState(true);
 
 	const SIGNUP_INPUT_FIELDS = [
 		{
@@ -42,6 +45,31 @@ const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 		}
 	];
 
+	const validateEmail = (value) => {
+		const isValid = handleCheckEmailValidity(value);
+		if (!isValid) {
+			setEmail({ ...email, hasError: true, errorMessage: 'Please Enter a valid email' });
+		} else {
+			setEmail({ ...email, hasError: false, errorMessage: '' });
+		}
+	};
+
+	const validatePassword = (value) => {
+		if (value.length < 6) {
+			setPassword({
+				...password,
+				hasError: true,
+				errorMessage: 'Password must be at least 6 characters'
+			});
+		} else {
+			setPassword({
+				...password,
+				hasError: false,
+				errorMessage: ''
+			});
+		}
+	};
+
 	const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>): void => {
 		const { name, value } = e.target;
 
@@ -54,6 +82,19 @@ const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 		}
 	};
 
+	const handleValidateInput = (e) => {
+		const { name, value } = e.target;
+
+		switch (name) {
+			case 'email':
+				validateEmail(value);
+				break;
+			case 'password':
+				validatePassword(value);
+				break;
+		}
+	};
+
 	const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
 		e.preventDefault();
 		const userDetails = {
@@ -62,6 +103,17 @@ const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 		};
 		dispatch(requestLoginStart(userDetails));
 	};
+
+	useEffect(
+		() => {
+			if (password.value.length >= 6 && handleCheckEmailValidity(email.value)) {
+				setErr(false);
+			} else {
+				setErr(true);
+			}
+		},
+		[ password, email ]
+	);
 
 	return (
 		<section className={classes.formContainer}>
@@ -78,10 +130,11 @@ const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 								label={label}
 								name={name}
 								placeholder={placeholder}
-								// error={errInput}
-								// helperText={errInput ? 'Please enter a valid location' : ''}
+								error={state.hasError}
+								helperText={state.hasError ? state.errorMessage : ''}
 								value={state.value}
 								onChange={handleOnChange}
+								onBlur={handleValidateInput}
 								fullWidth
 								type={type}
 								InputLabelProps={{
@@ -91,8 +144,8 @@ const Login: React.FC<LoginProp> = ({ onRequireSignUp }) => {
 						</div>
 					);
 				})}
-				<Button variant="contained" onClick={handleOnSubmit}>
-					Search
+				<Button variant="contained" disabled={err} onClick={handleOnSubmit}>
+					Login
 				</Button>
 			</form>
 			<div className={classes.enquiry}>
