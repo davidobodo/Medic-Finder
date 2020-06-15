@@ -150,5 +150,10 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 				color: '#012B69'
 			}
 		}
+	},
+	databaseError: {
+		marginTop: '10px',
+		color: '#ff0000',
+		textAlign: 'center'
 	}
 }));

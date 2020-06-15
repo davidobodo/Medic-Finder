@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -13,6 +13,7 @@ import { handleCheckEmailValidity } from '../../../utils';
 const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 	const classes = useAuthPageStyles();
 	const dispatch = useDispatch();
+	const databaseError = useSelector((state) => state.auth.error);
 
 	const [ firstName, setFirstName ] = useState({
 		value: '',
@@ -276,6 +277,8 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			<div className={classes.enquiry}>
 				Already have an account? <button onClick={onRequireLogin}>Login</button>
 			</div>
+			{databaseError &&
+			databaseError.error && <div className={classes.databaseError}>{databaseError.error.message}</div>}
 		</section>
 	);
 };
