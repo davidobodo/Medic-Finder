@@ -23,6 +23,7 @@ exports[`should take a snapshot 1`] = `
       >
         <div
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          data-testid="firstName"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
@@ -53,6 +54,7 @@ exports[`should take a snapshot 1`] = `
       >
         <div
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          data-testid="lastName"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
@@ -83,6 +85,7 @@ exports[`should take a snapshot 1`] = `
       >
         <div
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          data-testid="email"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
@@ -113,6 +116,7 @@ exports[`should take a snapshot 1`] = `
       >
         <div
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          data-testid="password"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
@@ -143,6 +147,7 @@ exports[`should take a snapshot 1`] = `
       >
         <div
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          data-testid="confirmPassword"
         >
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"

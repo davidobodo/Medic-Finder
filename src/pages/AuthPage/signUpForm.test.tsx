@@ -18,12 +18,19 @@ const signUpProps = {
 	onRequireLogin: jest.fn()
 };
 
+const app = (
+	<Provider store={store}>
+		<SignUp {...signUpProps} />
+	</Provider>
+);
+
 it('should take a snapshot', () => {
-	const app = (
-		<Provider store={store}>
-			<SignUp {...signUpProps} />
-		</Provider>
-	);
 	const { container } = render(app);
 	expect(container).toMatchSnapshot();
+});
+
+it('First name should change input value', () => {
+	const input = render(app).queryByPlaceholderText('First Name') as HTMLInputElement;
+	fireEvent.change(input, { target: { value: 'rukky' } });
+	expect(input.value).toBe('rukky');
 });

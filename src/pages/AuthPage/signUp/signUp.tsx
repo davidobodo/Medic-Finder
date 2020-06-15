@@ -262,6 +262,7 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 								InputLabelProps={{
 									shrink: true
 								}}
+								data-testid={name}
 							/>
 						</div>
 					);
