@@ -10,10 +10,6 @@ import Login from './login/login';
 
 afterEach(cleanup);
 
-//--------------------------------------------------------------
-// signup form tests
-//--------------------------------------------------------------
-
 const signUpProps = {
 	onRequireLogin: jest.fn()
 };
@@ -24,10 +20,18 @@ const app = (
 	</Provider>
 );
 
+//--------------------------------------------------------------
+// Snapshot
+//--------------------------------------------------------------
+
 it('should take a snapshot', () => {
 	const { container } = render(app);
 	expect(container).toMatchSnapshot();
 });
+
+//--------------------------------------------------------------
+// Successfully changing input field values
+//--------------------------------------------------------------
 
 it('First name should change input value', () => {
 	const input = render(app).queryByPlaceholderText('First Name') as HTMLInputElement;
