@@ -1,33 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import App from './App';
 import { Provider } from 'react-redux';
+
+import App from './App';
 import store from './redux/store';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
-import { createFirestoreInstance } from 'redux-firestore';
+
 import * as serviceWorker from './serviceWorker';
-
-const rrfConfig = {
-	userProfile: 'users',
-	useFirestoreForProfile: true
-};
-
-const rrfProps = {
-	firebase,
-	config: rrfConfig,
-	dispatch: store.dispatch,
-	createFirestoreInstance
-};
 
 const Root = (
 	<React.StrictMode>
-		<ReactReduxFirebaseProvider {...rrfProps}>
-			<Provider store={store}>
-				<App />
-			</Provider>
-		</ReactReduxFirebaseProvider>
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</React.StrictMode>
 );
 
