@@ -21,7 +21,7 @@ function* handleGetSearchSaga(action) {
 	const GRAPHQL_ENDPOINT = 'https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql';
 	const localhost = 'http://localhost:4000/';
 	try {
-		const res = yield fetch(localhost, {
+		const res = yield fetch(GRAPHQL_ENDPOINT, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
