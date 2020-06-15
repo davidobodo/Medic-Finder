@@ -31,6 +31,30 @@ it('should take a snapshot', () => {
 
 it('First name should change input value', () => {
 	const input = render(app).queryByPlaceholderText('First Name') as HTMLInputElement;
-	fireEvent.change(input, { target: { value: 'rukky' } });
-	expect(input.value).toBe('rukky');
+	fireEvent.change(input, { target: { value: 'obodo' } });
+	expect(input.value).toBe('obodo');
+});
+
+it('Last name should change input value', () => {
+	const input = render(app).queryByPlaceholderText('Last Name') as HTMLInputElement;
+	fireEvent.change(input, { target: { value: 'david' } });
+	expect(input.value).toBe('david');
+});
+
+it('Email should change input value', () => {
+	const input = render(app).queryByPlaceholderText('email') as HTMLInputElement;
+	fireEvent.change(input, { target: { value: 'obodo@enye.com' } });
+	expect(input.value).toBe('obodo@enye.com');
+});
+
+it('Password should change input value', () => {
+	const input = render(app).queryByPlaceholderText('Password') as HTMLInputElement;
+	fireEvent.change(input, { target: { value: '123456' } });
+	expect(input.value).toBe('123456');
+});
+
+it('Confirm Password should change input value', () => {
+	const input = render(app).queryByPlaceholderText('Confirm Password') as HTMLInputElement;
+	fireEvent.change(input, { target: { value: '7890' } });
+	expect(input.value).toBe('7890');
 });
