@@ -28,7 +28,6 @@ const TemporaryDrawer = () => {
 		) {
 			return;
 		}
-
 		setState({ ...state, [anchor]: open });
 	};
 

@@ -32,7 +32,7 @@ const HomePage = () => {
 			<Container maxWidth={false} className={classes.container}>
 				<div className={classes.leftColumn}>
 					<Typography component="h1" className={classes.title}>
-						Find <br />Hospitals
+						Find <br />Health Services
 					</Typography>
 					<GoogleSearchTab onSubmit={handleGetHospitals} />
 				</div>
