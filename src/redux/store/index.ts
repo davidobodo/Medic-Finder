@@ -6,6 +6,7 @@ import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
+//add saga middleware for taking care of making network requests
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);

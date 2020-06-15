@@ -44,6 +44,7 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 		errorMessage: ''
 	});
 
+	//General error state: This is responsible for checking that all form fields have no error before enabling the button
 	const [ err, setErr ] = useState(true);
 
 	const SIGNUP_INPUT_FIELDS = [
@@ -216,6 +217,7 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 		dispatch(requestSignUpStart(userDetails));
 	};
 
+	//Logic for checking that all form fields no longer have errors
 	useEffect(
 		() => {
 			if (

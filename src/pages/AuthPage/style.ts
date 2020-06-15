@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { relative } from 'path';
 
 export const useAuthPageStyles = makeStyles((theme) => ({
 	'@keyframes slideIn': {

@@ -18,8 +18,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 	return (
 		<Route
 			{...rest}
-			render={(props) =>
-				!!userId ? <Component {...props} /> : <Redirect to={{ pathname: '/auth' }} />}
+			render={(props) => (!!userId ? <Component {...props} /> : <Redirect to={{ pathname: '/auth' }} />)}
 		/>
 	);
 };
@@ -28,11 +27,13 @@ const App = () => {
 	const dispatch = useDispatch();
 	const payload = getLocalStorage();
 
+	//check if token has expired. If it has then log user out, else allow user to still access application
 	if (new Date().getTime() > parseInt(payload.expirationTime)) {
 		dispatch(requestSignOut());
 	} else if (payload.expirationTime) {
 		dispatch(requestLoginSuccess(payload));
 	}
+
 	return (
 		<React.Fragment>
 			<ThemeProvider theme={theme}>
