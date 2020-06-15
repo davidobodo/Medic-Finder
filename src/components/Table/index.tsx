@@ -52,9 +52,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
 					searchAt,
 					searchId
 				} = row;
-				console.log(searchAt);
 				const formattedTime = convertTimeStampToDate(searchAt._seconds, searchAt._nanoseconds);
-				console.log(formattedTime);
 				return (
 					<TableRow
 						key={searchId}
