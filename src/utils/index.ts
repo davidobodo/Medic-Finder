@@ -30,3 +30,11 @@ export const clearLocalStorage = () => {
 };
 
 export const handleCheckEmailValidity = (value) => new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(value);
+
+export const convertTimeStampToDate = (seconds, nanoseconds) => {
+	const secToMilli = seconds * 1000;
+	const nanoToMilli = nanoseconds / 1000000;
+	const totalMilli = secToMilli + nanoToMilli;
+
+	return new Date(totalMilli);
+};

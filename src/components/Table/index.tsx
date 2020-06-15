@@ -15,6 +15,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { useStyles } from './style';
 import { SimpleTableProps } from './type';
 import { getSearchResults } from '../../redux/actions/searchesActions';
+import { convertTimeStampToDate } from '../../utils';
 
 const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
 	const classes = useStyles();
@@ -51,6 +52,9 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
 					searchAt,
 					searchId
 				} = row;
+				console.log(searchAt);
+				const formattedTime = convertTimeStampToDate(searchAt._seconds, searchAt._nanoseconds);
+				console.log(formattedTime);
 				return (
 					<TableRow
 						key={searchId}
@@ -68,9 +72,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
 						</TableCell>
 						<TableCell align="left">{row.searchFacility}</TableCell>
 						<TableCell align="left">{row.searchRadius / 1000}</TableCell>
-						<TableCell align="left">
-							{/* {moment(searchAt.toDate()).calendar()} */}
-						</TableCell>
+						<TableCell align="left">{moment(formattedTime).calendar()}</TableCell>
 					</TableRow>
 				);
 			});
