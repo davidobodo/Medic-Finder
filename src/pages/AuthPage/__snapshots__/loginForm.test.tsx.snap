@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<div>
+  <section
+    class="makeStyles-formContainer-10"
+  >
+    <h4
+      class="MuiTypography-root makeStyles-header-11 MuiTypography-h4"
+    >
+      Login
+    </h4>
+    <form
+      novalidate=""
+    >
+      <div
+        class="makeStyles-inputContainer-13"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
+            data-shrink="true"
+            for="standard-full-width"
+            id="standard-full-width-label"
+          >
+            Email
+          </label>
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              id="standard-full-width"
+              name="email"
+              placeholder="email"
+              type="email"
+              value=""
+            />
+          </div>
+          
+        </div>
+      </div>
+      <div
+        class="makeStyles-inputContainer-13"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
+            data-shrink="true"
+            for="standard-full-width"
+            id="standard-full-width-label"
+          >
+            Password
+          </label>
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              id="standard-full-width"
+              name="password"
+              placeholder="password"
+              type="password"
+              value=""
+            />
+          </div>
+          
+        </div>
+      </div>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained Mui-disabled Mui-disabled"
+        disabled=""
+        tabindex="-1"
+        type="button"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Login
+        </span>
+      </button>
+    </form>
+    <div
+      class="makeStyles-enquiry-14"
+    >
+      Don't have an account? 
+      <button>
+        Sign Up
+      </button>
+    </div>
+  </section>
+</div>
+`;
