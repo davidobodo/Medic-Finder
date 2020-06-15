@@ -5,6 +5,8 @@
 - Graphql Playground: https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql
 
   NOTE: When examining the playground, browsers often remove the "api/" string from the graphql playground url. If it so happens, please examine the playground url (not the browser url) and insert "api/" string in its proper position in order for it to work.
+  
+  ![](src/assets/graphqlPlayground.png)
 
 ## Recommended scripts for running project locally
 In the project directory, you can run:
