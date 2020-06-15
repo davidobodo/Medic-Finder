@@ -9,8 +9,6 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import * as serviceWorker from './serviceWorker';
 
-//not yet used cause i dont have users but will sure have in the future
-
 const rrfConfig = {
 	userProfile: 'users',
 	useFirestoreForProfile: true
