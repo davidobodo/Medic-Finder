@@ -2,7 +2,8 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
 	isLoading: false,
-	error: null,
+	signUpError: null,
+	loginError: null,
 	userId: null,
 	idToken: null
 };
@@ -20,7 +21,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: action.payload.localId,
 				idToken: action.payload.idToken,
-				error: null
+				signUperror: null
 			};
 		case actionTypes.REQUEST_SIGNUP_FAIL:
 			return {
@@ -28,7 +29,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: null,
 				idToken: null,
-				error: action.payload
+				signUpError: action.payload
 			};
 		case actionTypes.REQUEST_LOGIN_START:
 			return {
@@ -41,7 +42,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: action.payload.localId,
 				idToken: action.payload.idToken,
-				error: null
+				loginError: null
 			};
 		case actionTypes.REQUEST_LOGIN_FAIL:
 			return {
@@ -49,14 +50,14 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: null,
 				idToken: null,
-				error: action.payload
+				loginError: action.payload
 			};
 		case actionTypes.REQUEST_SIGNOUT:
 			return {
 				...state,
 				userId: null,
 				idToken: null,
-				error: null,
+				loginError: null,
 				isLoading: null
 			};
 		default:

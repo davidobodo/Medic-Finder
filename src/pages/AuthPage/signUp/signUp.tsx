@@ -13,7 +13,7 @@ import { handleCheckEmailValidity } from '../../../utils';
 const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 	const classes = useAuthPageStyles();
 	const dispatch = useDispatch();
-	const databaseError = useSelector((state) => state.auth.error);
+	const databaseError = useSelector((state) => state.auth.signUpError);
 
 	const [ firstName, setFirstName ] = useState({
 		value: '',
