@@ -28,6 +28,7 @@ const useParameters = () => {
 	const handleReturnToSearchPage = () => {
 		setShowMap(false);
 	};
+	console.log('hello');
 
 	const handleOnFinishLoading = () => {
 		setisLoading(false);
