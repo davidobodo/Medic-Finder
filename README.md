@@ -6,13 +6,19 @@
 
   NOTE: When examining the playground, browsers often remove the "api/" string from the graphql playground url. If it so happens, please examine the playground url (not the browser url) and insert "api/" string in its proper position in order for it to work.
 
-
-
-## Available scripts
+## Recommended scripts for running project locally
 In the project directory, you can run:
 
-- start: to start project on localhost
-- test: to run test
+### `yarn start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### `yarn test`
+
+Launches the test runner in the interactive watch mode.<br />
+See available tests in the next section
+
 
 ## Available Tests
 
