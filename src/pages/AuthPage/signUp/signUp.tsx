@@ -239,7 +239,7 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 				Sign up
 			</Typography>
 			<p className={classes.formDescription}>
-				Create your 100% free account and start searching for <br /> health services near you.
+				Create your 100% free account and start searching for health facilities near you.
 			</p>
 
 			<form noValidate>

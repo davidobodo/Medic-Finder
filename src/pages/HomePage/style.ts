@@ -3,7 +3,7 @@ import doctor from '../../assets/doctor.jpg';
 
 export const useHomeStyles = makeStyles((theme) => ({
 	container: {
-		height: '100vh',
+		height: 'calc(100vh - 80px)',
 		display: 'flex',
 		backgroundColor: '#f0f6ff',
 		background: `linear-gradient(0deg, rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), url(${doctor}) `,

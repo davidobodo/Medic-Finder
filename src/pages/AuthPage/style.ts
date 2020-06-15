@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { relative } from 'path';
 
 export const useAuthPageStyles = makeStyles((theme) => ({
 	'@keyframes slideIn': {
@@ -20,11 +21,38 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		backgroundColor: '#012B69',
 		flex: 1,
 		flexBasis: '60%',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: '100px',
+		position: 'relative',
 		[theme.breakpoints.down('md')]: {
-			flexBasis: '40%'
+			flexBasis: '40%',
+			padding: '40px'
 		},
 		[theme.breakpoints.down('sm')]: {
 			display: 'none'
+		}
+	},
+	leftColumnInner: {
+		color: '#fff'
+	},
+	leftColumnHeader: {
+		fontSize: '70px',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '50px'
+		}
+	},
+	leftColumnDescription: {
+		fontSize: '20px',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '16px'
+		}
+	},
+	leftColumnList: {
+		fontSize: '20px',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '16px'
 		}
 	},
 	rightColumn: {
@@ -89,14 +117,16 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 	},
 	header: {
 		marginBottom: '20px',
-		fontWeight: 600
+		fontWeight: 600,
+		color: '#012B69'
 	},
 	formDescription: {
 		marginBottom: '30px',
-		fontWeight: 600
+		fontWeight: 600,
+		color: '#012B69'
 	},
 	inputContainer: {
-		marginBottom: '30px',
+		marginBottom: '20px',
 
 		'&:last-of-type': {
 			marginBottom: '50px'
