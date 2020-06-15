@@ -26,8 +26,8 @@ See available tests in the next section
 
 ### `SignUp Form Test`
 
-1. Test that input fields change on user input
+Test that input fields change on user input
 
 ### `Login Form Test`
 
-1. Test that input fields change on user input
+Test that input fields change on user input
