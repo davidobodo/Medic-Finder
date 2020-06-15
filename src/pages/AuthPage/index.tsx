@@ -24,7 +24,7 @@ const AuthPage = () => {
 					<p className={classes.leftColumnDescription}>
 						In this COVID world that we live in, it is important that people can
 						easily access medical assistance if need be. With that in mind, this
-						application is built to help you locate health facility within a given
+						application is built to help you locate health facilities within a given
 						area.
 					</p>
 					<ul className={classes.leftColumnList}>
