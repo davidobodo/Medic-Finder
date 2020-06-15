@@ -1,5 +1,4 @@
-import firebase from 'firebase/app';
-import { all, takeEvery, put, call } from 'redux-saga/effects';
+import { all, takeEvery, put } from 'redux-saga/effects';
 import { db } from '../../fbConfig';
 import * as actionTypes from '../actionTypes';
 import * as actions from '../actions/authActions';

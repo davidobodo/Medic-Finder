@@ -142,7 +142,7 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 	};
 
 	const validateConfirmPassword = (value) => {
-		if (value != password.value) {
+		if (value !== password.value) {
 			setConfirmPassword({
 				...confirmPassword,
 				hasError: true,

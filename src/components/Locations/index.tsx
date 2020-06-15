@@ -114,7 +114,6 @@ const Locations: React.FC<LocationProps> = (props) => {
 					</div>
 					<div className={classes.leftColumnBody}>
 						{hospitalsDescription.map((hospital, i) => {
-							const { name } = hospital;
 							return <AddressCard key={i} description={hospital} />;
 						})}
 					</div>
