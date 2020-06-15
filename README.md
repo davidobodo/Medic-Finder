@@ -22,5 +22,10 @@ See available tests in the next section
 
 ## Available Tests
 
-Tests can be run with the using the test script
-- Signup form test
+### `SignUp Form Test`
+
+1. Test that input fields change on user input
+
+### `Login Form Test`
+
+1. Test that input fields change on user input
