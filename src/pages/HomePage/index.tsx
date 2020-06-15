@@ -13,6 +13,9 @@ import { useHomeStyles } from './style';
 
 const HomePage = () => {
 	const classes = useHomeStyles();
+
+	//the useParameter hook abstracts the functionality of retrieving certain details so that the details can be accessed easily in multiple components
+	//this is also used in the HistoryPage component
 	const {
 		latitude,
 		longitude,

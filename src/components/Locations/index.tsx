@@ -21,13 +21,17 @@ const Locations: React.FC<LocationProps> = (props) => {
 	const place = new google.maps.LatLng(latitude, longitude);
 	const dispatch = useDispatch();
 
+	//redirect to page that rendered this component
 	const handleGoToSearchPage = () => {
 		setHospitalsDescription([]);
 		onReturn();
 	};
 
+	//getting nearbysearch results logic
 	useEffect(() => {
+		//fire action to store details of this search on the database
 		dispatch(storeSearchRequest(requestDetails));
+
 		const map = new window.google.maps.Map(mapRef.current, {
 			center: place,
 			zoom: defaultZoom
@@ -36,6 +40,7 @@ const Locations: React.FC<LocationProps> = (props) => {
 		let type: string[];
 		let keyword: string;
 
+		//Check for the kind of facility user requested for in order to structure details of request(line 56) to send to google maps
 		if (facility === 'Hospitals') {
 			type = [ 'hospital' ];
 		} else if (facility === 'Pharmacy') {
@@ -64,10 +69,9 @@ const Locations: React.FC<LocationProps> = (props) => {
 				map: map
 			});
 
+			//show details of a marker on the map when the marker is clicked
 			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.setContent(
-					'<div><strong>' + place.name + '</strong><br>' + place.vicinity + '</div>'
-				);
+				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + place.vicinity + '</div>');
 				infowindow.open(map, this);
 			});
 		};
@@ -86,6 +90,7 @@ const Locations: React.FC<LocationProps> = (props) => {
 			}
 		};
 
+		//main request to get nearyby search results
 		service.nearbySearch(request, callback);
 	}, []);
 
@@ -98,11 +103,7 @@ const Locations: React.FC<LocationProps> = (props) => {
 							<ArrowBackIcon />
 							Back
 						</Link>
-						<Typography
-							variant="h3"
-							component="h3"
-							className={classes.leftColumnFacility}
-						>
+						<Typography variant="h3" component="h3" className={classes.leftColumnFacility}>
 							{facility}
 						</Typography>
 						<Typography className={classes.leftColumnText}>

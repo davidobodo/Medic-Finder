@@ -12,6 +12,9 @@ import { useHistoryPageStyles } from './style';
 
 const HistoryPage = () => {
 	const classes = useHistoryPageStyles();
+
+	//the useParameter hook abstracts the functionality of retrieving certain details so that the details can be accessed easily in multiple components
+	//this is also used in the HomePage component
 	const {
 		latitude,
 		longitude,
@@ -24,6 +27,7 @@ const HistoryPage = () => {
 		handleReturnToSearchPage,
 		handleOnFinishLoading
 	} = useParameters();
+
 	return (
 		<Layout>
 			{isLoading && <SpinnerWithBackdrop />}

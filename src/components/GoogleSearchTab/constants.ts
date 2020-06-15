@@ -1,3 +1,4 @@
+//List for the various dropdowns
 export const distances = [
 	{
 		displayValue: 'Choose radius',

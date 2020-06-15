@@ -11,6 +11,9 @@ import { useStyles } from './style';
 import { Anchor } from './type';
 import { requestSignOut } from '../../redux/actions/authActions';
 
+//This drawer is used mainly on mobile screens to display a nice sidebar
+//It has the ability to animate(slidein) the sidebar into the viewport from all directions
+//but for this project we make use of sliding in through the left (line 75)
 const TemporaryDrawer = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
@@ -21,6 +24,7 @@ const TemporaryDrawer = () => {
 		right: false
 	});
 
+	//logic for toggling the visibility of the sidebar
 	const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
 		if (
 			event.type === 'keydown' &&
@@ -35,6 +39,7 @@ const TemporaryDrawer = () => {
 		dispatch(requestSignOut());
 	};
 
+	//sidebar links
 	const list = (anchor: Anchor) => (
 		<div
 			className={clsx(classes.list, {
@@ -72,11 +77,7 @@ const TemporaryDrawer = () => {
 			{([ 'left' ] as Anchor[]).map((anchor) => (
 				<React.Fragment key={anchor}>
 					<div onClick={toggleDrawer(anchor, true)} className={classes.hamburger} />
-					<Drawer
-						anchor={anchor}
-						open={state[anchor]}
-						onClose={toggleDrawer(anchor, false)}
-					>
+					<Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
 						{list(anchor)}
 					</Drawer>
 				</React.Fragment>

@@ -63,6 +63,7 @@ const GoogleSearchTab = (props) => {
 		props.onSubmit(latitude, longitude, geoFencingRadius, facility, requestDetails);
 	};
 
+	//responsible for showing the google autocomplete dropdown
 	useEffect(
 		() => {
 			const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
@@ -81,6 +82,7 @@ const GoogleSearchTab = (props) => {
 		[ inputRef ]
 	);
 
+	//responsible for making the input focused immediately component mounts DOM
 	useEffect(() => {
 		inputRef.current.focus();
 	}, []);
