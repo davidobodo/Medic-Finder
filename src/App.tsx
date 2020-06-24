@@ -48,6 +48,6 @@ const App = () => {
 			</ThemeProvider>
 		</React.Fragment>
 	);
-};
+}
 
 export default App;
