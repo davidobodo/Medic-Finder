@@ -14,7 +14,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 	authPageContainer: {
 		display: 'flex',
 		height: '100vh',
-		minHeight: '900px'
+		// minHeight: '900px'
 	},
 	leftColumn: {
 		backgroundColor: '#012B69',
@@ -67,7 +67,8 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 			flexBasis: '100%'
 		},
 		[theme.breakpoints.down('xs')]: {
-			padding: '50px'
+			padding: '50px',
+			flexDirection: 'column'
 		}
 	},
 	logo: {
@@ -79,7 +80,11 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		color: '#012B69',
 		top: '40px',
 		right: '80px',
-		[theme.breakpoints.down('xs')]: { right: '50px' },
+		[theme.breakpoints.down('xs')]: {
+			right: '50px',
+			position: 'static',
+			alignSelf: 'flex-end'
+		},
 
 		'& a': {
 			color: 'inherit',
