@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import HomePage from './pages/HomePage';
-import HistoryPage from './pages/HistoryPage';
-import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage'
+import HistoryPage from './pages/HistoryPage'
+import AuthPage from './pages/AuthPage'
 
 import { theme } from './styling/Globals';
 import { requestLoginSuccess, requestSignOut } from './redux/actions/authActions';
