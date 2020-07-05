@@ -20,8 +20,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 			{...rest}
 			render={(props) => (!!userId ? <Component {...props} /> : <Redirect to={{ pathname: '/auth' }} />)}
 		/>
-	);
-};
+	)
+}
 
 const App = () => {
 	const dispatch = useDispatch();
