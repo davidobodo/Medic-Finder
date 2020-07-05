@@ -27,6 +27,7 @@ const App = () => {
 	const dispatch = useDispatch();
 	const payload = getLocalStorage();
 
+	//checking linting
 	//check if token has expired. If it has then log user out, else allow user to still access application
 	if (new Date().getTime() > parseInt(payload.expirationTime)) {
 		dispatch(requestSignOut());
