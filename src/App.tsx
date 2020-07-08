@@ -1,27 +1,27 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import PropTypes from "prop-types";
 
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {ThemeProvider} from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-import HomePage from './pages/HomePage'
-import HistoryPage from './pages/HistoryPage'
-import AuthPage from './pages/AuthPage'
+import HomePage from "./pages/HomePage";
+import HistoryPage from "./pages/HistoryPage";
+import AuthPage from "./pages/AuthPage";
 
-import { theme } from './styling/Globals';
-import { requestLoginSuccess, requestSignOut } from './redux/actions/authActions';
-import { getLocalStorage } from './utils';
+import {theme} from "./styling/Globals";
+import {requestLoginSuccess, requestSignOut} from "./redux/actions/authActions";
+import {getLocalStorage} from "./utils";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({component: Component, ...rest}) => {
 	const userId = useSelector((state) => state.auth.userId);
-	return (
-		<Route
-			{...rest}
-			render={(props) => (!!userId ? <Component {...props} /> : <Redirect to={{ pathname: '/auth' }} />)}
-		/>
-	)
-}
+	return <Route {...rest} render={(props) => (userId ? <Component {...props} /> : <Redirect to={{pathname: "/auth"}} />)} />;
+};
+
+ProtectedRoute.propTypes = {
+	component: PropTypes.any,
+};
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -49,6 +49,6 @@ const App = () => {
 			</ThemeProvider>
 		</React.Fragment>
 	);
-}
+};
 
 export default App;
