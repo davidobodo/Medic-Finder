@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 
 import SignUp from "./signUp/signUp";
 import Login from "./login/login";
+import Slider from "./slider/slider";
 
 import {useAuthPageStyles} from "./style";
 
@@ -18,14 +19,7 @@ const AuthPage = () => {
 
 	return (
 		<div className={classes.authPageContainer}>
-			<div className={classes.slider}>
-				<div className="signIn-text">
-					<h2>Already Signed up?</h2>
-					<p>Login to your account so you can continue building and editing your onboarding flows</p>
-					<button>LOG IN</button>
-				</div>
-				<div className="signUp-text"></div>
-			</div>
+			<Slider onRequireLogin={() => setIsSignUp(false)} isSignUp={isSignUp} />
 			<div className={classes.leftColumn}>
 				<Login onRequireSignUp={() => setIsSignUp(true)} />
 			</div>

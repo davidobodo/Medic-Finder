@@ -17,46 +17,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		position: "relative",
 		// minHeight: '900px'
 	},
-	slider: {
-		position: "absolute",
-		backgroundColor: "#012B69",
-		color: "#fff",
-		width: "45%",
-		height: "100%",
-		zIndex: 2,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		transform: "skew(-10deg)",
 
-		"&:before": {
-			content: '""',
-			position: "absolute",
-			width: "100%",
-			height: "100%",
-			backgroundColor: "#012B69",
-			left: "-50%",
-		},
-
-		"& .signIn-text": {
-			textAlign: "center",
-			transform: "skew(10deg)",
-
-			"& p": {
-				fontWeight: 200,
-				margin: "30px auto",
-				width: "75%",
-			},
-
-			"& button": {
-				backgroundColor: "transparent",
-				borderRadius: "1px",
-				border: "1px solid #fff",
-				color: "#fff",
-				padding: "10px 45px",
-			},
-		},
-	},
 	leftColumn: {
 		flex: 1,
 		flexBasis: "50%",
