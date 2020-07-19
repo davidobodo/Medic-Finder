@@ -18,6 +18,14 @@ const AuthPage = () => {
 
 	return (
 		<div className={classes.authPageContainer}>
+			<div className={classes.slider}>
+				<div className="signIn-text">
+					<h2>Already Signed up?</h2>
+					<p>Login to your account so you can continue building and editing your onboarding flows</p>
+					<button>LOG IN</button>
+				</div>
+				<div className="signUp-text"></div>
+			</div>
 			<div className={classes.leftColumn}>
 				<Login onRequireSignUp={() => setIsSignUp(true)} />
 			</div>
