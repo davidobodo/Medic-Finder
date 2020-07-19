@@ -23,7 +23,7 @@ ProtectedRoute.propTypes = {
 	component: PropTypes.any,
 };
 
-const App = () => {
+const App = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const payload = getLocalStorage();
 

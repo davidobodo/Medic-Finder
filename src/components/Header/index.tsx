@@ -1,11 +1,11 @@
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import {NavLink, Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
-import Drawer from '../Drawer';
+import Drawer from "../Drawer";
 
-import { useHeaderStyles } from './style';
-import { requestSignOut } from '../../redux/actions/authActions';
+import {useHeaderStyles} from "./style";
+import {requestSignOut} from "../../redux/actions/authActions";
 
 const Header = () => {
 	const classes = useHeaderStyles();

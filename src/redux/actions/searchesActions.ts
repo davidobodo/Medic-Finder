@@ -1,29 +1,29 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from "../actionTypes";
 
 export const storeSearchRequest = (payload) => {
 	return {
 		type: actionTypes.STORE_SEARCH_REQUEST,
-		payload
+		payload,
 	};
 };
 
 export const getSearchResults = (payload) => {
 	return {
 		type: actionTypes.GET_SEARCH_RESULTS,
-		payload
+		payload,
 	};
 };
 
 export const getSearchResultsFail = (payload) => {
 	return {
 		type: actionTypes.GET_SEARCH_RESULTS_FAIL,
-		payload
+		payload,
 	};
 };
 
 export const setSearchResults = (payload) => {
 	return {
 		type: actionTypes.SET_SEARCH_RESULTS,
-		payload: payload.data
+		payload: payload.data,
 	};
 };

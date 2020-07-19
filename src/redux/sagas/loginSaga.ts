@@ -1,25 +1,24 @@
-import { all, takeEvery, put } from 'redux-saga/effects';
+import {all, takeEvery, put} from "redux-saga/effects";
 
-import * as actionTypes from '../actionTypes';
-import * as actions from '../actions/authActions';
+import * as actionTypes from "../actionTypes";
+import * as actions from "../actions/authActions";
 
 function* handleLoginSaga(action) {
-	const { email, password } = action.payload;
-	const SIGNIN_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env
-		.REACT_APP_apiKey}`;
+	const {email, password} = action.payload;
+	const SIGNIN_ENDPOINT = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_apiKey}`;
 
 	const bodyPayload = {
 		email,
 		password,
-		returnSecureToken: true
+		returnSecureToken: true,
 	};
 	try {
 		const res = yield fetch(SIGNIN_ENDPOINT, {
 			body: JSON.stringify(bodyPayload),
 			headers: {
-				'Content-Type': 'application/json'
+				"Content-Type": "application/json",
 			},
-			method: 'POST'
+			method: "POST",
 		});
 
 		if (res.ok) {
@@ -38,6 +37,6 @@ function* watchHandleLoginSaga() {
 	yield takeEvery(actionTypes.REQUEST_LOGIN_START, handleLoginSaga);
 }
 
-export default function*() {
-	yield all([ watchHandleLoginSaga() ]);
+export default function* () {
+	yield all([watchHandleLoginSaga()]);
 }

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { useStyles } from './style';
+import {useStyles} from "./style";
 
 const SpinnerWithBackdrop = () => {
 	const classes = useStyles();

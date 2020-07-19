@@ -1,23 +1,24 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect, useRef, Fragment} from "react";
+import {useDispatch} from "react-redux";
+import PropTypes from "prop-types";
 
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import AddressCard from '../AddressCard';
+import AddressCard from "../AddressCard";
 
-import { useLocationsStyles } from './style';
-import { LocationProps } from './type';
-import { storeSearchRequest } from '../../redux/actions/searchesActions';
+import {useLocationsStyles} from "./style";
+import {LocationProps} from "./type";
+import {storeSearchRequest} from "../../redux/actions/searchesActions";
 
 const Locations: React.FC<LocationProps> = (props) => {
-	const { latitude, longitude, radius, facility, onReturn, requestDetails, onFinishLoading } = props;
+	const {latitude, longitude, radius, facility, onReturn, requestDetails, onFinishLoading} = props;
 	const classes = useLocationsStyles();
 	const mapRef = useRef();
 	const defaultZoom = 12;
-	const [ hospitalsDescription, setHospitalsDescription ] = useState([] as []);
+	const [hospitalsDescription, setHospitalsDescription] = useState([] as []);
 	const place = new google.maps.LatLng(latitude, longitude);
 	const dispatch = useDispatch();
 
@@ -34,30 +35,30 @@ const Locations: React.FC<LocationProps> = (props) => {
 
 		const map = new window.google.maps.Map(mapRef.current, {
 			center: place,
-			zoom: defaultZoom
+			zoom: defaultZoom,
 		});
 
 		let type: string[];
 		let keyword: string;
 
 		//Check for the kind of facility user requested for in order to structure details of request(line 56) to send to google maps
-		if (facility === 'Hospitals') {
-			type = [ 'hospital' ];
-		} else if (facility === 'Pharmacy') {
-			type = [ 'pharmacy' ];
-		} else if (facility === 'Clinics') {
-			type = [ 'hospital' ];
-			keyword = 'clinic';
-		} else if (facility === 'Medical Offices') {
-			type = [ 'hospital' ];
-			keyword = 'medical';
+		if (facility === "Hospitals") {
+			type = ["hospital"];
+		} else if (facility === "Pharmacy") {
+			type = ["pharmacy"];
+		} else if (facility === "Clinics") {
+			type = ["hospital"];
+			keyword = "clinic";
+		} else if (facility === "Medical Offices") {
+			type = ["hospital"];
+			keyword = "medical";
 		}
 
 		const request: any = {
 			location: place,
 			radius: radius,
 			type: type,
-			keyword: keyword
+			keyword: keyword,
 		};
 
 		const service = new google.maps.places.PlacesService(map);
@@ -66,12 +67,12 @@ const Locations: React.FC<LocationProps> = (props) => {
 		const createMarker = (place: any): void => {
 			const marker = new window.google.maps.Marker({
 				position: place.geometry.location,
-				map: map
+				map: map,
 			});
 
 			//show details of a marker on the map when the marker is clicked
-			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + place.vicinity + '</div>');
+			google.maps.event.addListener(marker, "click", function () {
+				infowindow.setContent("<div><strong>" + place.name + "</strong><br>" + place.vicinity + "</div>");
 				infowindow.open(map, this);
 			});
 		};
@@ -81,7 +82,7 @@ const Locations: React.FC<LocationProps> = (props) => {
 				if (results.length > 1) {
 					setHospitalsDescription(results);
 				}
-				for (var i = 0; i < results.length; i++) {
+				for (let i = 0; i < results.length; i++) {
 					createMarker(results[i]);
 					setTimeout(() => {
 						onFinishLoading();
@@ -127,6 +128,16 @@ const Locations: React.FC<LocationProps> = (props) => {
 			</Grid>
 		</div>
 	);
+};
+
+Locations.propTypes = {
+	latitude: PropTypes.number,
+	longitude: PropTypes.number,
+	radius: PropTypes.string,
+	facility: PropTypes.string,
+	onReturn: PropTypes.func,
+	requestDetails: PropTypes.any,
+	onFinishLoading: PropTypes.func,
 };
 
 export default Locations;

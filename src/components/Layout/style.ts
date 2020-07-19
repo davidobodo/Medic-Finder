@@ -1,10 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from "@material-ui/core/styles";
 
-export const useLayoutStyles = makeStyles((theme) => ({
+export const useLayoutStyles = makeStyles(() => ({
 	root: {
-		position: 'relative'
+		position: "relative",
 	},
 	body: {
-		marginTop: '80px'
-	}
+		marginTop: "80px",
+	},
 }));

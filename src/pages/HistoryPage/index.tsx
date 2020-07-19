@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 
-import Layout from '../../components/Layout';
-import Table from '../../components/Table';
-import Locations from '../../components/Locations';
-import useParameters from '../../components/customHooks/useParameters';
-import SpinnerWithBackdrop from '../../components/SpinnerWithBackdrop';
+import Layout from "../../components/Layout";
+import Table from "../../components/Table";
+import Locations from "../../components/Locations";
+import useParameters from "../../components/customHooks/useParameters";
+import SpinnerWithBackdrop from "../../components/SpinnerWithBackdrop";
 
-import { useHistoryPageStyles } from './style';
+import {useHistoryPageStyles} from "./style";
 
 const HistoryPage = () => {
 	const classes = useHistoryPageStyles();
@@ -25,7 +25,7 @@ const HistoryPage = () => {
 		isLoading,
 		handleGetHospitals,
 		handleReturnToSearchPage,
-		handleOnFinishLoading
+		handleOnFinishLoading,
 	} = useParameters();
 
 	return (

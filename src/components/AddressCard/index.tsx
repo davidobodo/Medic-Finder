@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
+import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
 
-import StarRating from '../StarRating';
+import StarRating from "../StarRating";
 
-import { useAddressCardStyles } from './style';
-import { AddressCardProps } from './type';
+import {useAddressCardStyles} from "./style";
+import {AddressCardProps} from "./type";
 
 const AddressCard: React.FC<AddressCardProps> = (props) => {
 	const classes = useAddressCardStyles();
-	const { name, vicinity, rating } = props.description;
+	const {name, vicinity, rating} = props.description;
 
 	return (
 		<Card className={classes.root}>
@@ -28,6 +29,10 @@ const AddressCard: React.FC<AddressCardProps> = (props) => {
 			</div>
 		</Card>
 	);
+};
+
+AddressCard.propTypes = {
+	description: PropTypes.object,
 };
 
 export default AddressCard;

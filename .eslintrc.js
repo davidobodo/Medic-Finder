@@ -3,13 +3,7 @@ module.exports = {
 		browser: true,
 		es6: true,
 	},
-	extends: [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"plugin:@typescript-eslint/eslint-recommended",
-		"prettier/@typescript-eslint",
-		"plugin:prettier/recommended",
-	],
+	extends: ["plugin:react/recommended", "plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
 	globals: {
 		Atomics: "readonly",
 		SharedArrayBuffer: "readonly",
@@ -24,9 +18,7 @@ module.exports = {
 	},
 	plugins: ["react", "@typescript-eslint"],
 	rules: {
-		indent: ["error", "tab"],
-		"linebreak-style": ["error", "unix"],
-		quotes: ["error", "double"],
-		semi: ["error", "always"],
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
 	},
 };

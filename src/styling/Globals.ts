@@ -1,18 +1,18 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import {createMuiTheme} from "@material-ui/core/styles";
 
 export const theme = createMuiTheme({
 	overrides: {
 		MuiCssBaseline: {
-			'@global': {
+			"@global": {
 				html: {
-					WebkitFontSmoothing: 'auto'
+					WebkitFontSmoothing: "auto",
 				},
 				body: {
-					backgroundColor: '#fff'
-				}
-			}
-		}
-	}
+					backgroundColor: "#fff",
+				},
+			},
+		},
+	},
 });
 
 //proposed project colors

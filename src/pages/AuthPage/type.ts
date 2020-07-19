@@ -1,5 +1,3 @@
-export type AuthPageProps = {};
-
 export type LoginProp = {
 	onRequireSignUp: () => void;
 };

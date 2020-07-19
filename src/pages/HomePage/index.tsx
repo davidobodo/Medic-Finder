@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 
-import GoogleSearchTab from '../../components/GoogleSearchTab';
-import Locations from '../../components/Locations';
-import Layout from '../../components/Layout';
-import useParameters from '../../components/customHooks/useParameters';
-import SpinnerWithBackdrop from '../../components/SpinnerWithBackdrop';
+import GoogleSearchTab from "../../components/GoogleSearchTab";
+import Locations from "../../components/Locations";
+import Layout from "../../components/Layout";
+import useParameters from "../../components/customHooks/useParameters";
+import SpinnerWithBackdrop from "../../components/SpinnerWithBackdrop";
 
-import { useHomeStyles } from './style';
+import {useHomeStyles} from "./style";
 
 const HomePage = () => {
 	const classes = useHomeStyles();
@@ -26,7 +26,7 @@ const HomePage = () => {
 		isLoading,
 		handleGetHospitals,
 		handleReturnToSearchPage,
-		handleOnFinishLoading
+		handleOnFinishLoading,
 	} = useParameters();
 
 	return (
@@ -35,7 +35,8 @@ const HomePage = () => {
 			<Container maxWidth={false} className={classes.container}>
 				<div className={classes.leftColumn}>
 					<Typography component="h1" className={classes.title}>
-						Find <br />Health Facility
+						Find <br />
+						Health Facility
 					</Typography>
 					<GoogleSearchTab onSubmit={handleGetHospitals} />
 				</div>

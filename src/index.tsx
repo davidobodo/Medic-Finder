@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import {Provider} from "react-redux";
 
-import App from './App';
-import store from './redux/store';
+import App from "./App";
+import store from "./redux/store";
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 
 const Root = (
 	<React.StrictMode>
@@ -15,5 +15,5 @@ const Root = (
 	</React.StrictMode>
 );
 
-ReactDOM.render(Root, document.getElementById('root'));
+ReactDOM.render(Root, document.getElementById("root"));
 serviceWorker.unregister();

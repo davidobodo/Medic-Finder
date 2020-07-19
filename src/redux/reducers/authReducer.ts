@@ -1,11 +1,11 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from "../actionTypes";
 
 const initialState = {
 	isLoading: false,
 	signUpError: null,
 	loginError: null,
 	userId: null,
-	idToken: null
+	idToken: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const authReducer = (state = initialState, action) => {
 		case actionTypes.REQUEST_SIGNUP_START:
 			return {
 				...state,
-				isLoading: true
+				isLoading: true,
 			};
 		case actionTypes.REQUEST_SIGNUP_SUCCESS:
 			return {
@@ -21,7 +21,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: action.payload.localId,
 				idToken: action.payload.idToken,
-				signUperror: null
+				signUperror: null,
 			};
 		case actionTypes.REQUEST_SIGNUP_FAIL:
 			return {
@@ -29,12 +29,12 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: null,
 				idToken: null,
-				signUpError: action.payload
+				signUpError: action.payload,
 			};
 		case actionTypes.REQUEST_LOGIN_START:
 			return {
 				...state,
-				isLoading: true
+				isLoading: true,
 			};
 		case actionTypes.REQUEST_LOGIN_SUCCESS:
 			return {
@@ -42,7 +42,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: action.payload.localId,
 				idToken: action.payload.idToken,
-				loginError: null
+				loginError: null,
 			};
 		case actionTypes.REQUEST_LOGIN_FAIL:
 			return {
@@ -50,7 +50,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userId: null,
 				idToken: null,
-				loginError: action.payload
+				loginError: action.payload,
 			};
 		case actionTypes.REQUEST_SIGNOUT:
 			return {
@@ -58,7 +58,7 @@ const authReducer = (state = initialState, action) => {
 				userId: null,
 				idToken: null,
 				loginError: null,
-				isLoading: null
+				isLoading: null,
 			};
 		default:
 			return state;

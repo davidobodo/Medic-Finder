@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from "redux";
 
-import authReducer from './authReducer';
-import searchesReducer from './searchesReducer';
+import authReducer from "./authReducer";
+import searchesReducer from "./searchesReducer";
 
 export default combineReducers({
 	auth: authReducer,
-	searches: searchesReducer
+	searches: searchesReducer,
 });

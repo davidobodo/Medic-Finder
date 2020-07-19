@@ -1,25 +1,26 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
 
-import { Props } from './type';
-import { useStarRatingStyles } from './style';
+import {Props} from "./type";
+import {useStarRatingStyles} from "./style";
 
-const StarRating: React.FC<Props> = ({ rating }) => {
+const StarRating: React.FC<Props> = ({rating}) => {
 	const classes = useStarRatingStyles();
 
 	return (
 		<div>
-			{[ 1, 2, 3, 4, 5 ].map((i) => {
-				return i <= rating ? (
-					<FontAwesomeIcon icon={faStar} className={classes.checked} key={i} />
-				) : (
-					<FontAwesomeIcon icon={faStar} key={i} />
-				);
+			{[1, 2, 3, 4, 5].map((i) => {
+				return i <= rating ? <FontAwesomeIcon icon={faStar} className={classes.checked} key={i} /> : <FontAwesomeIcon icon={faStar} key={i} />;
 			})}
 		</div>
 	);
+};
+
+StarRating.propTypes = {
+	rating: PropTypes.number,
 };
 
 export default StarRating;

@@ -1,25 +1,26 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
-import { useStyles } from './style';
-import { Props } from './type';
+import {useStyles} from "./style";
+import {Props} from "./type";
 
-const NativeSelects: React.FC<Props> = ({ error, choices, onSetValue, label, errMessage }) => {
+const NativeSelects: React.FC<Props> = ({error, choices, onSetValue, label, errMessage}) => {
 	const classes = useStyles();
-	const [ state, setState ] = React.useState<{ age: string | number; name: string }>({
-		age: '',
-		name: 'hai'
+	const [state, setState] = React.useState<{age: string | number; name: string}>({
+		age: "",
+		name: "hai",
 	});
 
-	const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
-		const { name, value } = event.target;
+	const handleChange = (event: React.ChangeEvent<{name?: string; value: unknown}>) => {
+		const {name, value} = event.target;
 		setState({
 			...state,
-			[name]: value
+			[name]: value,
 		});
 		onSetValue(value);
 	};
@@ -34,12 +35,11 @@ const NativeSelects: React.FC<Props> = ({ error, choices, onSetValue, label, err
 					value={state.age}
 					onChange={handleChange}
 					inputProps={{
-						name: 'age',
-						id: 'age-native-label-placeholder'
-					}}
-				>
+						name: "age",
+						id: "age-native-label-placeholder",
+					}}>
 					{choices.map((choice) => {
-						const { displayValue, actualValue } = choice;
+						const {displayValue, actualValue} = choice;
 						return (
 							<option key={actualValue} value={actualValue}>
 								{displayValue}
@@ -51,6 +51,14 @@ const NativeSelects: React.FC<Props> = ({ error, choices, onSetValue, label, err
 			</FormControl>
 		</div>
 	);
+};
+
+NativeSelects.propTypes = {
+	error: PropTypes.bool,
+	choices: PropTypes.any,
+	onSetValue: PropTypes.func,
+	label: PropTypes.string,
+	errMessage: PropTypes.string,
 };
 
 export default NativeSelects;

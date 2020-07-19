@@ -1,89 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import PropTypes from "prop-types";
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
-import { useAuthPageStyles } from '../style';
-import { SignUpProp } from '../type';
-import { requestSignUpStart } from '../../../redux/actions/authActions';
-import { handleCheckEmailValidity } from '../../../utils';
+import {useAuthPageStyles} from "../style";
+import {SignUpProp} from "../type";
+import {requestSignUpStart} from "../../../redux/actions/authActions";
+import {handleCheckEmailValidity} from "../../../utils";
 
-const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
+const SignUp: React.FC<SignUpProp> = ({onRequireLogin}) => {
 	const classes = useAuthPageStyles();
 	const dispatch = useDispatch();
 	const databaseError = useSelector((state) => state.auth.signUpError);
 
-	const [ firstName, setFirstName ] = useState({
-		value: '',
+	const [firstName, setFirstName] = useState({
+		value: "",
 		hasError: false,
-		errorMessage: ''
+		errorMessage: "",
 	});
 
-	const [ lastName, setLastName ] = useState({
-		value: '',
+	const [lastName, setLastName] = useState({
+		value: "",
 		hasError: false,
-		errorMessage: ''
+		errorMessage: "",
 	});
 
-	const [ email, setEmail ] = useState({
-		value: '',
+	const [email, setEmail] = useState({
+		value: "",
 		hasError: false,
-		errorMessage: ''
+		errorMessage: "",
 	});
 
-	const [ password, setPassword ] = useState({
-		value: '',
+	const [password, setPassword] = useState({
+		value: "",
 		hasError: false,
-		errorMessage: ''
+		errorMessage: "",
 	});
 
-	const [ confirmPassword, setConfirmPassword ] = useState({
-		value: '',
+	const [confirmPassword, setConfirmPassword] = useState({
+		value: "",
 		hasError: false,
-		errorMessage: ''
+		errorMessage: "",
 	});
 
 	//General error state: This is responsible for checking that all form fields have no error before enabling the button
-	const [ err, setErr ] = useState(true);
+	const [err, setErr] = useState(true);
 
 	const SIGNUP_INPUT_FIELDS = [
 		{
-			label: 'First Name',
-			placeholder: 'First Name',
-			type: 'text',
+			label: "First Name",
+			placeholder: "First Name",
+			type: "text",
 			state: firstName,
-			name: 'firstName'
+			name: "firstName",
 		},
 		{
-			label: 'Last Name',
-			placeholder: 'Last Name',
-			type: 'text',
+			label: "Last Name",
+			placeholder: "Last Name",
+			type: "text",
 			state: lastName,
-			name: 'lastName'
+			name: "lastName",
 		},
 		{
-			label: 'Email',
-			placeholder: 'email',
-			type: 'email',
+			label: "Email",
+			placeholder: "email",
+			type: "email",
 			state: email,
-			name: 'email'
+			name: "email",
 		},
 		{
-			label: 'Password',
-			placeholder: 'Password',
-			type: 'password',
+			label: "Password",
+			placeholder: "Password",
+			type: "password",
 			state: password,
-			name: 'password'
+			name: "password",
 		},
 		{
-			label: 'Confirm Password',
-			placeholder: 'Confirm Password',
-			type: 'password',
+			label: "Confirm Password",
+			placeholder: "Confirm Password",
+			type: "password",
 			state: confirmPassword,
-			name: 'confirmPassword'
-		}
+			name: "confirmPassword",
+		},
 	];
 
 	const validateFirstName = (value) => {
@@ -91,13 +92,13 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			setFirstName({
 				...firstName,
 				hasError: true,
-				errorMessage: 'FirstName must be greater than two letters'
+				errorMessage: "FirstName must be greater than two letters",
 			});
 		} else {
 			setFirstName({
 				...firstName,
 				hasError: false,
-				errorMessage: ''
+				errorMessage: "",
 			});
 		}
 	};
@@ -107,13 +108,13 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			setLastName({
 				...lastName,
 				hasError: true,
-				errorMessage: 'LastName must be greater than two letters'
+				errorMessage: "LastName must be greater than two letters",
 			});
 		} else {
 			setLastName({
 				...lastName,
 				hasError: false,
-				errorMessage: ''
+				errorMessage: "",
 			});
 		}
 	};
@@ -121,9 +122,9 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 	const validateEmail = (value) => {
 		const isValid = handleCheckEmailValidity(value);
 		if (!isValid) {
-			setEmail({ ...email, hasError: true, errorMessage: 'Please Enter a valid email' });
+			setEmail({...email, hasError: true, errorMessage: "Please Enter a valid email"});
 		} else {
-			setEmail({ ...email, hasError: false, errorMessage: '' });
+			setEmail({...email, hasError: false, errorMessage: ""});
 		}
 	};
 
@@ -132,13 +133,13 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			setPassword({
 				...password,
 				hasError: true,
-				errorMessage: 'Password must be at least 6 characters'
+				errorMessage: "Password must be at least 6 characters",
 			});
 		} else {
 			setPassword({
 				...password,
 				hasError: false,
-				errorMessage: ''
+				errorMessage: "",
 			});
 		}
 	};
@@ -148,58 +149,58 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			setConfirmPassword({
 				...confirmPassword,
 				hasError: true,
-				errorMessage: 'Must match your password'
+				errorMessage: "Must match your password",
 			});
 		} else {
 			setConfirmPassword({
 				...confirmPassword,
 				hasError: false,
-				errorMessage: ''
+				errorMessage: "",
 			});
 		}
 	};
 
-	const handleOnChange = (e: React.ChangeEvent<{ name?: string; value: string }>): void => {
-		const { name, value } = e.target;
+	const handleOnChange = (e: React.ChangeEvent<{name?: string; value: string}>): void => {
+		const {name, value} = e.target;
 
-		if (name === 'firstName') {
-			setFirstName({ ...firstName, value });
+		if (name === "firstName") {
+			setFirstName({...firstName, value});
 		}
 
-		if (name === 'lastName') {
-			setLastName({ ...lastName, value });
+		if (name === "lastName") {
+			setLastName({...lastName, value});
 		}
 
-		if (name === 'email') {
-			setEmail({ ...email, value });
+		if (name === "email") {
+			setEmail({...email, value});
 		}
 
-		if (name === 'password') {
-			setPassword({ ...password, value });
+		if (name === "password") {
+			setPassword({...password, value});
 		}
 
-		if (name === 'confirmPassword') {
-			setConfirmPassword({ ...confirmPassword, value });
+		if (name === "confirmPassword") {
+			setConfirmPassword({...confirmPassword, value});
 		}
 	};
 
 	const handleValidateInput = (e) => {
-		const { name, value } = e.target;
+		const {name, value} = e.target;
 
 		switch (name) {
-			case 'firstName':
+			case "firstName":
 				validateFirstName(value);
 				break;
-			case 'lastName':
+			case "lastName":
 				validateLastName(value);
 				break;
-			case 'email':
+			case "email":
 				validateEmail(value);
 				break;
-			case 'password':
+			case "password":
 				validatePassword(value);
 				break;
-			case 'confirmPassword':
+			case "confirmPassword":
 				validateConfirmPassword(value);
 				break;
 		}
@@ -212,42 +213,37 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			lastName: lastName.value,
 			email: email.value,
 			password: password.value,
-			confirmPassword: confirmPassword.value
+			confirmPassword: confirmPassword.value,
 		};
 
 		dispatch(requestSignUpStart(userDetails));
 	};
 
 	//Logic for checking that all form fields no longer have errors
-	useEffect(
-		() => {
-			if (
-				firstName.value.length >= 2 &&
-				lastName.value.length >= 2 &&
-				password.value.length >= 6 &&
-				confirmPassword.value === password.value &&
-				handleCheckEmailValidity(email.value)
-			) {
-				setErr(false);
-			} else {
-				setErr(true);
-			}
-		},
-		[ firstName, lastName, password, confirmPassword, email ]
-	);
+	useEffect(() => {
+		if (
+			firstName.value.length >= 2 &&
+			lastName.value.length >= 2 &&
+			password.value.length >= 6 &&
+			confirmPassword.value === password.value &&
+			handleCheckEmailValidity(email.value)
+		) {
+			setErr(false);
+		} else {
+			setErr(true);
+		}
+	}, [firstName, lastName, password, confirmPassword, email]);
 
 	return (
 		<section className={classes.formContainer}>
 			<Typography component="h4" variant="h4" className={classes.header}>
 				Sign up
 			</Typography>
-			<p className={classes.formDescription}>
-				Create your 100% free account and start searching for health facilities near you.
-			</p>
+			<p className={classes.formDescription}>Create your 100% free account and start searching for health facilities near you.</p>
 
 			<form noValidate>
-				{SIGNUP_INPUT_FIELDS.map((input, i) => {
-					const { label, placeholder, type, state, name } = input;
+				{SIGNUP_INPUT_FIELDS.map((input) => {
+					const {label, placeholder, type, state, name} = input;
 					return (
 						<div key={name} className={classes.inputContainer}>
 							<TextField
@@ -256,14 +252,13 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 								name={name}
 								placeholder={placeholder}
 								error={state.hasError}
-								helperText={state.hasError ? state.errorMessage : ''}
+								helperText={state.hasError ? state.errorMessage : ""}
 								value={state.value}
 								onChange={handleOnChange}
 								onBlur={handleValidateInput}
-								fullWidth
 								type={type}
 								InputLabelProps={{
-									shrink: true
+									shrink: true,
 								}}
 								data-testid={name}
 							/>
@@ -277,10 +272,13 @@ const SignUp: React.FC<SignUpProp> = ({ onRequireLogin }) => {
 			<div className={classes.enquiry}>
 				Already have an account? <button onClick={onRequireLogin}>Login</button>
 			</div>
-			{databaseError &&
-			databaseError.error && <div className={classes.databaseError}>{databaseError.error.message}</div>}
+			{databaseError && databaseError.error && <div className={classes.databaseError}>{databaseError.error.message}</div>}
 		</section>
 	);
+};
+
+SignUp.propTypes = {
+	onRequireLogin: PropTypes.func,
 };
 
 export default SignUp;
