@@ -22,8 +22,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		padding: "100px",
-		position: "relative",
+		padding: "80px",
 		[theme.breakpoints.down("md")]: {
 			flexBasis: "40%",
 			padding: "40px",
@@ -39,6 +38,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		flexBasis: "50%",
 		display: "flex",
 		alignItems: "center",
+		justifyContent: "center",
 		[theme.breakpoints.down("md")]: {
 			flexBasis: "60%",
 		},
@@ -51,12 +51,17 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		},
 	},
 	formContainer: {
-		width: "100%",
+		width: "400px",
+		textAlign: "center",
 		animationName: "$slideIn",
 		animationDuration: "0.25s",
 		animationDirection: "normal",
 		animationTimingFunction: "ease-in-out",
 		animationFillMode: "forwards",
+
+		[theme.breakpoints.down("sm")]: {
+			width: "100%",
+		},
 		"& .MuiButton-contained": {
 			boxShadow: "none",
 			backgroundColor: "#012B69",
@@ -89,11 +94,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		marginBottom: "20px",
 
 		"& .MuiTextField-root": {
-			width: "300px",
-
-			[theme.breakpoints.down("sm")]: {
-				width: "100%",
-			},
+			width: "100%",
 		},
 
 		"&:last-of-type": {
