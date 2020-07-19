@@ -21,13 +21,13 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		position: "absolute",
 		backgroundColor: "#012B69",
 		color: "#fff",
-		width: "50%",
+		width: "45%",
 		height: "100%",
 		zIndex: 2,
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		transform: "skew(-20deg)",
+		transform: "skew(-10deg)",
 
 		"&:before": {
 			content: '""',
@@ -40,7 +40,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 
 		"& .signIn-text": {
 			textAlign: "center",
-			transform: "skew(20deg) translateX(-50px)",
+			transform: "skew(10deg)",
 
 			"& p": {
 				fontWeight: 200,
