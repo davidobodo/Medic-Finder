@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const useAuthPageStyles = makeStyles((theme) => ({
 	"@keyframes slideIn": {
@@ -27,7 +27,7 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		padding: "80px",
 		[theme.breakpoints.down("md")]: {
 			flexBasis: "40%",
-			padding: "40px",
+			padding: "80px",
 		},
 		[theme.breakpoints.down("sm")]: {
 			display: "none",
@@ -110,6 +110,10 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 	},
 	enquiry: {
 		textAlign: "center",
+
+		[theme.breakpoints.up("md")]: {
+			display: "none",
+		},
 
 		"& button": {
 			backgroundColor: "transparent",

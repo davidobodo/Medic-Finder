@@ -1,7 +1,7 @@
-import {makeStyles} from "@material-ui/core/styles";
-import {SliderType} from "./type";
+import { makeStyles } from "@material-ui/core/styles";
+import { SliderType } from "./type";
 
-export const useSliderStyles = makeStyles({
+export const useSliderStyles = makeStyles((theme) => ({
 	slider: {
 		position: "absolute",
 		backgroundColor: "#012B69",
@@ -16,6 +16,10 @@ export const useSliderStyles = makeStyles({
 		transform: (props: SliderType) => (props.isSignUp === true ? "skew(-10deg)" : "skew(10deg)"),
 		right: (props: SliderType) => (props.isSignUp === true ? "50vw" : "0vw"),
 
+		[theme.breakpoints.down('sm')]: {
+			display: 'none'
+		},
+
 		"&:before": {
 			content: '""',
 			position: "absolute",
@@ -25,7 +29,7 @@ export const useSliderStyles = makeStyles({
 			left: (props: SliderType) => (props.isSignUp === true ? "-50%" : "50%"),
 		},
 
-		"& .signIn-text": {
+		"& .info-text": {
 			textAlign: "center",
 			transform: (props: SliderType) => (props.isSignUp === true ? "skew(10deg)" : "skew(-10deg)"),
 
@@ -41,7 +45,15 @@ export const useSliderStyles = makeStyles({
 				border: "1px solid #fff",
 				color: "#fff",
 				padding: "10px 45px",
+				cursor: 'pointer'
 			},
 		},
+
+		"& .signin": {
+			display: (props: SliderType) => (props.isSignUp === true ? "block" : "none"),
+		},
+		"& .signup": {
+			display: (props: SliderType) => (props.isSignUp === true ? "none" : "block"),
+		},
 	},
-});
+}));
