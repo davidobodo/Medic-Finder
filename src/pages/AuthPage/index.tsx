@@ -9,9 +9,9 @@ import Slider from "./slider/slider";
 import { useAuthPageStyles } from "./style";
 
 const AuthPage = () => {
-	const classes = useAuthPageStyles();
 	const userId = useSelector((state) => state.auth.userId);
 	const [isSignUp, setIsSignUp] = useState(true);
+	const classes = useAuthPageStyles(isSignUp);
 
 	if (userId) {
 		return <Redirect to="/" />;
@@ -19,6 +19,9 @@ const AuthPage = () => {
 
 	return (
 		<div className={classes.authPageContainer}>
+			<div className="logo">
+				Hospital Finder
+			</div>
 			<Slider
 				onRequireLogin={() => setIsSignUp(false)}
 				isSignUp={isSignUp}

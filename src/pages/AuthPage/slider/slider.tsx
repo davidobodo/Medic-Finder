@@ -8,6 +8,7 @@ const Slider: React.FC<SliderType> = ({ onRequireLogin, onRequireSignUp, ...prop
 	const classes = useSliderStyles(props);
 	return (
 		<div className={classes.slider}>
+
 			<div className="info-text signin">
 				<h2>Already Signed up?</h2>
 				<p>Login to your account so you can continue searching for medical faicilities</p>

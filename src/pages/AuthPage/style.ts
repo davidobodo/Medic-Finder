@@ -15,7 +15,23 @@ export const useAuthPageStyles = makeStyles((theme) => ({
 		display: "flex",
 		height: "100vh",
 		position: "relative",
+		overflow: 'hidden',
 		// minHeight: '900px'
+
+		'& .logo': {
+			position: 'fixed',
+			zIndex: '1000',
+			fontSize: '1.5rem',
+			fontWeight: '600',
+			top: '2.5rem',
+			left: '3rem',
+			color: (isSignUp) => isSignUp ? "#fff" : "#012B69",
+
+			[theme.breakpoints.down("sm")]: {
+				color: "#012B69 !important",
+				fontSize: "1rem"
+			},
+		}
 	},
 
 	leftColumn: {
