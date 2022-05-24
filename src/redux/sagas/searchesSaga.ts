@@ -1,13 +1,25 @@
-import { all, takeEvery, put } from 'redux-saga/effects';
-import { db } from '../../fbConfig';
-
-import * as actionTypes from '../actionTypes';
-import * as actions from '../actions/searchesActions';
+import {all, takeEvery, put} from "redux-saga/effects";
+// import {db} from "../../fbConfig";
+import * as actionTypes from "../actionTypes";
+import * as actions from "../actions/searchesActions";
+import {getLocalStorageItem, setLocalStorageItem} from "../../utils";
+import {LOCAL_STORAGE_KEYS} from "../../constants";
 
 function* handleAddSearchSaga(action) {
-	const { payload } = action;
+	const {payload} = action;
 	try {
-		yield db.collection('searches').add(payload);
+		// yield db.collection("searches").add(payload);
+
+		const searches = yield getLocalStorageItem(LOCAL_STORAGE_KEYS.searches);
+
+		let newData = [];
+		if (searches) {
+			newData = [...searches, payload];
+		} else {
+			newData = [payload];
+		}
+
+		setLocalStorageItem(LOCAL_STORAGE_KEYS.searches, newData);
 	} catch (err) {
 		console.log(err);
 	}
@@ -16,17 +28,17 @@ function* handleAddSearchSaga(action) {
 function* handleGetSearchSaga(action) {
 	const userId = action.payload;
 	const graphqlQuery = {
-		query: `{getSearchResults(id: "${userId}"){searchFacility searchPlace searchRadius searchAt searchId searchCoordinates{ latitude longitude } }}`
+		query: `{getSearchResults(id: "${userId}"){searchFacility searchPlace searchRadius searchAt searchId searchCoordinates{ latitude longitude } }}`,
 	};
-	const GRAPHQL_ENDPOINT = 'https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql';
-	const localhost = 'http://localhost:4000/';
+	const GRAPHQL_ENDPOINT = "https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql";
+	// const localhost = "http://localhost:4000/";
 	try {
 		const res = yield fetch(GRAPHQL_ENDPOINT, {
-			method: 'POST',
+			method: "POST",
 			headers: {
-				'Content-Type': 'application/json'
+				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(graphqlQuery)
+			body: JSON.stringify(graphqlQuery),
 		});
 
 		if (res.ok) {
@@ -49,6 +61,6 @@ function* watchHandleGetSearchSaga() {
 	yield takeEvery(actionTypes.GET_SEARCH_RESULTS, handleGetSearchSaga);
 }
 
-export default function*() {
-	yield all([ watchHandleAddSearchSaga(), watchHandleGetSearchSaga() ]);
+export default function* () {
+	yield all([watchHandleAddSearchSaga(), watchHandleGetSearchSaga()]);
 }

@@ -1,24 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
+import React, {useState, useRef, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {v4 as uuidv4} from "uuid";
+import PropTypes from "prop-types";
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
-import MainSelect from '../MainSelect';
+import MainSelect from "../MainSelect";
 
-import { useGoogleSearchTabStyles } from './style';
-import { distances, facilities } from './constants';
+import {useGoogleSearchTabStyles} from "./style";
+import {distances, facilities} from "./constants";
 
-const GoogleSearchTab = (props) => {
+const GoogleSearchTab = ({onSubmit}) => {
 	const classes = useGoogleSearchTabStyles();
 	const inputRef = useRef(null);
-	const [ latitude, setLatitude ] = useState(null);
-	const [ longitude, setLongitude ] = useState(null);
-	const [ geoFencingRadius, setGeoFencingRadius ] = useState(null);
-	const [ errSelect, setErrSelect ] = useState(false);
-	const [ errInput, setErrInput ] = useState(false);
-	const [ facility, setFacility ] = useState('');
+	const [latitude, setLatitude] = useState(null);
+	const [longitude, setLongitude] = useState(null);
+	const [geoFencingRadius, setGeoFencingRadius] = useState(null);
+	const [errSelect, setErrSelect] = useState(false);
+	const [errInput, setErrInput] = useState(false);
+	const [facility, setFacility] = useState("");
 	const userId = useSelector((state) => state.auth.userId);
 
 	const handleSetGeoFencingRadius = (rad: number) => {
@@ -43,7 +44,7 @@ const GoogleSearchTab = (props) => {
 		return hasErr;
 	};
 
-	const handleStartSearch = (e: { preventDefault: () => void }) => {
+	const handleStartSearch = (e: {preventDefault: () => void}) => {
 		e.preventDefault();
 		const searchId = uuidv4();
 		const requestDetails = {
@@ -52,35 +53,34 @@ const GoogleSearchTab = (props) => {
 			searchRadius: geoFencingRadius,
 			searchCoordinates: {
 				latitude,
-				longitude
+				longitude,
 			},
 			searchAt: new Date(),
 			searchId: searchId,
-			userId: userId
+			userId: userId,
 		};
 		const err = handleValidateInputs();
 		if (err) return;
-		props.onSubmit(latitude, longitude, geoFencingRadius, facility, requestDetails);
+		onSubmit(latitude, longitude, geoFencingRadius, facility, requestDetails);
 	};
 
 	//responsible for showing the google autocomplete dropdown
-	useEffect(
-		() => {
-			const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
-				types: [ 'geocode' ]
-			});
+	useEffect(() => {
+		const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
+			types: ["geocode"],
+		});
 
-			autocomplete.addListener('place_changed', function() {
-				const place = autocomplete.getPlace();
-				const lat = place.geometry.location.lat();
-				const lng = place.geometry.location.lng();
-				setLatitude(lat);
-				setLongitude(lng);
-				setErrInput(false);
-			});
-		},
-		[ inputRef ]
-	);
+		console.log(autocomplete);
+
+		autocomplete.addListener("place_changed", function () {
+			const place = autocomplete.getPlace();
+			const lat = place.geometry.location.lat();
+			const lng = place.geometry.location.lng();
+			setLatitude(lat);
+			setLongitude(lng);
+			setErrInput(false);
+		});
+	}, [inputRef]);
 
 	//responsible for making the input focused immediately component mounts DOM
 	useEffect(() => {
@@ -94,12 +94,12 @@ const GoogleSearchTab = (props) => {
 				label="Location"
 				placeholder="Enter a location"
 				error={errInput}
-				helperText={errInput ? 'Please enter a valid location' : ''}
+				helperText={errInput ? "Please enter a valid location" : ""}
 				fullWidth
 				type="text"
 				inputRef={inputRef}
 				InputLabelProps={{
-					shrink: true
+					shrink: true,
 				}}
 			/>
 			<MainSelect
@@ -121,6 +121,10 @@ const GoogleSearchTab = (props) => {
 			</Button>
 		</form>
 	);
+};
+
+GoogleSearchTab.propTypes = {
+	onSubmit: PropTypes.func,
 };
 
 export default GoogleSearchTab;
