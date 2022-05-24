@@ -10,12 +10,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import LinearProgress from "@material-ui/core/LinearProgress";
 
 import {useStyles} from "./style";
 import {SimpleTableProps} from "./type";
 import {getSearchResults} from "../../redux/actions/searchesActions";
-import {convertTimeStampToDate} from "../../utils";
 
 const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 	const classes = useStyles();
