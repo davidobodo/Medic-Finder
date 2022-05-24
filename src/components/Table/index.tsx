@@ -44,6 +44,22 @@ const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 	const dateToNumber = (val) => {
 		return new Date(val).getTime();
 	};
+
+	const renderSearchFacility = (val) => {
+		switch (val) {
+			case "Hospitals":
+				return "Hospital";
+			case "Pharmacy":
+				return "Pharmacy";
+			case "Medical Offices":
+				return "Medical Office";
+			case "Clinics":
+				return "Clinic";
+			default:
+				return val;
+		}
+	};
+
 	const renderSearchResults = () => {
 		if (searches?.getSearchResults?.length !== 0) {
 			const sorted = searches?.getSearchResults?.sort((a, b) => {
@@ -61,7 +77,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 							<div className={classes.bullet} />
 							{row.searchPlace}
 						</TableCell>
-						<TableCell align="left">{row.searchFacility}</TableCell>
+						<TableCell align="left">{renderSearchFacility(row.searchFacility)}</TableCell>
 						<TableCell align="left">{row.searchRadius / 1000}</TableCell>
 						{/* <TableCell align="left">{moment(formattedTime).calendar()}</TableCell> */}
 						<TableCell align="left">{newTime}</TableCell>
