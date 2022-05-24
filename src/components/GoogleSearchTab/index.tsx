@@ -116,7 +116,7 @@ const GoogleSearchTab = ({onSubmit}) => {
 				errMessage="What type of facility should we search?"
 				onSetValue={(facility: string) => handleSetFacility(facility)}
 			/>
-			<Button variant="contained" onClick={handleStartSearch}>
+			<Button variant="contained" onClick={handleStartSearch} type="submit">
 				Search
 			</Button>
 		</form>

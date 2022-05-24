@@ -45,12 +45,12 @@ const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 		return new Date(val).getTime();
 	};
 	const renderSearchResults = () => {
-		if (searches.getSearchResults.length !== 0) {
-			const sorted = searches.getSearchResults.sort((a, b) => {
+		if (searches?.getSearchResults?.length !== 0) {
+			const sorted = searches?.getSearchResults?.sort((a, b) => {
 				return dateToNumber(b.searchAt) - dateToNumber(a.searchAt);
 			});
 			// return searches.getSearchResults.map((row) => {
-			return sorted.map((row) => {
+			return sorted?.map((row) => {
 				const {searchPlace, searchFacility, searchRadius, searchCoordinates, searchAt, searchId} = row;
 
 				// const formattedTime = convertTimeStampToDate(searchAt._seconds, searchAt._nanoseconds);
@@ -71,7 +71,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 		} else {
 			return (
 				<TableRow>
-					<TableCell className={classes.notice}>Sorry you have not made any search</TableCell>
+					<TableCell className={classes.notice}>No searches</TableCell>
 					<TableCell />
 					<TableCell />
 					<TableCell />
@@ -96,7 +96,8 @@ const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{searches ? (
+					{renderSearchResults()}
+					{/* {searches ? (
 						renderSearchResults()
 					) : (
 						<TableRow>
@@ -109,7 +110,7 @@ const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 							<TableCell />
 							<TableCell />
 						</TableRow>
-					)}
+					)} */}
 				</TableBody>
 			</Table>
 		</TableContainer>
