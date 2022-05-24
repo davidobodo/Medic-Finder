@@ -1,23 +1,23 @@
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import {NavLink, Link} from "react-router-dom";
+// import {useDispatch} from "react-redux";
 
-import Drawer from '../Drawer';
+import Drawer from "../Drawer";
 
-import { useHeaderStyles } from './style';
-import { requestSignOut } from '../../redux/actions/authActions';
+import {useHeaderStyles} from "./style";
+// import {requestSignOut} from "../../redux/actions/authActions";
 
 const Header = () => {
 	const classes = useHeaderStyles();
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
-	const handleSignOut = () => {
-		dispatch(requestSignOut());
-	};
+	// const handleSignOut = () => {
+	// 	dispatch(requestSignOut());
+	// };
 	return (
 		<div className={classes.root}>
 			<div className={classes.logo}>
-				<Link to="/">Enye Cohort 4</Link>
+				<Link to="/">Medic Finder</Link>
 			</div>
 			<Drawer />
 			<div className={classes.linksContainer}>
@@ -27,9 +27,9 @@ const Header = () => {
 				<NavLink exact to="/history">
 					History
 				</NavLink>
-				<NavLink exact to="/auth" onClick={handleSignOut}>
+				{/* <NavLink exact to="/auth" onClick={handleSignOut}>
 					Log out
-				</NavLink>
+				</NavLink> */}
 			</div>
 		</div>
 	);

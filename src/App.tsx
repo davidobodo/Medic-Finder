@@ -42,8 +42,10 @@ const App = () => {
 				<BrowserRouter>
 					<Switch>
 						<Route exact path="/auth" component={AuthPage} />
-						<ProtectedRoute exact path="/" component={HomePage} />
-						<ProtectedRoute exact path="/history" component={HistoryPage} />
+						{/* <ProtectedRoute exact path="/" component={HomePage} />
+						<ProtectedRoute exact path="/history" component={HistoryPage} /> */}
+						<Route exact path="/" component={HomePage} />
+						<Route exact path="/history" component={HistoryPage} />
 					</Switch>
 				</BrowserRouter>
 			</ThemeProvider>
