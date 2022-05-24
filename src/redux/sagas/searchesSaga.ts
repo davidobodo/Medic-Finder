@@ -26,31 +26,48 @@ function* handleAddSearchSaga(action) {
 }
 
 function* handleGetSearchSaga(action) {
-	const userId = action.payload;
-	const graphqlQuery = {
-		query: `{getSearchResults(id: "${userId}"){searchFacility searchPlace searchRadius searchAt searchId searchCoordinates{ latitude longitude } }}`,
-	};
-	const GRAPHQL_ENDPOINT = "https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql";
-	// const localhost = "http://localhost:4000/";
-	try {
-		const res = yield fetch(GRAPHQL_ENDPOINT, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(graphqlQuery),
-		});
+	let searches = yield getLocalStorageItem(LOCAL_STORAGE_KEYS.searches);
 
-		if (res.ok) {
-			const data = yield res.json();
-			yield put(actions.setSearchResults(data));
-		} else {
-			const err = yield res.json();
-			yield put(actions.getSearchResultsFail(err));
-		}
-	} catch (err) {
-		yield put(actions.getSearchResultsFail(err));
+	if (!searches) {
+		searches = [];
 	}
+	try {
+		yield put(
+			actions.setSearchResults({
+				data: {
+					getSearchResults: searches,
+				},
+			})
+		);
+	} catch (err) {
+		console.log(err);
+	}
+
+	// const userId = action.payload;
+	// const graphqlQuery = {
+	// 	query: `{getSearchResults(id: "${userId}"){searchFacility searchPlace searchRadius searchAt searchId searchCoordinates{ latitude longitude } }}`,
+	// };
+	// const GRAPHQL_ENDPOINT = "https://us-central1-enye-cohort4-obodo.cloudfunctions.net/api/graphql";
+	// // const localhost = "http://localhost:4000/";
+	// try {
+	// 	const res = yield fetch(GRAPHQL_ENDPOINT, {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify(graphqlQuery),
+	// 	});
+
+	// 	if (res.ok) {
+	// 		const data = yield res.json();
+	// 		yield put(actions.setSearchResults(data));
+	// 	} else {
+	// 		const err = yield res.json();
+	// 		yield put(actions.getSearchResultsFail(err));
+	// 	}
+	// } catch (err) {
+	// 	yield put(actions.getSearchResultsFail(err));
+	// }
 }
 
 function* watchHandleAddSearchSaga() {

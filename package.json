@@ -60,14 +60,5 @@
 		"husky": ">=4",
 		"lint-staged": ">=10",
 		"prettier": "2.0.5"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*.{js,ts,tsx}": "eslint --cache --fix",
-		"*.{js,ts,tsx,css,md}": "prettier --write"
 	}
 }

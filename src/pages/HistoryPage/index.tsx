@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
+import {useDispatch} from "react-redux";
+import Typography from "@material-ui/core/Typography";
 
-import Typography from '@material-ui/core/Typography';
-
-import Layout from '../../components/Layout';
-import Table from '../../components/Table';
-import Locations from '../../components/Locations';
-import useParameters from '../../components/customHooks/useParameters';
-import SpinnerWithBackdrop from '../../components/SpinnerWithBackdrop';
-
-import { useHistoryPageStyles } from './style';
+import Layout from "../../components/Layout";
+import Table from "../../components/Table";
+import Locations from "../../components/Locations";
+import useParameters from "../../components/customHooks/useParameters";
+import SpinnerWithBackdrop from "../../components/SpinnerWithBackdrop";
+import {getSearchResults} from "../../redux/actions/searchesActions";
+import {useHistoryPageStyles} from "./style";
 
 const HistoryPage = () => {
 	const classes = useHistoryPageStyles();
-
+	const dispatch = useDispatch();
 	//the useParameter hook abstracts the functionality of retrieving certain details so that the details can be accessed easily in multiple components
 	//this is also used in the HomePage component
 	const {
@@ -25,8 +25,13 @@ const HistoryPage = () => {
 		isLoading,
 		handleGetHospitals,
 		handleReturnToSearchPage,
-		handleOnFinishLoading
+		handleOnFinishLoading,
 	} = useParameters();
+
+	const onReturnToResults = () => {
+		dispatch(getSearchResults("12"));
+		handleReturnToSearchPage();
+	};
 
 	return (
 		<Layout>
@@ -43,7 +48,7 @@ const HistoryPage = () => {
 						longitude={longitude}
 						radius={radius}
 						facility={facility}
-						onReturn={handleReturnToSearchPage}
+						onReturn={onReturnToResults}
 						onFinishLoading={handleOnFinishLoading}
 					/>
 				)}

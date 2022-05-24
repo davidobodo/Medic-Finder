@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import moment from 'moment';
-import { v4 as uuidv4 } from 'uuid';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useEffect} from "react";
+import moment from "moment";
+import {v4 as uuidv4} from "uuid";
+import {useSelector, useDispatch} from "react-redux";
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-import { useStyles } from './style';
-import { SimpleTableProps } from './type';
-import { getSearchResults } from '../../redux/actions/searchesActions';
-import { convertTimeStampToDate } from '../../utils';
+import {useStyles} from "./style";
+import {SimpleTableProps} from "./type";
+import {getSearchResults} from "../../redux/actions/searchesActions";
+import {convertTimeStampToDate} from "../../utils";
 
-const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
+const SimpleTable: React.FC<SimpleTableProps> = ({onSearch}) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.auth.userId);
@@ -25,61 +25,53 @@ const SimpleTable: React.FC<SimpleTableProps> = ({ onSearch }) => {
 
 	const handleStartSearch = (coordinates, facility, rad, place) => {
 		const searchId = uuidv4();
-		const { latitude, longitude } = coordinates;
+		const {latitude, longitude} = coordinates;
 		const requestDetails = {
 			searchPlace: place,
 			searchFacility: facility,
 			searchRadius: rad,
 			searchCoordinates: {
 				latitude,
-				longitude
+				longitude,
 			},
 			searchAt: new Date(),
 			searchId: searchId,
-			userId: userId
+			userId: userId,
 		};
 		onSearch(latitude, longitude, rad, facility, requestDetails);
 	};
 
+	const dateToNumber = (val) => {
+		return new Date(val).getTime();
+	};
 	const renderSearchResults = () => {
 		if (searches.getSearchResults.length !== 0) {
-			return searches.getSearchResults.map((row) => {
-				const {
-					searchPlace,
-					searchFacility,
-					searchRadius,
-					searchCoordinates,
-					searchAt,
-					searchId
-				} = row;
-				const formattedTime = convertTimeStampToDate(searchAt._seconds, searchAt._nanoseconds);
+			const sorted = searches.getSearchResults.sort((a, b) => {
+				return dateToNumber(b.searchAt) - dateToNumber(a.searchAt);
+			});
+			// return searches.getSearchResults.map((row) => {
+			return sorted.map((row) => {
+				const {searchPlace, searchFacility, searchRadius, searchCoordinates, searchAt, searchId} = row;
+
+				// const formattedTime = convertTimeStampToDate(searchAt._seconds, searchAt._nanoseconds);
+				const newTime = moment(searchAt).format("MMMM Do YYYY, h:mm:ss a");
 				return (
-					<TableRow
-						key={searchId}
-						onClick={() =>
-							handleStartSearch(
-								searchCoordinates,
-								searchFacility,
-								searchRadius,
-								searchPlace
-							)}
-					>
+					<TableRow key={searchId} onClick={() => handleStartSearch(searchCoordinates, searchFacility, searchRadius, searchPlace)}>
 						<TableCell component="th" scope="row">
 							<div className={classes.bullet} />
 							{row.searchPlace}
 						</TableCell>
 						<TableCell align="left">{row.searchFacility}</TableCell>
 						<TableCell align="left">{row.searchRadius / 1000}</TableCell>
-						<TableCell align="left">{moment(formattedTime).calendar()}</TableCell>
+						{/* <TableCell align="left">{moment(formattedTime).calendar()}</TableCell> */}
+						<TableCell align="left">{newTime}</TableCell>
 					</TableRow>
 				);
 			});
 		} else {
 			return (
 				<TableRow>
-					<TableCell className={classes.notice}>
-						Sorry you have not made any search
-					</TableCell>
+					<TableCell className={classes.notice}>Sorry you have not made any search</TableCell>
 					<TableCell />
 					<TableCell />
 					<TableCell />
